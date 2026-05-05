@@ -12,3 +12,6 @@ javap -c NomFichierApp
 
 # Pour accéder au shell Java
 jshell
+
+# Pour compiler et exécuter une classe principale avec Maven
+mvn compile exec:java -Dexec.mainClass="nom.classe.App"
