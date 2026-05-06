@@ -8,9 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import quest.model.Matiere;
 
 public class DAOMatiere implements IDAO<Matiere,Integer>{
+	private static Logger log = LoggerFactory.getLogger(DAOMatiere.class);
 
 	@Override
 	public Matiere findById(Integer id) {
@@ -39,6 +43,9 @@ public class DAOMatiere implements IDAO<Matiere,Integer>{
 	public List<Matiere> findAll() {
 		List<Matiere> matieres = new ArrayList<>();
 
+		// System.out.println("Chargement des matières ...");
+		log.debug("Chargement des matières ...");
+
 		// try-with-resource => va appeler le .close() à l'issu du try ou du catch, dans un block finally que le compilateur va ajouter
 		try (
 			Connection conn  = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
@@ -49,11 +56,16 @@ public class DAOMatiere implements IDAO<Matiere,Integer>{
 			{
 				Matiere matiere = new Matiere(rs.getInt("id"),rs.getString("libelle"));
 				matieres.add(matiere);
+				// System.out.println("Matière " + matiere.getId() + " chargée !");
+				log.info("Matière {} ({}) chargée !", matiere.getId(), matiere.getLibelle());
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		// System.out.println("Les matières sont chargées !");
+		log.debug("Les matières sont chargées !");
 
 		return matieres;
 	}

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
+
 import quest.dao.DAOFiliere;
 import quest.dao.DAOModule;
 import quest.dao.DAOOrdinateur;
@@ -22,51 +25,50 @@ import quest.model.Stagiaire;
 import quest.service.MatiereService;
 import quest.service.PersonneService;
 public class App {
-	
 	static MatiereService matiereSrv = new MatiereService();
 	static PersonneService personneSrv = new PersonneService();
-	
+
 	static DAOOrdinateur daoOrdinateur = new DAOOrdinateur();
 	static DAOFiliere daoFiliere = new DAOFiliere();
 	static DAOSalle daoSalle = new DAOSalle();
 	static DAOModule daoModule = new DAOModule();
 	static Random r = new Random();
-	
+
 	static Personne connected;
-	
-	
+
+
 	///------------PARTIE APP--------------//
-	public static int saisieInt(String message) 
+	public static int saisieInt(String message)
 	{
-		Scanner monScanner = new Scanner(System.in); 
+		Scanner monScanner = new Scanner(System.in);
 		System.out.println(message);
 		return monScanner.nextInt();
 	}
 
-	public static double saisieDouble(String message) 
+	public static double saisieDouble(String message)
 	{
-		Scanner monScanner = new Scanner(System.in); 
+		Scanner monScanner = new Scanner(System.in);
 		System.out.println(message);
 		return monScanner.nextDouble();
 	}
 
-	public static String saisieString(String message) 
+	public static String saisieString(String message)
 	{
-		Scanner monScanner = new Scanner(System.in); 
+		Scanner monScanner = new Scanner(System.in);
 		System.out.println(message);
 		return monScanner.nextLine();
 	}
 
-	public static boolean saisieBoolean(String message) 
+	public static boolean saisieBoolean(String message)
 	{
-		Scanner monScanner = new Scanner(System.in); 
+		Scanner monScanner = new Scanner(System.in);
 		System.out.println(message);
 		return monScanner.nextBoolean();
 	}
 
 
 
-	public static void menuAdmin() 
+	public static void menuAdmin()
 	{
 		System.out.println("\n----Menu Admin-------");
 		System.out.println("1 - Gestion des matieres");
@@ -78,7 +80,7 @@ public class App {
 		System.out.println("7 - Se deconnecter");
 
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : gestionMatieres(); break;
 		case 2 : gestionSalles();break;
@@ -102,7 +104,7 @@ public class App {
 		System.out.println("5 - Retour menu Admin");
 
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : afficherMatiere();break;
 		case 2 : ajouterMatiere();break;
@@ -137,11 +139,11 @@ public class App {
 
 		Matiere matiere = new Matiere(null,libelle);
 		matiereSrv.insert(matiere);
-		
-		
+
+
 		System.out.println("L'ajout de la matiere a bien ete effectue : "+matiere);
 		System.out.println("Elle a l'id "+matiere.getId());
-		
+
 	}
 
 	public static void afficherMatiere() {
@@ -149,7 +151,7 @@ public class App {
 		List<Matiere> matieres = matiereSrv.getAll();
 
 		if(matieres.isEmpty()) {System.out.println("Aucune matiere dans la bdd...");}
-		else 
+		else
 		{
 			for(Matiere m : matieres ) {System.out.println(m);}
 		}
@@ -166,7 +168,7 @@ public class App {
 		System.out.println("5 - Retour menu Admin");
 
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : afficherSalle();break;
 		case 2 : ajouterSalle();break;
@@ -215,9 +217,9 @@ public class App {
 	public static void afficherSalle() {
 
 		List<Salle> salles = daoSalle.findAll();
-		
+
 		if(salles.isEmpty()) {System.out.println("Aucune salle dans la bdd...");}
-		else 
+		else
 		{
 			for(Salle s : salles ) {System.out.println(s);}
 		}
@@ -236,7 +238,7 @@ public class App {
 		System.out.println("6 - Retour menu Admin");
 
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : afficherFiliere();break;
 		case 2 : ajouterFiliere();break;
@@ -265,7 +267,7 @@ public class App {
 		String fin = saisieString("Saisir la date de fin de la filiere (yyyy-mm-dd) :  ");
 		String choix = saisieString("Filiere en presentiel (dans une salle) ? y/n");
 		Salle salle = null;
-		if(choix.equals("y")) 
+		if(choix.equals("y"))
 		{
 			afficherSalle();
 			int idSalle = saisieInt("Choisir la salle");
@@ -284,7 +286,7 @@ public class App {
 		String fin = saisieString("Saisir la date de fin de la filiere (yyyy-mm-dd) :  ");
 		String choix = saisieString("Filiere en presentiel (dans une salle) ? y/n");
 		Salle salle = null;
-		if(choix.equals("y")) 
+		if(choix.equals("y"))
 		{
 			afficherSalle();
 			int idSalle = saisieInt("Choisir la salle");
@@ -299,7 +301,7 @@ public class App {
 		List<Filiere> filieres = daoFiliere.findAll();
 
 		if(filieres.isEmpty()) {System.out.println("Aucune filiere dans la bdd...");}
-		else 
+		else
 		{
 			for(Filiere f : filieres ) {System.out.println(f);}
 		}
@@ -314,7 +316,7 @@ public class App {
 		System.out.println("5 - Retour menu Admin");
 
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : afficherOrdinateur();break;
 		case 2 : ajouterOrdinateur();break;
@@ -343,7 +345,7 @@ public class App {
 
 		String choix = saisieString("Affecter un utilisateur ? y/n");
 		Stagiaire utilisateur = null;
-		if(choix.equals("y")) 
+		if(choix.equals("y"))
 		{
 			afficherStagiaire();
 			int idUtilisateur = saisieInt("Choisir l'utlisateur");
@@ -361,7 +363,7 @@ public class App {
 
 		String choix = saisieString("Affecter un utilisateur ? y/n");
 		Stagiaire utilisateur = null;
-		if(choix.equals("y")) 
+		if(choix.equals("y"))
 		{
 			afficherStagiaire();
 			int idUtilisateur = saisieInt("Choisir l'utlisateur");
@@ -377,13 +379,13 @@ public class App {
 		List<Ordinateur> ordinateurs = daoOrdinateur.findAll();
 
 		if(ordinateurs.isEmpty()) {System.out.println("Aucun ordinateur dans la bdd...");}
-		else 
+		else
 		{
 			for(Ordinateur o : ordinateurs ) {System.out.println(o);}
 		}
 
 	}
-	
+
 	public static void gestionStagiaires() {
 		System.out.println("\n----Gestion des stagiaires------");
 		System.out.println("1 - Lister les stagiaires");
@@ -393,7 +395,7 @@ public class App {
 		System.out.println("5 - Retour menu Admin");
 
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : afficherStagiaire();break;
 		case 2 : ajouterStagiaire();break;
@@ -416,23 +418,23 @@ public class App {
 		int id = saisieInt("Saisir l'id du stagiaire à modifier");
 
 		System.out.println("Modif d'un stagiaire : ");
-		
+
 		String login = saisieString("Saisir le login");
 		String password = saisieString("Saisir le password");
 		String nom = saisieString("Saisir le nom");
 		String prenom = saisieString("Saisir le prenom");
 		String civilite = saisieString("Saisir la civilite : "+Arrays.toString(Genre.values()));
-		
+
 		String email = saisieString("Saisir l'email");
 		String numero = saisieString("Saisir le numero");
 		String voie = saisieString("Saisir la voie");
 		String ville = saisieString("Saisir la ville");
 		String cp = saisieString("Saisir le cp");
-		
+
 		afficherFiliere();
 		int idFiliere = saisieInt("Choisir une filiere");
 		Filiere filiere = daoFiliere.findById(idFiliere);
-		
+
 		Stagiaire stagiaire = new Stagiaire(id,login,password,nom,prenom,Genre.valueOf(civilite),email,numero,voie,ville,cp,filiere);
 		personneSrv.update(stagiaire);
 	}
@@ -444,34 +446,34 @@ public class App {
 		String nom = saisieString("Saisir le nom");
 		String prenom = saisieString("Saisir le prenom");
 		String civilite = saisieString("Saisir la civilite : "+Arrays.toString(Genre.values()));
-		
+
 		String email = saisieString("Saisir l'email");
 		String numero = saisieString("Saisir le numero");
 		String voie = saisieString("Saisir la voie");
 		String ville = saisieString("Saisir la ville");
 		String cp = saisieString("Saisir le cp");
-		
+
 		afficherFiliere();
 		int idFiliere = saisieInt("Choisir une filiere");
 		Filiere filiere = daoFiliere.findById(idFiliere);
-		
+
 		Stagiaire stagiaire = new Stagiaire(null,login,password,nom,prenom,Genre.valueOf(civilite),email,numero,voie,ville,cp,filiere);
-		
+
 		personneSrv.insert(stagiaire);
 	}
-	
+
 	public static void afficherStagiaire() {
 		List<Stagiaire> stagiaires = personneSrv.getAllStagiaire();
 
 		if(stagiaires.isEmpty()) {System.out.println("Aucun stagiaire dans la bdd...");}
-		else 
+		else
 		{
 			for(Stagiaire s : stagiaires ) {System.out.println(s);}
 		}
 
 	}
 
-	
+
 	public static void gestionFormateurs() {
 		System.out.println("\n----Gestion des formateurs------");
 		System.out.println("1 - Lister les formateurs");
@@ -481,7 +483,7 @@ public class App {
 		System.out.println("5 - Retour menu Admin");
 
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : afficherFormateur();break;
 		case 2 : ajouterFormateur();break;
@@ -504,15 +506,15 @@ public class App {
 		int id = saisieInt("Saisir l'id du formateur à modifier");
 
 		System.out.println("Modif d'un formateur : ");
-		
+
 		String login = saisieString("Saisir le login");
 		String password = saisieString("Saisir le password");
 		String nom = saisieString("Saisir le nom");
 		String prenom = saisieString("Saisir le prenom");
 		String civilite = saisieString("Saisir la civilite : "+Arrays.toString(Genre.values()));
-		
+
 		boolean admin = saisieBoolean("Le formateur est admin ? true/false");
-		
+
 		Formateur formateur = new Formateur(id,login,password,nom,prenom,Genre.valueOf(civilite),admin);
 		personneSrv.update(formateur);
 	}
@@ -524,9 +526,9 @@ public class App {
 		String nom = saisieString("Saisir le nom");
 		String prenom = saisieString("Saisir le prenom");
 		String civilite = saisieString("Saisir la civilite : "+Arrays.toString(Genre.values()));
-		
+
 		boolean admin = saisieBoolean("Le formateur est admin ? true/false");
-		
+
 		Formateur formateur = new Formateur(null,login,password,nom,prenom,Genre.valueOf(civilite),admin);
 		personneSrv.insert(formateur);
 	}
@@ -536,14 +538,14 @@ public class App {
 		List<Formateur> formateurs = personneSrv.getAllFormateur();
 
 		if(formateurs.isEmpty()) {System.out.println("Aucun formateur dans la bdd...");}
-		else 
+		else
 		{
 			for(Formateur f : formateurs ) {System.out.println(f);}
 		}
 
 	}
-	
-	
+
+
 	public static void gestionModule(int idFiliere) {
 		Filiere filiere = daoFiliere.findById(idFiliere);
 		System.out.println("\n----Gestion des modules de la filiere "+filiere.getLibelle()+"("+filiere.getId()+") -----");
@@ -551,24 +553,24 @@ public class App {
 		System.out.println("2 - Ajouter un module");
 		System.out.println("3 - Supprimer module");
 		System.out.println("4 - Retour Gestion des filieres");
-		
+
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : afficherModulesFiliere(idFiliere);break;
 		case 2 : ajouterModule(idFiliere);break;
 		case 3 : supprimerModule(idFiliere);break;
 		case 4 : gestionFilieres();break;
 		}
-		
+
 		gestionModule(idFiliere);
 	}
-	
+
 	public static void supprimerModule(int idFiliere) {
 		afficherModulesFiliere(idFiliere);
 		int id = saisieInt("Saisir l'id du module");
 		daoModule.delete(id);
-		
+
 	}
 
 	public static void ajouterModule(int idFiliere) {
@@ -577,22 +579,22 @@ public class App {
 		afficherMatiere();
 		int idMatiere = saisieInt("Choisir une matiere");
 		Matiere matiere = matiereSrv.getById(idMatiere);
-		
+
 		String debut = saisieString("Saisir la date début");
 		String fin = saisieString("Saisir la date fin");
-		
+
 		int quest = r.nextInt(1000,10000);
-		
+
 		Formateur formateur=null;
-		
+
 		String choix = saisieString("Affecter un formateur ? y/n");
-		if(choix.equals("y")) 
+		if(choix.equals("y"))
 		{
 			afficherFormateur();
 			int idFormateur = saisieInt("Saisir l'id du formateur");
 			formateur = personneSrv.getFormateurById(idFormateur);
 		}
-		
+
 		Module module = new Module(null,quest,LocalDate.parse(debut),LocalDate.parse(fin),matiere,filiere,formateur);
 		daoModule.insert(module);
 	}
@@ -601,7 +603,7 @@ public class App {
 		List<Module> modules = daoModule.findAllByFiliereId(idFiliere);
 
 		if(modules.isEmpty()) {System.out.println("Aucun module dans cette filiere...");}
-		else 
+		else
 		{
 			for(Module m : modules ) {System.out.println(m);}
 		}
@@ -611,30 +613,30 @@ public class App {
 	public static void seConnecter() {
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
-		
+
 		connected = personneSrv.getByLoginAndPassword(login, password);
-		
+
 		if(connected instanceof Stagiaire)
 		{
 			menuStagiaire();
 		}
-		else if(connected instanceof Formateur) 
+		else if(connected instanceof Formateur)
 		{
-			if(((Formateur) connected).isAdmin()) 
+			if(((Formateur) connected).isAdmin())
 			{
 				menuAdmin();
 			}
-			else 
+			else
 			{
 				menuFormateur();
 			}
 		}
-		else 
+		else
 		{
 			System.out.println("Les identifiants sont invalides...");
 		}
 	}
-	
+
 
 	public static void menuStagiaire() {
 		System.out.println("\n----MENU STAGIAIRE--------");
@@ -642,11 +644,11 @@ public class App {
 		System.out.println("SITE EN COURS DE CONSTRUCTION....");
 		System.out.println("1 - Se deconnecter");
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 			case 1 : menuPrincipal();break;
 		}
-		
+
 		menuStagiaire();
 	}
 
@@ -655,30 +657,33 @@ public class App {
 		System.out.println("SITE EN COURS DE CONSTRUCTION....");
 		System.out.println("1 - Se deconnecter");
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 			case 1 : menuPrincipal();break;
 		}
 		menuFormateur();
 	}
 
-	public static void menuPrincipal() 
+	public static void menuPrincipal()
 	{
 		System.out.println("----APP PROJET QUEST-------");
 		System.out.println("1 - Se connecter");
 		System.out.println("2 - Stop");
-		
+
 		int choix = saisieInt("Choisir un menu");
-		switch(choix) 
+		switch(choix)
 		{
 		case 1 : seConnecter();break;
 		case 2 : System.exit(0);break;
 		}
-		
+
 		menuPrincipal();
 	}
 
 	public static void main(String[] args) {
+		// Activer la configuration du niveau des Loggers
+		Configurator.setRootLevel(Level.DEBUG);
+
 		menuPrincipal();
 	}
 
