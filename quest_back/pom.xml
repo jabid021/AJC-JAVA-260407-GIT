@@ -3,14 +3,21 @@
   <groupId>formation-ajc</groupId>
   <artifactId>quest_back</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
-  
-  
+
+
+
    <dependencies>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.26</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>6.0.3</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -19,5 +26,5 @@
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
 	</properties>
-	
+
 </project>

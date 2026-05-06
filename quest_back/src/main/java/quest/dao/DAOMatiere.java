@@ -21,7 +21,7 @@ public class DAOMatiere implements IDAO<Matiere,Integer>{
 			requete.setInt(1, id);
 			ResultSet rs =  requete.executeQuery();
 
-			while(rs.next()) 
+			while(rs.next())
 			{
 				matiere = new Matiere(rs.getInt("id"),rs.getString("libelle"));
 			}
@@ -37,24 +37,24 @@ public class DAOMatiere implements IDAO<Matiere,Integer>{
 
 	@Override
 	public List<Matiere> findAll() {
-		List<Matiere> matieres = new ArrayList();
-		try {
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete=conn.prepareStatement("select * from matiere");
-			ResultSet rs =  requete.executeQuery();
+		List<Matiere> matieres = new ArrayList<>();
 
-			while(rs.next()) 
+		// try-with-resource => va appeler le .close() à l'issu du try ou du catch, dans un block finally que le compilateur va ajouter
+		try (
+			Connection conn  = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
+			PreparedStatement requete=conn.prepareStatement("select id, libelle from matiere");
+			ResultSet rs =  requete.executeQuery();
+		) {
+			while(rs.next())
 			{
 				Matiere matiere = new Matiere(rs.getInt("id"),rs.getString("libelle"));
 				matieres.add(matiere);
 			}
-			rs.close();
-			requete.close();
-			conn.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return matieres;
 	}
 
