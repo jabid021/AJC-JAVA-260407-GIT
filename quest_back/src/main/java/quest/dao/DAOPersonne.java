@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import quest.model.Filiere;
 import quest.model.Formateur;
 import quest.model.Genre;
@@ -14,6 +17,7 @@ import quest.model.Personne;
 import quest.model.Stagiaire;
 
 public class DAOPersonne implements IDAO<Personne,Integer>{
+	private static Logger log = LoggerFactory.getLogger(DAOPersonne.class);
 
 	@Override
 	public Personne findById(Integer id) {
@@ -25,18 +29,18 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 			requete.setInt(1, id);
 			ResultSet rs =  requete.executeQuery();
 
-			while(rs.next()) 
+			while(rs.next())
 			{
-				if(rs.getString("type_personne").equals("Stagiaire")) 
+				if(rs.getString("type_personne").equals("Stagiaire"))
 				{
 					Filiere filiere = daoFiliere.findById(rs.getInt("filiere"));
 					personne = new Stagiaire(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getString("email"),rs.getString("numero"),rs.getString("voie"),rs.getString("ville"),rs.getString("cp"),filiere);
 				}
-				else if(rs.getString("type_personne").equals("Formateur")) 
+				else if(rs.getString("type_personne").equals("Formateur"))
 				{
 					personne = new Formateur(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getBoolean("admin"));
 				}
-				
+
 			}
 			rs.close();
 			requete.close();
@@ -58,14 +62,14 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 			PreparedStatement requete=conn.prepareStatement("select * from personne");
 			ResultSet rs =  requete.executeQuery();
 
-			while(rs.next()) 
+			while(rs.next())
 			{
-				if(rs.getString("type_personne").equals("Stagiaire")) 
+				if(rs.getString("type_personne").equals("Stagiaire"))
 				{
 					Filiere filiere = daoFiliere.findById(rs.getInt("filiere"));
 					personne = new Stagiaire(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getString("email"),rs.getString("numero"),rs.getString("voie"),rs.getString("ville"),rs.getString("cp"),filiere);
 				}
-				else if(rs.getString("type_personne").equals("Formateur")) 
+				else if(rs.getString("type_personne").equals("Formateur"))
 				{
 					personne = new Formateur(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getBoolean("admin"));
 				}
@@ -86,7 +90,7 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 		try {
 			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
 			PreparedStatement requete=conn.prepareStatement("INSERT INTO personne (login,password,nom,prenom,civilite,admin,email,numero,voie,ville,cp,filiere,type_personne) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			
+
 			if(personne instanceof Stagiaire) {
 				Stagiaire stagiaire = (Stagiaire) personne;
 				requete.setString(1,stagiaire.getLogin());
@@ -103,8 +107,8 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 				requete.setInt(12,stagiaire.getFiliere().getId());
 				requete.setString(13,"Stagiaire");
 			}
-			
-			else if(personne instanceof Formateur) 
+
+			else if(personne instanceof Formateur)
 			{
 				requete.setString(1,personne.getLogin());
 				requete.setString(2,personne.getPassword());
@@ -134,7 +138,7 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 		try {
 			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
 			PreparedStatement requete=conn.prepareStatement("UPDATE personne set login=?,password=?,nom=?,prenom=?,civilite=?,admin=?,email=?,numero=?,voie=?,ville=?,cp=?,filiere=?,type_personne=? where id=?");
-			
+
 			if(personne instanceof Stagiaire) {
 				Stagiaire stagiaire = (Stagiaire) personne;
 				requete.setString(1,stagiaire.getLogin());
@@ -152,8 +156,8 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 				requete.setString(13,"Stagiaire");
 				requete.setInt(14, stagiaire.getId());
 			}
-			
-			else if(personne instanceof Formateur) 
+
+			else if(personne instanceof Formateur)
 			{
 				requete.setString(1,personne.getLogin());
 				requete.setString(2,personne.getPassword());
@@ -203,9 +207,9 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 			PreparedStatement requete=conn.prepareStatement("select * from personne where type_personne='Formateur'");
 			ResultSet rs =  requete.executeQuery();
 
-			while(rs.next()) 
+			while(rs.next())
 			{
-				formateur = new Formateur(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getBoolean("admin"));		
+				formateur = new Formateur(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getBoolean("admin"));
 				formateurs.add(formateur);
 			}
 			rs.close();
@@ -227,12 +231,12 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 			PreparedStatement requete=conn.prepareStatement("select * from personne where type_personne='Stagiaire'");
 			ResultSet rs =  requete.executeQuery();
 
-			while(rs.next()) 
+			while(rs.next())
 			{
-				
+
 				Filiere filiere = daoFiliere.findById(rs.getInt("filiere"));
 				stagiaire = new Stagiaire(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getString("email"),rs.getString("numero"),rs.getString("voie"),rs.getString("ville"),rs.getString("cp"),filiere);
-				
+
 				stagiaires.add(stagiaire);
 			}
 			rs.close();
@@ -244,10 +248,12 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 		}
 		return stagiaires;
 	}
-	
 
-	public Personne findByLoginAndPassword(String login,String password) 
+
+	public Personne findByLoginAndPassword(String login,String password)
 	{
+		log.info("Connexion en cours ...");
+
 		DAOFiliere daoFiliere = new DAOFiliere();
 		Personne personne = null;
 		try {
@@ -255,32 +261,39 @@ public class DAOPersonne implements IDAO<Personne,Integer>{
 			PreparedStatement requete=conn.prepareStatement("select * from personne where login=? and password=?");
 			requete.setString(1, login);
 			requete.setString(2, password);
-			
+
 			ResultSet rs =  requete.executeQuery();
 
-			while(rs.next()) 
+			log.debug("Requête exécutée !");
+
+			while(rs.next())
 			{
-				if(rs.getString("type_personne").equals("Stagiaire")) 
+				if(rs.getString("type_personne").equals("Stagiaire"))
 				{
+					log.debug("Stagiaire trouvé !");
 					Filiere filiere = daoFiliere.findById(rs.getInt("filiere"));
 					personne = new Stagiaire(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getString("email"),rs.getString("numero"),rs.getString("voie"),rs.getString("ville"),rs.getString("cp"),filiere);
 				}
-				else if(rs.getString("type_personne").equals("Formateur")) 
-				{
+				else if(rs.getString("type_personne").equals("Formateur"))
+					{
+					log.debug("Formateur trouvé !");
 					personne = new Formateur(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("nom"),rs.getString("prenom"),Genre.valueOf(rs.getString("civilite")),rs.getBoolean("admin"));
 				}
-				
+
 			}
 			rs.close();
 			requete.close();
 			conn.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Une erreur est survenue : {}", e.getMessage());
 		}
+
+		log.info("Connexion de l'utilisateur OK !");
+
 		return personne;
 	};
 
-	
-	
+
+
 }

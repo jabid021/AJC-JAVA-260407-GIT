@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import quest.dao.DAOFiliere;
 import quest.dao.DAOModule;
@@ -25,6 +27,8 @@ import quest.model.Stagiaire;
 import quest.service.MatiereService;
 import quest.service.PersonneService;
 public class App {
+	private static Logger log = LoggerFactory.getLogger(App.class);
+
 	static MatiereService matiereSrv = new MatiereService();
 	static PersonneService personneSrv = new PersonneService();
 
@@ -611,8 +615,12 @@ public class App {
 	}
 
 	public static void seConnecter() {
+		log.info("Connexion demandée en cours ...");
+
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
+
+		log.info("Login et mdp saisi !");
 
 		connected = personneSrv.getByLoginAndPassword(login, password);
 
