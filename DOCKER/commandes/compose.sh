@@ -21,3 +21,6 @@ docker compose restart
 
 # Démarrer les containers avec le rebuild des images
 docker compose up --build
+
+# Exécuter un container du compose, en intéraction
+docker compose run --rm -it nom_service
