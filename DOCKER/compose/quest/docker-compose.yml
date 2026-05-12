@@ -19,6 +19,12 @@ services:
       # - MYSQL_ROOT_PASSWORD=root
       MYSQL_ROOT_PASSWORD: root
 
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 3s
+      retries: 10
+      interval: 5s
+
   java:
     image: ajc/quest:back
 
@@ -30,6 +36,13 @@ services:
 
     environment:
       JDBC_URL: jdbc:mysql://mysql:3306/projet_quest
+
+    # depends_on:
+    #   - mysql
+
+    depends_on:
+      mysql:
+        condition: service_healthy
 
 networks:
   quest:
