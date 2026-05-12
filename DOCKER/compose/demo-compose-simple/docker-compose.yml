@@ -1,0 +1,24 @@
+# On peut définir le nom de la composition Docker (optionnel)
+name: demo-compose-simple
+
+# Les containers à exécuter
+services:
+  # docker run -d -p 80:80 --network demo-simple-rso --name compose-web nginx
+  web:
+    image: nginx
+
+    # Optionel, donner un nom au container
+    container_name: compose-web
+
+    ports:
+      - 80:80
+      # - 4200:80
+
+    networks:
+      - demo_simple_rso
+
+# Définir le ou les réseaux Docker à utiliser
+networks:
+  # Réseau de type Bridge (par défaut), dont l'id (la clé) est "demo_simple_rso", et dont le nom est "demo-simple-rso"
+  demo_simple_rso:
+    name: demo-simple-rso
