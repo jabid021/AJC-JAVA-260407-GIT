@@ -17,8 +17,17 @@ services:
     networks:
       - demo_simple_rso
 
+    volumes:
+      # - html_data:/usr/share/nginx/html
+      - ./index.html:/usr/share/nginx/html/index.html
+
 # Définir le ou les réseaux Docker à utiliser
 networks:
   # Réseau de type Bridge (par défaut), dont l'id (la clé) est "demo_simple_rso", et dont le nom est "demo-simple-rso"
   demo_simple_rso:
     name: demo-simple-rso
+
+# Définir les volumes gérés par Docker, à utiliser
+volumes:
+  html_data:
+    name: demo-simple-html-data
