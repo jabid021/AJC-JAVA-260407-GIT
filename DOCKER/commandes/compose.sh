@@ -18,3 +18,6 @@ docker compose start
 
 # Rédémarrer tous les containers
 docker compose restart
+
+# Démarrer les containers avec le rebuild des images
+docker compose up --build
