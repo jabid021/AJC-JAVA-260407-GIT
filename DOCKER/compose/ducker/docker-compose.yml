@@ -1,0 +1,72 @@
+name: ducker
+
+services:
+  mysql:
+    image: mysql:8.0.45
+    container_name: ducker-mysql
+
+    networks:
+      - ducker
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 3s
+      retries: 10
+      interval: 5s
+
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  java:
+    build:
+      context: java
+
+    container_name: ducker-java
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/exo
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+    networks:
+      - ducker
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  web:
+    build:
+      context: web
+
+    container_name: ducker-web
+
+    networks:
+      - ducker
+
+    ports:
+      - 80:80
+
+    depends_on:
+      - java
+
+  phpmyadmin:
+    image: phpmyadmin
+
+    networks:
+      - ducker
+
+    environment:
+      PMA_HOST: mysql
+      PMA_ABSOLUTE_URI: http://localhost/phpmyadmin/
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+networks:
+  ducker:
+    name: ducker
