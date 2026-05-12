@@ -1,0 +1,44 @@
+# Docker Apache MySQL Php(MyAdmin)
+name: damp
+
+services:
+  mysql:
+    image: mysql:8.0.45
+    container_name: damp-mysql
+
+    networks:
+      - damp
+
+    ports:
+      - 3306:3306
+
+    environment:
+      # - MYSQL_ROOT_PASSWORD=root
+      MYSQL_ROOT_PASSWORD: root
+
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 3s
+      retries: 10
+      interval: 5s
+
+  phpmyadmin:
+    image: phpmyadmin
+
+    networks:
+      - damp
+
+    ports:
+      - 80:80
+
+    environment:
+      # PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+networks:
+  damp:
+    name: damp
