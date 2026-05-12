@@ -1,0 +1,7 @@
+name: compose-java-dockerfile
+
+services:
+  java:
+    # On cherche le répertoire dans lequel se trouve le Dockerfile
+    build:
+      context: ../../dockerfile/ajc-java

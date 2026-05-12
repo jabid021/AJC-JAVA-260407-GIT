@@ -1,0 +1,11 @@
+name: compose-java
+
+services:
+  java:
+    image: eclipse-temurin:21-jdk
+
+    volumes:
+      - ./Application.java:/app/Application.java
+
+    command: java /app/Application.java
+
