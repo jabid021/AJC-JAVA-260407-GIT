@@ -23,8 +23,8 @@ public class App {
 	
 		
 		
-		//System.out.println(em.find(Demo.class, 12));
-	//	System.out.println(em.createQuery("from Demo").getResultList());
+		System.out.println(em.find(Demo.class, 12));
+		System.out.println(em.createQuery("from Demo").getResultList());
 		em.close();
 		emf.close();
 		
