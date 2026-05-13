@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import krusty.model.Client;
 import krusty.model.Employe;
 import krusty.model.Espece;
@@ -27,7 +30,7 @@ public class App {
 		Client c1 = new Client("Armand", "#00ff00", Espece.Etoile_de_mer, Arrays.asList(Humeur.valueOf("FATIGUE")), hotel);
 		Client c2 = new Client("Jérémy", "#000000", Espece.Calamar, Arrays.asList(Humeur.valueOf("FATIGUE")), hotel);
 		Client c3 = new Client("Clémence", "#000000", Espece.Plancton, Arrays.asList(Humeur.valueOf("FATIGUE")), hotel);
-
+		Client c4 = new Client("Plankton","green",Espece.Plancton,Arrays.asList(Humeur.AVARE,Humeur.ENERVE),labosecret);
 
 		Patron p1 = new Patron("Captain ABID", "#f3724f", Espece.Crabe,Arrays.asList(Humeur.AVARE), 6666.66, manoir);
 		Restaurant krustykrab = new Restaurant("Crousty Krab", "1", "place Krabkrab", "Bikini Bottom", 67, LocalTime.parse("04:00:00"), LocalTime.parse("17:00:00"), p1);
@@ -43,6 +46,20 @@ public class App {
 
 
 		System.out.println(pateCrabe);
+		
+		
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contextJPA");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		
+			em.persist(pateCrabe);
+		
+		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		
+		
 
 	}
 
