@@ -1,9 +1,7 @@
 package krusty.test;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -54,7 +52,19 @@ public class App {
 		em.getTransaction().begin();
 		
 			em.persist(pateCrabe);
-		
+			em.persist(e1);
+			em.persist(c1);
+			em.persist(c2);
+			em.persist(c3);
+			em.persist(c4);
+			em.persist(p1);
+			
+			em.persist(manoir);
+			em.persist(hotel);
+			em.persist(ananas);
+			em.persist(labosecret);
+			em.persist(krustykrab);
+			
 		em.getTransaction().commit();
 		em.close();
 		emf.close();

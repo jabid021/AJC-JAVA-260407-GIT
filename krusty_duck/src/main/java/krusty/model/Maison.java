@@ -1,6 +1,11 @@
 package krusty.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
+@Entity
 public class Maison extends Lieu {
+	@Column(length = 20)
 	private String forme;
 
 	public Maison() {}

@@ -2,18 +2,31 @@ package krusty.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
+@Entity
 public class Patron  extends Personnage{
 	
+	@Column(columnDefinition ="DECIMAL(15,2)")
 	private double fortune;
-	private Restaurant restaurant;
+	
+	
+	
+	
+	
+	private transient Restaurant restaurant;
+	
+	
+	
 
 	public Patron(String nom, String couleur, Espece espece,List<Humeur> humeurs, double fortune) {
-		super(couleur, couleur, espece,humeurs);
+		super(nom, couleur, espece,humeurs);
 		this.fortune = fortune;
 	}
 	
 	public Patron(String nom, String couleur, Espece espece,List<Humeur> humeurs, double fortune,Lieu habitation) {
-		super(couleur, couleur, espece,humeurs);
+		super(nom, couleur, espece,humeurs);
 		this.fortune = fortune;
 		this.habitation=habitation;
 	}

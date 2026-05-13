@@ -1,10 +1,18 @@
 package krusty.model;
 
-public class Adresse {
-	private String numero;
-	private String voie;
-	private String ville;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class Adresse{
 	
+	
+	@Column(length = 10,nullable = false)
+	private String numero;
+	@Column(columnDefinition = "VARCHAR(25)",nullable = false)
+	private String voie;
+	@Column(length = 25,nullable = false)
+	private String ville;
 	
 	public Adresse() {}
 	

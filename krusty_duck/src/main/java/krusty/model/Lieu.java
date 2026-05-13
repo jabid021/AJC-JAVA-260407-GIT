@@ -2,12 +2,35 @@ package krusty.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+
+@Entity
+@Inheritance(strategy =InheritanceType.SINGLE_TABLE)
+@Table(name="lieu")
 public abstract class Lieu {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	
+	@Column(length = 40,nullable = false)
 	protected String nom;
-	protected Adresse adresse;
-	protected List<Personnage> personnages;
+	@Embedded
+	protected  Adresse adresse;
+	
+	
+	
+	
+	
+	protected transient List<Personnage> personnages;
 	
 
 	public Lieu() {}

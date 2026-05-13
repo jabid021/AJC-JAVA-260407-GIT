@@ -3,19 +3,27 @@ package krusty.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Collate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Table(name="product")
 public class Produit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_produit")
 	private Integer id;
+	@Column(name="label",length = 45,nullable = false)
 	private String nom;
+	@Column(columnDefinition = "DECIMAL(5,2)")
 	private double prix;
 	private int stock;
 	

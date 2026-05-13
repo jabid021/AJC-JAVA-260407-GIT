@@ -1,5 +1,8 @@
 package krusty.model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Laboratoire extends Lieu{
 	private boolean secret;
 

@@ -3,13 +3,18 @@ package krusty.model;
 import java.time.LocalTime;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+@Entity
 public class Restaurant extends Lieu {
     private int capacite;
     private LocalTime ouverture;
     private LocalTime fermeture;
-    private List<Produit> produits;
-    private List<Employe> employes;
-    private Patron patron;
+    
+    
+    
+    private transient List<Produit> produits;
+    private transient List<Employe> employes;
+    private transient Patron patron;
 
     public Restaurant() {
     }

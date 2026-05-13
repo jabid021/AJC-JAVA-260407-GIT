@@ -2,11 +2,27 @@ package krusty.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
+@Entity
 public class Employe extends Personnage{
-	
+
+	@Column(length = 40)
 	private String job;
+	//prix entre 0.00 et 9999.99€
+	@Column(columnDefinition = "DECIMAL(6,2)") //colDef Decimal(x,y)=>  x represente la somme des nombres avant la virgule + apres la virgule et  y represente le nombre de chiffre APRES la virgule
 	private double salaire;
-	private Restaurant restaurant;
+	
+	
+	
+	
+	
+	private transient Restaurant restaurant;
+	
+	
+	
+	
 	
 	public Employe() {}
 	

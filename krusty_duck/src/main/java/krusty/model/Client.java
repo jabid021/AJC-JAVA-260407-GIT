@@ -2,10 +2,17 @@ package krusty.model;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Client extends Personnage{
 
 	
-	private List<Produit> produits;
+	private transient List<Produit> produits;
+	
+	
+	
+	
 	
 	public Client(String nom, String couleur, Espece espece,List<Humeur> humeurs) {
 		super(nom, couleur, espece,humeurs);

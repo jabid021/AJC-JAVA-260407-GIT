@@ -2,16 +2,39 @@ package krusty.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+
+@Entity
+@Inheritance(strategy =InheritanceType.SINGLE_TABLE)
+@Table(name="personnage")
 public abstract class Personnage {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
+	
+	@Column(length = 30, unique = true)
     protected String nom;
+	
+	@Column(length = 10)
     protected String couleur;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="esp" )
     protected Espece espece;
     
-    protected Lieu habitation;
+    protected transient Lieu habitation;
     
-    protected List<Humeur> humeurs;
+    protected transient List<Humeur> humeurs;
     
     public Personnage() {}
     
