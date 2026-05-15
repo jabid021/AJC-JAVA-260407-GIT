@@ -39,6 +39,7 @@ public abstract class Personnage {
     protected Espece espece;
     
     @ManyToOne
+    @JoinColumn(name="habitation",nullable = false)
     protected Lieu habitation;
     
   //Si on retire toutes les annotations, jpa gere la liste d'enum via un fichier binaire (serialize)

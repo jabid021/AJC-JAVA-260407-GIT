@@ -3,11 +3,15 @@ package krusty.model;
 import java.time.LocalTime;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 @Entity
 public class Restaurant extends Lieu {
     private int capacite;
+    
+    @Column(name="heure_ouverture")
     private LocalTime ouverture;
     private LocalTime fermeture;
     
@@ -17,6 +21,7 @@ public class Restaurant extends Lieu {
     //X => un patron dirige combien de restaurant ?
     //Y=> Combien de patron dans le restaurant
     @OneToOne 
+    @JoinColumn(name="boss")
     private Patron patron;
     
     

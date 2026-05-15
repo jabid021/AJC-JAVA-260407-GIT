@@ -13,7 +13,6 @@ import krusty.model.Humeur;
 import krusty.model.Laboratoire;
 import krusty.model.Maison;
 import krusty.model.Patron;
-import krusty.model.Personnage;
 import krusty.model.Produit;
 import krusty.model.Restaurant;
 
@@ -42,7 +41,7 @@ public class App {
 		pateCrabe.getAcheteurs().add(c1);
 		pateCrabe.getAcheteurs().add(c2);
 		pateCrabe.getAcheteurs().add(c3);
-
+		pateCrabe.getAcheteurs().add(c1);
 
 		System.out.println(pateCrabe);
 		
@@ -52,24 +51,29 @@ public class App {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		
-			/*em.persist(pateCrabe);
-			em.persist(e1);
+			em.persist(pateCrabe);
+			
+			em.persist(manoir);
+			em.persist(hotel);
+			em.persist(ananas);
+			em.persist(labosecret);
+			
+			
 			em.persist(c1);
 			em.persist(c2);
 			em.persist(c3);
 			em.persist(c4);
 			em.persist(p1);
 			
-			em.persist(manoir);
-			em.persist(hotel);
-			em.persist(ananas);
-			em.persist(labosecret);
-			em.persist(krustykrab);*/
+			
+			em.persist(krustykrab);
+			
+			em.persist(e1);
 			
 		em.getTransaction().commit();
 		
 		
-		System.out.println(em.find(Personnage.class, 1));
+		//System.out.println(em.find(Personnage.class, 1));
 		em.close();
 		emf.close();
 		

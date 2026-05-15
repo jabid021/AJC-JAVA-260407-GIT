@@ -8,9 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name="product")
@@ -28,9 +31,20 @@ public class Produit {
 	
 	
 	@ManyToOne
+	@JoinColumn(name="restaurant")
 	private Restaurant restaurant;
 	
+	//Pour lier un produit avec un client (chaque vente) => 2 id
+	//Id principal (celui de gauche en bdd, id de la classe ou on se trouve, ici Produit) => joinColumn
+	//Id secondaire (celui de droite en bdd, l'autre classe, ici Client => inverseJoinColumn
 	@ManyToMany
+	@JoinTable
+	   (
+			name="ventes", //rename la table de jointure
+			joinColumns = @JoinColumn(name="produit"), //rename la colonne de gauche
+			inverseJoinColumns = @JoinColumn(name="acheteur") //rename la colonne de droite 
+			//,uniqueConstraints = @UniqueConstraint(columnNames = {"produit","acheteur"})	
+		)
 	private List<Client> acheteurs = new ArrayList<>();
 
 	//constructeur vide
