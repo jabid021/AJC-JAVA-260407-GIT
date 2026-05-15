@@ -4,17 +4,26 @@ import java.time.LocalTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 @Entity
 public class Restaurant extends Lieu {
     private int capacite;
     private LocalTime ouverture;
     private LocalTime fermeture;
     
+    //One / @Many
+   
+    //Pour relier 2 classes entre elles @XToY:  
+    //X => un patron dirige combien de restaurant ?
+    //Y=> Combien de patron dans le restaurant
+    @OneToOne 
+    private Patron patron;
+    
     
     
     private transient List<Produit> produits;
     private transient List<Employe> employes;
-    private transient Patron patron;
+
 
     public Restaurant() {
     }

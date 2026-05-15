@@ -9,24 +9,25 @@ import jakarta.persistence.Entity;
 @Entity
 @DiscriminatorValue("boss")
 public class Patron  extends Personnage{
-	
+
 	@Column(columnDefinition ="DECIMAL(15,2)")
 	private double fortune;
-	
-	
-	
-	
-	
-	private transient Restaurant restaurant;
-	
-	
-	
 
+
+
+
+
+	private transient Restaurant restaurant;
+
+
+
+	public Patron() {}
+	
 	public Patron(String nom, String couleur, Espece espece,List<Humeur> humeurs, double fortune) {
 		super(nom, couleur, espece,humeurs);
 		this.fortune = fortune;
 	}
-	
+
 	public Patron(String nom, String couleur, Espece espece,List<Humeur> humeurs, double fortune,Lieu habitation) {
 		super(nom, couleur, espece,humeurs);
 		this.fortune = fortune;
@@ -41,7 +42,7 @@ public class Patron  extends Personnage{
 	public void setFortune(double fortune) {
 		this.fortune = fortune;
 	}
-	
+
 
 	public Restaurant getRestaurant() {
 		return restaurant;
@@ -57,7 +58,7 @@ public class Patron  extends Personnage{
 				+ habitation + ", humeurs=" + humeurs + ", fortune=" + fortune + "]";
 	}
 
-	
+
 
 
 }

@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,7 +38,8 @@ public abstract class Personnage {
     @Column(name="esp",nullable = false)
     protected Espece espece;
     
-    protected transient Lieu habitation;
+    @ManyToOne
+    protected Lieu habitation;
     
   //Si on retire toutes les annotations, jpa gere la liste d'enum via un fichier binaire (serialize)
   	@ElementCollection(targetClass = Humeur.class)

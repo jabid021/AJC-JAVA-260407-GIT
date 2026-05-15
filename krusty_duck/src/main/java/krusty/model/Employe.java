@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("employee")
@@ -17,10 +18,8 @@ public class Employe extends Personnage{
 	private double salaire;
 	
 	
-	
-	
-	
-	private transient Restaurant restaurant;
+	@ManyToOne
+	private Restaurant restaurant;
 	
 	
 	
