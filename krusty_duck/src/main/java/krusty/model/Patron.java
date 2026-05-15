@@ -3,9 +3,11 @@ package krusty.model;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("boss")
 public class Patron  extends Personnage{
 	
 	@Column(columnDefinition ="DECIMAL(15,2)")

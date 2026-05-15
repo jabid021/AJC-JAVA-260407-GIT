@@ -2,9 +2,11 @@ package krusty.model;
 
 import java.util.List;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("customer")
 public class Client extends Personnage{
 
 	

@@ -2,7 +2,10 @@ package krusty.model;
 
 import java.util.List;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -11,11 +14,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Inheritance(strategy =InheritanceType.SINGLE_TABLE)
 @Table(name="personnage")
+@DiscriminatorColumn(name = "type_perso",columnDefinition = "ENUM('boss','employee','customer')")
 public abstract class Personnage {
 
 	@Id
@@ -29,12 +34,17 @@ public abstract class Personnage {
     protected String couleur;
     
     @Enumerated(EnumType.STRING)
-    @Column(name="esp" )
+    @Column(name="esp",nullable = false)
     protected Espece espece;
     
     protected transient Lieu habitation;
     
-    protected transient List<Humeur> humeurs;
+  //Si on retire toutes les annotations, jpa gere la liste d'enum via un fichier binaire (serialize)
+  	@ElementCollection(targetClass = Humeur.class)
+  	@Enumerated(EnumType.STRING)
+  	@CollectionTable(name = "humeurs_des_persos", joinColumns = @JoinColumn(name = "id_du_perso"))
+  	//@Column(name = "liste_humeur")
+    protected List<Humeur> humeurs;
     
     public Personnage() {}
     
