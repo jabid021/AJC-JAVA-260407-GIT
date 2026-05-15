@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 @Entity
 public class Restaurant extends Lieu {
@@ -25,9 +26,11 @@ public class Restaurant extends Lieu {
     private Patron patron;
     
     
+    @OneToMany(mappedBy="restaurant")
+    private List<Produit> produits;
     
-    private transient List<Produit> produits;
-    private transient List<Employe> employes;
+    @OneToMany(mappedBy="restaurant")
+    private List<Employe> employes;
 
 
     public Restaurant() {

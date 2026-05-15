@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("boss")
@@ -13,11 +14,10 @@ public class Patron  extends Personnage{
 	@Column(columnDefinition ="DECIMAL(15,2)")
 	private double fortune;
 
-
-
-
-
-	private transient Restaurant restaurant;
+	//Quand JPA lit le mapping, XToOne va automatiquement creer une joinColumn
+	//Si on veut la virer, il faut ajouter : mappeBy = "l'attribut java de l'autre coté du lien"
+	@OneToOne(mappedBy = "patron" )
+	private Restaurant restaurant;
 
 
 

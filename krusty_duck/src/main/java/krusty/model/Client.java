@@ -4,13 +4,15 @@ import java.util.List;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("customer")
 public class Client extends Personnage{
 
 	
-	private transient List<Vente> achats;
+	@OneToMany(mappedBy = "client")
+	private List<Vente> achats;
 	
 	
 	

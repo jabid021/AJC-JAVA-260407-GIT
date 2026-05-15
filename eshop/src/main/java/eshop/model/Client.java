@@ -30,7 +30,7 @@ public class Client extends Personne {
 			joinColumns = @JoinColumn(name="acheteur"),
 			inverseJoinColumns =  @JoinColumn(name="produit")
 	)
-	private List<Produit> achats = new ArrayList();
+	private List<Achat> achats = new ArrayList();
 	
 	public Client() {}
 
@@ -58,11 +58,11 @@ public class Client extends Personne {
 	
 
 
-	public List<Produit> getAchats() {
+	public List<Achat> getAchats() {
 		return achats;
 	}
 
-	public void setAchats(List<Produit> achats) {
+	public void setAchats(List<Achat> achats) {
 		this.achats = achats;
 	}
 

@@ -26,8 +26,9 @@ public class Vente {
 	@ManyToOne
 	private Produit produit;
 	
-	@JoinColumn(name="acheteur",nullable = false)
+	
 	@ManyToOne
+	@JoinColumn(name="acheteur",nullable = false)
 	private Client client;
 	
 	public Vente() {}

@@ -36,14 +36,14 @@ public class Produit {
 	//Pour lier un produit avec un client (chaque vente) => 2 id
 	//Id principal (celui de gauche en bdd, id de la classe ou on se trouve, ici Produit) => joinColumn
 	//Id secondaire (celui de droite en bdd, l'autre classe, ici Client => inverseJoinColumn
-	@OneToMany
-	@JoinTable
+	@OneToMany(mappedBy="produit")
+	/*@JoinTable
 	   (
 			name="ventes", //rename la table de jointure
 			joinColumns = @JoinColumn(name="produit"), //rename la colonne de gauche
 			inverseJoinColumns = @JoinColumn(name="acheteur") //rename la colonne de droite 
 			//,uniqueConstraints = @UniqueConstraint(columnNames = {"produit","acheteur"})	
-		)
+		)*/
 	private List<Vente> ventes = new ArrayList<>();
 
 	//constructeur vide

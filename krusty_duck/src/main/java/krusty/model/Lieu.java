@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,8 +32,8 @@ public abstract class Lieu {
 	
 	
 	
-	
-	protected transient List<Personnage> personnages;
+	@OneToMany(mappedBy = "habitation")
+	protected List<Personnage> personnages;
 	
 
 	public Lieu() {}

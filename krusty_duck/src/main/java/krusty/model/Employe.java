@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -19,6 +20,7 @@ public class Employe extends Personnage{
 	
 	
 	@ManyToOne
+	@JoinColumn(name="lieu_travail")
 	private Restaurant restaurant;
 	
 	
