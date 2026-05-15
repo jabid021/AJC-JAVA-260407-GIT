@@ -10,7 +10,7 @@ import jakarta.persistence.Entity;
 public class Client extends Personnage{
 
 	
-	private transient List<Produit> produits;
+	private transient List<Vente> achats;
 	
 	
 	
@@ -23,18 +23,14 @@ public class Client extends Personnage{
 	public Client(String nom, String couleur, Espece espece,List<Humeur> humeurs, Lieu habitation) {
 		super(nom, couleur, espece,humeurs,habitation);
 	}
-	
-	public List<Produit> getProduits() {
-		return produits;
+
+	public List<Vente> getAchats() {
+		return achats;
 	}
 
-
-
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
+	public void setAchats(List<Vente> achats) {
+		this.achats = achats;
 	}
-
-
 
 	@Override
 	public String toString() {

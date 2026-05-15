@@ -18,13 +18,14 @@ public class TestJPA {
 		
 		Produit produit1 = new Produit("Formation SQL",950,fournisseur1);
 		
-		Produit produit2 = new Produit("Formation Angular",1250.99,null);
+		Produit produit2 = new Produit("Formation Angular",1250.99,fournisseur1);
 		
 		
 		Client client1 = new Client("John","Doe",Genre.nb,LocalDate.parse("1965-01-22"),"161","Avenue de Verdun","Ivry sur Seine","94200");
 		
 		client1.getAchats().add(produit1);
 		client1.getAchats().add(produit2);
+		client1.getAchats().add(produit1);
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contextJPA");
 		EntityManager em = emf.createEntityManager();

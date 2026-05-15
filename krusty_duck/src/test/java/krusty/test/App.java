@@ -1,5 +1,6 @@
 package krusty.test;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 
@@ -15,6 +16,7 @@ import krusty.model.Maison;
 import krusty.model.Patron;
 import krusty.model.Produit;
 import krusty.model.Restaurant;
+import krusty.model.Vente;
 
 public class App {
 
@@ -38,10 +40,16 @@ public class App {
 
 		Produit pateCrabe = new Produit("Paté de crabe", 1.25, 1500, krustykrab);
 
-		pateCrabe.getAcheteurs().add(c1);
+		/*pateCrabe.getAcheteurs().add(c1);
 		pateCrabe.getAcheteurs().add(c2);
 		pateCrabe.getAcheteurs().add(c3);
-		pateCrabe.getAcheteurs().add(c1);
+		pateCrabe.getAcheteurs().add(c1);*/
+		
+		Vente vente1 = new Vente(10,pateCrabe,c1);
+		Vente vente2 = new Vente(1,pateCrabe,c2);
+		Vente vente3 = new Vente(1,pateCrabe,c3);
+		Vente vente4 = new Vente(2,pateCrabe,c4,LocalDateTime.parse("2026-12-31T23:59:00"));
+	
 
 		System.out.println(pateCrabe);
 		
@@ -69,6 +77,11 @@ public class App {
 			em.persist(krustykrab);
 			
 			em.persist(e1);
+			
+			em.persist(vente1);
+			em.persist(vente2);
+			em.persist(vente3);
+			em.persist(vente4);
 			
 		em.getTransaction().commit();
 		

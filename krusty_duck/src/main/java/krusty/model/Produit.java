@@ -10,10 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name="product")
@@ -37,7 +36,7 @@ public class Produit {
 	//Pour lier un produit avec un client (chaque vente) => 2 id
 	//Id principal (celui de gauche en bdd, id de la classe ou on se trouve, ici Produit) => joinColumn
 	//Id secondaire (celui de droite en bdd, l'autre classe, ici Client => inverseJoinColumn
-	@ManyToMany
+	@OneToMany
 	@JoinTable
 	   (
 			name="ventes", //rename la table de jointure
@@ -45,7 +44,7 @@ public class Produit {
 			inverseJoinColumns = @JoinColumn(name="acheteur") //rename la colonne de droite 
 			//,uniqueConstraints = @UniqueConstraint(columnNames = {"produit","acheteur"})	
 		)
-	private List<Client> acheteurs = new ArrayList<>();
+	private List<Vente> ventes = new ArrayList<>();
 
 	//constructeur vide
 	public Produit() {}
@@ -79,24 +78,24 @@ public class Produit {
 	}
 
 
-	// Clients
-
-	public void ajouterAcheteur(Client client) {
-		if (client != null && !acheteurs.contains(client)) {
-			acheteurs.add(client);
-		}
-	}
-
-	public void retirerAcheteur(Client client) {
-		acheteurs.remove(client);
-	}
-
 
 
 	//get set
 	public Integer getId() {
 		return id;
 	}
+
+	public List<Vente> getVentes() {
+		return ventes;
+	}
+
+
+
+	public void setVentes(List<Vente> ventes) {
+		this.ventes = ventes;
+	}
+
+
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -137,17 +136,8 @@ public class Produit {
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
-
-	public void setAcheteurs(List<Client> acheteurs) {
-		this.acheteurs = acheteurs;
-	}
-
-	public List<Client> getAcheteurs() {
-		return acheteurs;
-	}
-
-
-
+	
+//toString
 	@Override
 	public String toString() {
 		return "Produit [id=" + id + ", nom=" + nom + ", prix=" + prix + ", stock=" + stock + ", restaurant="
@@ -155,6 +145,6 @@ public class Produit {
 	}
 
 
-	//toString
+	
 	
 }
