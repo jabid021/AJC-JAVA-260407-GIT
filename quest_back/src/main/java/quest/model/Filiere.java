@@ -22,11 +22,7 @@ public class Filiere {
 	private LocalDate debut; 
 	private LocalDate fin;
 	@ManyToOne
-<<<<<<< HEAD
 	@JoinColumn(name="salle", nullable=false)
-=======
-	@JoinColumn(name="salle",nullable=false)
->>>>>>> origin/Groupe2
 	private Salle salle; 
 	@OneToMany(mappedBy="filiere")
 	private List<Stagiaire> stagiaires;
