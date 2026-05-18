@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,13 +20,13 @@ public class Module {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "nom_cours", length = 30, nullable = false)
+	@Column(name = "code_quest", nullable = false)
 	private int quest;
 	
 	private LocalDate debut;
 	private LocalDate fin;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "matiere", nullable = false)
 	private Matiere matiere;
 	
