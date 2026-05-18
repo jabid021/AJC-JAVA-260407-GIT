@@ -2,17 +2,47 @@ package quest.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "module")
 public class Module {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name = "nom_cours", length = 30, nullable = false)
 	private int quest;
+	
 	private LocalDate debut;
 	private LocalDate fin;
+	
+	@ManyToOne
+	@JoinColumn(name = "matiere", nullable = false)
 	private Matiere matiere;
+	
+	@ManyToOne
+	@JoinColumn(name = "filiere", nullable = false)
 	private Filiere filiere;
+	
+	@ManyToOne
+	@JoinColumn(name = "formateur", nullable = false)
 	private Formateur formateur;
 	
 	
+	//constructeur vide
+	
+	public Module() {}
+	
+	//constructeur
 	public Module(Integer id, int quest, LocalDate debut, LocalDate fin, Matiere matiere, Filiere filiere,
 			Formateur formateur) {
 		this.id = id;
@@ -23,6 +53,7 @@ public class Module {
 		this.filiere = filiere;
 		this.formateur = formateur;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
