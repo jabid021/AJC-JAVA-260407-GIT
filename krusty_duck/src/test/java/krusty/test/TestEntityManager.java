@@ -8,6 +8,7 @@ import jakarta.persistence.Persistence;
 import krusty.model.Client;
 import krusty.model.Employe;
 import krusty.model.Espece;
+import krusty.model.Maison;
 import krusty.model.Patron;
 import krusty.model.Personnage;
 import krusty.model.Produit;
@@ -17,9 +18,15 @@ public class TestEntityManager {
 	public static void main(String[] args) {
 		//Commandes SQL et leur equivalent en JPA : 
 
+		//Par defaut, dans toutes les entity, le chargement des liens en XToMany est en mode Lazy (!=Eager)
+		//On peut changer se comportement en modifiant l'attribut fetch = "Eager" dans les @XToMany(ON NE DOIT JAMAIS FAIRE CA!)
+			//Ou faire une requete avec le mot JOIN FETCH sur la liste en question
+			
+		
+		
 		//SELECT where id =  => em.find(Classe.class,id)
 		//SELECT * => em.createQuery(....)
-		//SELECT where col = ?
+		//SELECT where col = ? => em.createQuery(....).setParameter()
 
 
 		//CreateQuery permet d'ecrire des SELECT, CEPENDANT, on ecrit plus jamais du SQL, mais du JPQL =>
@@ -27,15 +34,29 @@ public class TestEntityManager {
 		//JavaProgrammingLanguageQuerry => requete sur nos classes
 
 		//Si un seul resultat attendu => .getSingleResult
-		//Si la requete ne retourne rien, JPA leve une exception
-		//Si un seul resultat sort, GOOD
-		//Si plusieurs resultats => JPA Leve une exception
+			//Si la requete ne retourne rien, JPA leve une exception
+			//Si un seul resultat sort, GOOD
+			//Si plusieurs resultats => JPA Leve une exception
+		
+		
 		//Si plusieurs resutats attendus => .getResultList
-		//Si la requete ne retourne aucun resultat => Liste vide []
-		//Sinon retourne la liste
-		//INSERT
-		//UPDATE
-		//DELETE
+			//Si la requete ne retourne aucun resultat => Liste vide []
+			//Sinon retourne la liste
+		
+		//Tout ce qui modifie la bdd (transaction) 
+		
+		//TOUS LES SELECT VOUS RETURN DES OBJETS MANAGED
+		
+		
+		//INSERT => em.persist(objet)  => l'objet est managed par JPA
+			// En autoIncrement, si on donne un id, JPA PAS CONTENT
+			// Sans AutoIncrement, si on donne un id deja existant, JPA PAS CONTENT
+		
+		//UPDATE => copie = em.merge(objet) => objet n'est pas Managed par JPA.... Mais copie l'est !
+			//Si l'objet n'a pas d'id, ou un id inexistant => insert l'objet
+			//Si l'objet a un id existant => update
+		
+		//DELETE => em.remove(objet) => objet DOIT etre MANAGED
 
 		//UPDATE where col = ?
 
@@ -157,8 +178,90 @@ public class TestEntityManager {
 
 		
 		System.out.println("----------------");
+		
+		System.out.println("Voir TOUS les personnages habitant dans un ananas");
 
+		List<Personnage> persoAnanas =  em.createQuery("SELECT p from Personnage p where p.habitation.forme='ananas'").getResultList();
+		for(Personnage p : persoAnanas) 
+		{
+			System.out.println(p);
+		}
+
+		System.out.println("----------------");
+		
+		System.out.println("Voir TOUS les clients AVEC leurs achats (un client sans achat ne sort pas)");
+
+		List<Client> clientsBis =  em.createQuery("SELECT c from Client c JOIN FETCH c.achats").getResultList();
+		
+		
+		
+		for(Client c : clientsBis) 
+		{
+			System.out.println(c);
+			System.out.println("Voir les achats du client :  ");
+			System.out.println(c.getAchats());
+		}
+
+		System.out.println("-------------");
+		
+		
+		System.out.println("Voir TOUS les clients AVEC leurs achats (MEME les client sans Achats (Ajout du mot cle LEFT))");
+
+		List<Client> clientsBis2 =  em.createQuery("SELECT c from Client c LEFT JOIN FETCH c.achats").getResultList();
+		
+
+		
+		for(Client c : clientsBis2) 
+		{
+			System.out.println(c);
+			System.out.println("Voir les achats du client :  ");
+			System.out.println(c.getAchats());
+		}
+
+		
+		System.out.println("-------------");
+		
+		
+		
+
+		System.out.println("Voir TOUS les clients AVEC un achat qui a une qte >= 5");
+
+		List<Client> clientsBis3 =  em.createQuery("SELECT c from Client c JOIN c.achats a where a.quantite>=5 ").getResultList();
+	
+		
+		for(Client c : clientsBis3) 
+		{
+			System.out.println(c);
+
+		}
+		
+		System.out.println("-------------");
+		
+		
+		
+		
+		System.out.println("--------------FIN DEMO SELECT------------------");
+		
+		Maison ajc = new Maison("AJCTER","161bis","Avenue de Verdun","Ivry","94200");
+		//ajc.setId(6);
+		
+		
+		em.getTransaction().begin();
+		
+		//Faire un update custom : 
+		//em.createQuery("UPDATE Employe e set e.salaire = e.salaire+10").executeUpdate();
+			
+		//em.persist(ajc);
+			ajc=em.merge(ajc);
+			em.remove(ajc);
+		
+		
+		em.getTransaction().commit();
+		
 		em.close();
+		
+		System.out.println(ajc);
+		
 		emf.close();
 	}
 
