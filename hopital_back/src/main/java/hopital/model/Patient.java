@@ -3,11 +3,25 @@ package hopital.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Patient implements Serializable{
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="patient")
+public class Patient implements Serializable{
+	
+	@Id
+	@Column(name="id")
 	private Integer id;
+	@Column(name="nom",columnDefinition="VARCHAR(50)",nullable = false)
 	private String nom;
+	@Column(name="prenom",columnDefinition="VARCHAR(50)",nullable = false)
 	private String prenom;
+	
+	public Patient() {
+	}
 	
 	public Patient(Integer id, String nom, String prenom) {
 		this.id = id;

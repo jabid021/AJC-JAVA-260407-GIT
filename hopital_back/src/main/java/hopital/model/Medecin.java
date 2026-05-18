@@ -3,16 +3,21 @@ package hopital.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("Medecin")
 public class Medecin extends Compte{
 
+	private transient int salle;
+	private transient List<Visite> consultations = new ArrayList();
 	
-	private int salle;
-	private List<Visite> consultations = new ArrayList();
-	
-	
-	
+	public Medecin() {
+	}
 	public Medecin(Integer id, String login, String password) {
-		super(id, login, password);
+		super(id,login, password);
 	}
 
 	public int getSalle() {

@@ -1,11 +1,30 @@
 package hopital.model;
 
-public abstract class Compte {
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="Compte")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_compte",columnDefinition="ENUM('Medecin','Secretaire')")
+public abstract class Compte {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected Integer id;
+	@Column(name="login",nullable=false)
 	protected String login;
+	@Column(name="password",nullable=false)
 	protected String password;
 	
+	public Compte() {
+	}
 	public Compte(Integer id, String login, String password) {
 		this.id = id;
 		this.login = login;

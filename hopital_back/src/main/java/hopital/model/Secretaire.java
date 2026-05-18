@@ -1,9 +1,14 @@
 package hopital.model;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Secretaire")
 public class Secretaire extends Compte{
 
-	public Secretaire(Integer id, String login, String password) {
-		super(id, login, password);
+	public Secretaire( Integer id,String login, String password) {
+		super(id,login, password);
 	}
 
 	@Override

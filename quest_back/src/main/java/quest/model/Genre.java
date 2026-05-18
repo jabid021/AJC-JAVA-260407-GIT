@@ -1,6 +1,6 @@
 package quest.model;
 
-public enum Genre {
 
+public enum Genre {
 	Homme,Femme,NB;
 }
