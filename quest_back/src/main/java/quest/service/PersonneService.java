@@ -2,16 +2,13 @@ package quest.service;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import quest.dao.DAOPersonne;
 import quest.model.Formateur;
 import quest.model.Personne;
 import quest.model.Stagiaire;
 
 public class PersonneService {
-	private static Logger log = LoggerFactory.getLogger(PersonneService.class);
+	//private static Logger log = LoggerFactory.getLogger(PersonneService.class);
 
 	static DAOPersonne daoPersonne = new DAOPersonne();
 
@@ -46,7 +43,7 @@ public class PersonneService {
 
 	public Personne getByLoginAndPassword(String login,String password)
 	{
-		log.info("Connexion en cours ...");
+		//log.info("Connexion en cours ...");
 		return daoPersonne.findByLoginAndPassword(login, password);
 	}
 

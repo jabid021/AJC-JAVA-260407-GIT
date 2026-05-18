@@ -95,8 +95,7 @@ public class Restaurant extends Lieu {
 
 	@Override
 	public String toString() {
-		return "Restaurant [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", personnages=" + personnages
-				+ ", capacite=" + capacite + ", ouverture=" + ouverture + ", fermeture=" + fermeture + ", patron="
+		return "Restaurant [id=" + id + ", nom=" + nom + ", adresse=" + adresse +", capacite=" + capacite + ", ouverture=" + ouverture + ", fermeture=" + fermeture + ", patron="
 				+ patron + "]";
 	}
 

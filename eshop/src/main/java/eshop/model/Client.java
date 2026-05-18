@@ -8,10 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("customer")
@@ -23,13 +20,13 @@ public class Client extends Personne {
 	@Embedded
 	private Adresse adresse;
 	
-	@ManyToMany
-	@JoinTable
+	@OneToMany(mappedBy = "client")
+	/*@JoinTable
 	(
 			name="achats",
 			joinColumns = @JoinColumn(name="acheteur"),
 			inverseJoinColumns =  @JoinColumn(name="produit")
-	)
+	)*/
 	private List<Achat> achats = new ArrayList();
 	
 	public Client() {}

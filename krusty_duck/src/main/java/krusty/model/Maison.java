@@ -27,8 +27,7 @@ public class Maison extends Lieu {
 
 	@Override
 	public String toString() {
-		return "Maison [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", personnages=" + personnages
-				+ ", forme=" + forme + "]";
+		return "Maison [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", forme=" + forme + "]";
 	}
 	
 }

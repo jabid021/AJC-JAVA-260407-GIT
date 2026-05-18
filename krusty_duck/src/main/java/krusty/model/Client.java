@@ -16,7 +16,7 @@ public class Client extends Personnage{
 	
 	
 	
-	
+	public Client() {}
 	
 	public Client(String nom, String couleur, Espece espece,List<Humeur> humeurs) {
 		super(nom, couleur, espece,humeurs);

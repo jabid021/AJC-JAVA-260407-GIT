@@ -23,8 +23,7 @@ public class Laboratoire extends Lieu{
 
 	@Override
 	public String toString() {
-		return "Laboratoire [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", personnages=" + personnages
-				+ ", secret=" + secret + "]";
+		return "Laboratoire [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", secret=" + secret + "]";
 	}
 
 	

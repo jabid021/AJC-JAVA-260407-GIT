@@ -1,14 +1,21 @@
 package eshop.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("supplier")
 public class Fournisseur extends Personne {
 	@Column(name="company",length = 20)
 	private String societe;
+	
+	@OneToMany(mappedBy = "fournisseur")
+	private List<Produit> stock;
+	
 	
 	public Fournisseur() {}
 
@@ -23,6 +30,16 @@ public class Fournisseur extends Personne {
 
 	public void setSociete(String societe) {
 		this.societe = societe;
+	}
+	
+	
+
+	public List<Produit> getStock() {
+		return stock;
+	}
+
+	public void setStock(List<Produit> stock) {
+		this.stock = stock;
 	}
 
 	@Override

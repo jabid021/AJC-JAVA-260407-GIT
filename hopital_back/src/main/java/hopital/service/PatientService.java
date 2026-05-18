@@ -31,7 +31,12 @@ public class PatientService {
 		daoPatient.update(patient);
 	}
 
-	public void delete(Integer id) 
+	public void delete(Patient patient) 
+	{
+		deleteById(patient.getId());
+	}
+	
+	public void deleteById(Integer id) 
 	{
 		daoVisite.setIdPatientNull(id);
 		daoPatient.deleteById(id);

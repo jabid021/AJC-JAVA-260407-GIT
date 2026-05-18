@@ -28,7 +28,7 @@ public abstract class Personnage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 	
-	@Column(length = 30, unique = true)
+	@Column(length = 30)
     protected String nom;
 	
 	@Column(length = 10)

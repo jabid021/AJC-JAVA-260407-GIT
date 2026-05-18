@@ -35,7 +35,13 @@ public class CompteService {
 		daoCompte.update(compte);
 	}
 
-	public void delete(Integer id) 
+	
+	public void delete(Compte compte) 
+	{
+		daoCompte.deleteById(compte.getId());
+	}
+	
+	public void deleteById(Integer id) 
 	{
 		daoCompte.deleteById(id);
 	}

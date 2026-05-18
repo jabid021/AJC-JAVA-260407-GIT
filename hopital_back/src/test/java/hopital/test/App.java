@@ -160,7 +160,7 @@ public class App {
 		if(patient==null) {System.out.println("Ce patient n'existe pas....");}
 		else 
 		{
-			patientSrv.delete(idPatient);
+			patientSrv.deleteById(idPatient);
 			System.out.println("Suppression du patient...");
 			System.out.println("DONE");
 		}

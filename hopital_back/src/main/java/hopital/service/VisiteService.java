@@ -41,7 +41,13 @@ public class VisiteService {
 		daoVisite.update(visite);
 	}
 
-	public void delete(Integer id) 
+	
+	public void delete(Visite visite) 
+	{
+		daoVisite.deleteById(visite.getNumero());
+	}
+	
+	public void deleteById(Integer id) 
 	{
 		daoVisite.deleteById(id);
 	}

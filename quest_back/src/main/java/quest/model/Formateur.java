@@ -2,9 +2,17 @@ package quest.model;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Formateur extends Personne  {
 	private boolean admin;
+	
+	@OneToMany(mappedBy = "formateur")
 	private List<Module> affectations;
+	
+	public Formateur() {}
 	
 	public Formateur(Integer id, String login, String password, String nom, String prenom, Genre civilite, boolean admin) {
 		super(id, login, password, nom, prenom, civilite);

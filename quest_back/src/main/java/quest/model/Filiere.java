@@ -3,16 +3,39 @@ package quest.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="filiere")
 public class Filiere {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(length = 35,nullable = false)
 	private String libelle;  
 
 	private LocalDate debut; 
 	private LocalDate fin;
+	
+	@ManyToOne
+	@JoinColumn(name="salle")
 	private Salle salle; 
+	
+	@OneToMany(mappedBy = "filiere")
 	private List<Stagiaire> stagiaires;
+	@OneToMany(mappedBy = "filiere")
 	private List<Module> cours;
 
+	public Filiere() {}
+	
 	public Filiere(Integer id, String libelle, LocalDate debut, LocalDate fin, Salle salle) {
 		this.id = id;
 		this.libelle = libelle;
