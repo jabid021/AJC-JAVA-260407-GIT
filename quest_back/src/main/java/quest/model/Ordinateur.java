@@ -19,7 +19,7 @@ public class Ordinateur {
 	@Column(name="ram",nullable=false)
 	private int ram;
 	@OneToOne
-	@JoinColumn(name="id_utilisateur")
+	@JoinColumn(name="utilisateur")
 	private Stagiaire utilisateur;
 
 	public Ordinateur() {
