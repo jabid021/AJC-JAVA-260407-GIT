@@ -2,12 +2,23 @@ package quest.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("formateur")
 public class Formateur extends Personne  {
+	@Column(name = "admin")
 	private boolean admin;
+	@OneToMany(mappedBy = "formateur")
 	private List<Module> affectations;
 	
-	public Formateur(Integer id, String login, String password, String nom, String prenom, Genre civilite, boolean admin) {
-		super(id, login, password, nom, prenom, civilite);
+	public Formateur() {}
+	
+	public Formateur(String login, String password, String nom, String prenom, Genre civilite, boolean admin) {
+		super(login, password, nom, prenom, civilite);
 		this.admin = admin;
 	}
 

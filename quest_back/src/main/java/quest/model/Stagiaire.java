@@ -1,14 +1,28 @@
 package quest.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+@DiscriminatorValue("stagiaire")
 public class Stagiaire extends Personne {
 
+	@Column(length = 50)
 	private String email;
+	@Embedded
 	private Adresse adresse;
+	@ManyToOne
 	private Filiere filiere;
+	@ManyToOne
 	private Ordinateur ordinateur;
 	
-	public Stagiaire(Integer id, String login, String password, String nom, String prenom, Genre civilite, String email, String numero,String voie,String ville,String cp, Filiere filiere) {
-		super(id, login, password, nom, prenom, civilite);
+	public Stagiaire() {}
+	
+	public Stagiaire(String login, String password, String nom, String prenom, Genre civilite, String email, String numero,String voie,String ville,String cp, Filiere filiere) {
+		super(login, password, nom, prenom, civilite);
 		this.email = email;
 		this.adresse= new Adresse(numero,voie,ville,cp);
 		this.filiere=filiere;
