@@ -1,9 +1,19 @@
 package quest.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="ordinateur")
 public class Ordinateur {
+	@Id
 	private Integer numero;
 	private String marque;
 	private int ram;
+	@OneToOne(mappedBy="ordinateur")
 	private Stagiaire utilisateur;
 
 	public Ordinateur(Integer numero, String marque, int ram, Stagiaire utilisateur) {
@@ -13,6 +23,8 @@ public class Ordinateur {
 		this.utilisateur = utilisateur;
 	}
 
+
+	public Ordinateur() {}
 
 
 	public Stagiaire getUtilisateur() {
