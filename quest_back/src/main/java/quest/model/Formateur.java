@@ -17,8 +17,8 @@ public class Formateur extends Personne  {
 	
 	public Formateur() {}
 	
-	public Formateur(String login, String password, String nom, String prenom, Genre civilite, boolean admin) {
-		super(login, password, nom, prenom, civilite);
+	public Formateur(Integer id, String login, String password, String nom, String prenom, Genre civilite, boolean admin) {
+		super(id, login, password, nom, prenom, civilite);
 		this.admin = admin;
 	}
 

@@ -21,8 +21,8 @@ public class Stagiaire extends Personne {
 	
 	public Stagiaire() {}
 	
-	public Stagiaire(String login, String password, String nom, String prenom, Genre civilite, String email, String numero,String voie,String ville,String cp, Filiere filiere) {
-		super(login, password, nom, prenom, civilite);
+	public Stagiaire(Integer id, String login, String password, String nom, String prenom, Genre civilite, String email, String numero,String voie,String ville,String cp, Filiere filiere) {
+		super(id, login, password, nom, prenom, civilite);
 		this.email = email;
 		this.adresse= new Adresse(numero,voie,ville,cp);
 		this.filiere=filiere;

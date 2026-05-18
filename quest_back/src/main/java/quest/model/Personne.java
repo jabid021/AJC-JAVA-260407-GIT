@@ -34,7 +34,8 @@ public abstract class Personne {
 
 	public Personne() {}
 
-	public Personne(String login, String password, String nom, String prenom, Genre civilite) {
+	public Personne(Integer id, String login, String password, String nom, String prenom, Genre civilite) {
+		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.civilite = civilite;
