@@ -1,6 +1,7 @@
 package quest.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Filiere {
 	private Integer id;
@@ -9,6 +10,8 @@ public class Filiere {
 	private LocalDate debut; 
 	private LocalDate fin;
 	private Salle salle; 
+	private List<Stagiaire> stagiaires;
+	private List<Module> cours;
 
 	public Filiere(Integer id, String libelle, LocalDate debut, LocalDate fin, Salle salle) {
 		this.id = id;
@@ -63,6 +66,28 @@ public class Filiere {
 
 	public void setSalle(Salle salle) {
 		this.salle = salle;
+	}
+
+
+	
+	public List<Stagiaire> getStagiaires() {
+		return stagiaires;
+	}
+
+
+	public void setStagiaires(List<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
+	}
+
+	
+
+	public List<Module> getCours() {
+		return cours;
+	}
+
+
+	public void setCours(List<Module> cours) {
+		this.cours = cours;
 	}
 
 
