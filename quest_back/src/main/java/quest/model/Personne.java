@@ -1,11 +1,35 @@
 package quest.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name="personne")
+@DiscriminatorColumn(name="type_personne",columnDefinition = "ENUM('Stagiaire','Formateur')")
 public abstract class Personne {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	@Column(length = 20, nullable = false)
 	protected String login;
+	@Column(length = 20, nullable = false)
 	protected String password;
+	@Column(length = 20, nullable = false)
 	protected String nom;
+	@Column(length = 20, nullable = false)
 	protected String prenom;
+	@Enumerated(EnumType.STRING)
 	protected Genre civilite;
 
 	public Personne(Integer id, String login, String password, String nom, String prenom, Genre civilite) {
@@ -17,6 +41,8 @@ public abstract class Personne {
 		this.prenom = prenom;
 
 	}
+	
+	public Personne() {}
 
 
 	public Integer getId() {
