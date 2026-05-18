@@ -20,7 +20,7 @@ public class Module {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "code_quest", nullable = false)
+	@Column(name = "quest", nullable = false)
 	private int quest;
 	
 	private LocalDate debut;
