@@ -1,6 +1,7 @@
 package quest.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,7 @@ public class Salle {
 	private Integer id;
 	@Column(length=20)
 	private String nom;
-	@JoinColumn(nullable=false)
+	@Embedded
 	private Adresse adresse;
 	
 	public Salle(Integer id, String nom,String numero, String voie, String ville, String cp) {
