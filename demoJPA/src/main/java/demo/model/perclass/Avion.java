@@ -1,7 +1,14 @@
 package demo.model.perclass;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="plane")
 public class Avion extends Vehicule {
 
+	@Column(name="company",nullable = false)
 	private String compagnie;
 	
 	public Avion() {}

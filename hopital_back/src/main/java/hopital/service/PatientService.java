@@ -21,14 +21,19 @@ public class PatientService {
 		return daoPatient.findById(id);
 	}
 	
+	public Patient getByIdWithVisites(Integer id) 
+	{
+		return daoPatient.findByIdWithVisites(id);
+	}
+	
 	public void insert(Patient patient) 
 	{
-		daoPatient.insert(patient);
+		daoPatient.save(patient);
 	}
 	
 	public void update(Patient patient) 
 	{
-		daoPatient.update(patient);
+		daoPatient.save(patient);
 	}
 
 	public void delete(Patient patient) 

@@ -1,5 +1,10 @@
 package demo.model.single;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("sec")
 public class Secretaire extends Compte {
 
 	

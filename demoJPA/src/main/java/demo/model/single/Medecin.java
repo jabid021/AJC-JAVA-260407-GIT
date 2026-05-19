@@ -1,8 +1,16 @@
 package demo.model.single;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("med")
 public class Medecin extends Compte {
  
 	private double tarif;
+	
+	@Column(name="fullname")
 	private String nom;
 	
 	public Medecin() {}

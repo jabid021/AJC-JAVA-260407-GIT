@@ -1,5 +1,10 @@
 package demo.model.perclass;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="boat")
 public class Bateau extends Vehicule {
 
 	public Bateau() {}

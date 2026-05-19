@@ -33,12 +33,12 @@ public class VisiteService {
 	
 	public void insert(Visite visite) 
 	{
-		daoVisite.insert(visite);
+		daoVisite.save(visite);
 	}
 	
 	public void update(Visite visite) 
 	{
-		daoVisite.update(visite);
+		daoVisite.save(visite);
 	}
 
 	

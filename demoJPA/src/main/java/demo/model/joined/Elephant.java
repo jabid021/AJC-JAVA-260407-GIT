@@ -1,5 +1,8 @@
 package demo.model.joined;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Elephant extends Animal{
 
 	public Elephant() {}

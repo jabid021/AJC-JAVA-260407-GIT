@@ -9,6 +9,8 @@ import hopital.dao.IDAOVisite;
 import hopital.service.CompteService;
 import hopital.service.PatientService;
 import hopital.service.VisiteService;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 public class Singleton {
 	
@@ -21,6 +23,8 @@ public class Singleton {
 	private PatientService patientSrv = new PatientService();
 	private CompteService compteSrv = new CompteService();
 	private VisiteService visiteSrv = new VisiteService();
+	
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("contextJPA");
 	
 	
 	private static Singleton instance=null;
@@ -62,6 +66,11 @@ public class Singleton {
 	}
 	public VisiteService getVisiteSrv() {
 		return visiteSrv;
+	}
+
+
+	public EntityManagerFactory getEmf() {
+		return emf;
 	}
 	
 	

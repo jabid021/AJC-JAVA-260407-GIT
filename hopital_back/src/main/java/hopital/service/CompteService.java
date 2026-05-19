@@ -27,12 +27,12 @@ public class CompteService {
 	
 	public void insert(Compte compte) 
 	{
-		daoCompte.insert(compte);
+		daoCompte.save(compte);
 	}
 	
 	public void update(Compte compte) 
 	{
-		daoCompte.update(compte);
+		daoCompte.save(compte);
 	}
 
 	
