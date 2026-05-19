@@ -57,20 +57,36 @@ public class DAOVisite implements IDAOVisite {
 
 	@Override
 	public void setIdPatientNull(Integer idPatient) {
-		// TODO Auto-generated method stub
-		
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			em.createQuery("UPDATE Visite v set v.patient=null where v.patient.id=:id")
+			.setParameter("id", idPatient)
+			.executeUpdate();
+			
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	@Override
 	public List<Visite> findByPatientId(Integer idPatient) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Visite> visites = em.createQuery("SELECT v from Visite v where v.patient.id=:id")
+				.setParameter("id", idPatient)
+				.getResultList();
+		em.close();
+		return visites;
 	}
 
 	@Override
 	public List<Visite> findByMedecinIdAndDateVisiteBetween(Integer idMedecin, LocalDate debut, LocalDate fin) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Visite> visites = em.createQuery("SELECT v from Visite v where v.medecin.id=:id and v.dateVisite between :debut and :fin")
+				.setParameter("id", idMedecin)
+				.setParameter("debut", debut)
+				.setParameter("fin", fin)
+				.getResultList();
+		em.close();
+		return visites;
 	}
 
 

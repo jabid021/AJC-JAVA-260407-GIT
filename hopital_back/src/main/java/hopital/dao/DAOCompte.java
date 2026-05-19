@@ -4,6 +4,7 @@ import java.util.List;
 
 import hopital.context.Singleton;
 import hopital.model.Compte;
+import hopital.model.Patient;
 import jakarta.persistence.EntityManager;
 
 public class DAOCompte implements IDAOCompte {
@@ -56,8 +57,21 @@ public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public Compte findByLoginAndPassword(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		Compte compte =null;
+		try 
+		{
+			compte = em.createQuery("SELECT c from Compte c where c.login=:login and c.password=:password",Compte.class)
+					.setParameter("login", login)
+					.setParameter("password", password)
+					.getSingleResult();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
+		em.close();
+		return compte;
 	}
 
 

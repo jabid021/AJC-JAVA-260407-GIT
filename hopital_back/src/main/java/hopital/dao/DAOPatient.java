@@ -56,8 +56,20 @@ public class DAOPatient implements IDAOPatient {
 
 	@Override
 	public Patient findByIdWithVisites(Integer idPatient) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		Patient patient =null;
+		try 
+		{
+			patient = em.createQuery("SELECT p from Patient p LEFT JOIN FETCH p.visites where p.id=:id",Patient.class)
+					.setParameter("id", idPatient)
+					.getSingleResult();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
+		em.close();
+		return patient;
 	}
 
 
