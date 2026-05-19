@@ -61,7 +61,7 @@ public class App {
 		
 			em.persist(pateCrabe);
 			
-			em.merge(manoir);
+			em.persist(manoir);
 			em.persist(hotel);
 			em.persist(ananas);
 			em.persist(labosecret);

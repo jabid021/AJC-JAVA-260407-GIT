@@ -49,16 +49,16 @@ public class PersonneService {
 
 	public void insert(Personne personne)
 	{
-		daoPersonne.insert(personne);
+		daoPersonne.save(personne);
 	}
 
 	public void update(Personne personne)
 	{
-		daoPersonne.update(personne);
+		daoPersonne.save(personne);
 	}
 
 	public void delete(Integer id)
 	{
-		daoPersonne.delete(id);
+		daoPersonne.deleteById(id);
 	}
 }

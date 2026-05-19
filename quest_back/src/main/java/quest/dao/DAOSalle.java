@@ -1,115 +1,58 @@
 package quest.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.EntityManager;
+import quest.context.Singleton;
 import quest.model.Salle;
 
-public class DAOSalle implements IDAO<Salle,Integer>{
+public class DAOSalle implements IDAOSalle {
 
 	@Override
 	public Salle findById(Integer id) {
-		Salle salle = null;
-		try {
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete=conn.prepareStatement("select * from salle where id = ?");
-			requete.setInt(1, id);
-			ResultSet rs =  requete.executeQuery();
-
-			while(rs.next()) 
-			{
-				salle = new Salle(rs.getInt("id"),rs.getString("nom"),rs.getString("numero"),rs.getString("voie"),rs.getString("ville"),rs.getString("cp"));
-			}
-			rs.close();
-			requete.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		Salle salle = em.find(Salle.class, id);
+		em.close();
 		return salle;
 	}
 
 	@Override
 	public List<Salle> findAll() {
-		List<Salle> salles = new ArrayList();
-		try {
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete=conn.prepareStatement("select * from salle");
-			ResultSet rs =  requete.executeQuery();
-
-			while(rs.next()) 
-			{
-				Salle salle = new Salle(rs.getInt("id"),rs.getString("nom"),rs.getString("numero"),rs.getString("voie"),rs.getString("ville"),rs.getString("cp"));
-				salles.add(salle);
-			}
-			rs.close();
-			requete.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Salle> salles = em.createQuery("from Salle").getResultList();
+		em.close();
 		return salles;
 	}
 
 	@Override
-	public void insert(Salle salle) {
-		try {
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete=conn.prepareStatement("INSERT INTO salle (nom,numero,voie,ville,cp) VALUES (?,?,?,?,?)");
-			requete.setString(1,salle.getNom());
-			requete.setString(2,salle.getAdresse().getNumero());
-			requete.setString(3,salle.getAdresse().getVoie());
-			requete.setString(4,salle.getAdresse().getVille());
-			requete.setString(5,salle.getAdresse().getCp());
-
-			requete.executeUpdate();
-
-			requete.close();
-			conn.close();
-
-		} catch (Exception e) {e.printStackTrace(); }
+	public Salle save(Salle salle) {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			salle = em.merge(salle);
+		em.getTransaction().commit();
+		em.close();
+		return salle;
 	}
 
 	@Override
-	public void update(Salle salle) {
-		try {
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete=conn.prepareStatement("UPDATE salle set nom=?,numero=?,voie=?,ville=?,cp=? where id=?");
-			requete.setString(1,salle.getNom());
-			requete.setString(2,salle.getAdresse().getNumero());
-			requete.setString(3, salle.getAdresse().getVoie());
-			requete.setString(4,salle.getAdresse().getVille());
-			requete.setString(5,salle.getAdresse().getCp());
-			requete.setInt(6, salle.getId());
-
-
-			requete.executeUpdate();
-
-			requete.close();
-			conn.close();
-
-		} catch (Exception e) {e.printStackTrace(); }
+	public void delete(Salle salle) {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			salle = em.merge(salle);
+			em.remove(salle);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	@Override
-	public void delete(Integer id) {
-		try {
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete=conn.prepareStatement("DELETE FROM salle where id=?");
-			requete.setInt(1,id);
-
-			requete.executeUpdate();
-
-			requete.close();
-			conn.close();
-
-		} catch (Exception e) {e.printStackTrace(); }
+	public void deleteById(Integer id) {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			Salle salle = em.find(Salle.class, id);
+			em.remove(salle);
+		em.getTransaction().commit();
+		em.close();
 	}
+
 
 }

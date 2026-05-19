@@ -1,131 +1,64 @@
 package quest.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.EntityManager;
+import quest.context.Singleton;
 import quest.model.Filiere;
-import quest.model.Salle;
 
-public class DAOFiliere implements IDAO<Filiere,Integer> {
+public class DAOFiliere implements IDAOFiliere {
 
-	
 	@Override
 	public Filiere findById(Integer id) {
-		DAOSalle daoSalle = new DAOSalle();
-		Filiere filiere = null;
-		try 
-		{
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete = conn.prepareStatement("SELECT * from filiere where id=?");
-			requete.setInt(1,id);
-			ResultSet rs = requete.executeQuery();
-			
-			while(rs.next()) 
-			{
-				Salle salle = daoSalle.findById(rs.getInt("salle"));
-				filiere = new Filiere(rs.getInt("id"),rs.getString("libelle"),LocalDate.parse(rs.getString("debut")),LocalDate.parse(rs.getString("fin")),salle);
-			}
-			
-			rs.close();
-			requete.close();
-			conn.close();
-		}
-		catch(Exception e) {e.printStackTrace();}
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		Filiere filiere = em.find(Filiere.class, id);
+		em.close();
 		return filiere;
 	}
 
 	@Override
 	public List<Filiere> findAll() {
-		DAOSalle daoSalle = new DAOSalle();
-		List<Filiere> filieres = new ArrayList();
-		try 
-		{
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete = conn.prepareStatement("SELECT * from filiere");
-			ResultSet rs = requete.executeQuery();
-			
-			while(rs.next()) 
-			{
-				Salle salle = daoSalle.findById(rs.getInt("salle"));
-				Filiere filiere = new Filiere(rs.getInt("id"),rs.getString("libelle"),LocalDate.parse(rs.getString("debut")),LocalDate.parse(rs.getString("fin")),salle);
-				filieres.add(filiere);
-			}
-			
-			rs.close();
-			requete.close();
-			conn.close();
-		}
-		catch(Exception e) {e.printStackTrace();}
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Filiere> filieres = em.createQuery("from Filiere").getResultList();
+		em.close();
 		return filieres;
 	}
 
 	@Override
-	public void insert(Filiere filiere) {
-		try 
-		{
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete = conn.prepareStatement("INSERT INTO filiere (libelle,debut,fin,salle) VALUES (?,?,?,?)");
-			requete.setString(1,filiere.getLibelle());
-			requete.setString(2,filiere.getDebut().toString());
-			requete.setString(3,filiere.getFin().toString());
-			if(filiere.getSalle()==null) 
-			{
-				requete.setObject(4, null);
-			}
-			else 
-			{
-				requete.setInt(4,filiere.getSalle().getId());
-			}
-			
-			requete.executeUpdate();
-			requete.close();
-			conn.close();
-		}
-		catch(Exception e) {e.printStackTrace();}
+	public Filiere save(Filiere filiere) {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			filiere = em.merge(filiere);
+		em.getTransaction().commit();
+		em.close();
+		return filiere;
 	}
 
 	@Override
-	public void update(Filiere filiere) {
-		try 
-		{
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete = conn.prepareStatement("UPDATE filiere set libelle=?,debut=?,fin=?,salle=? where id=?");
-			requete.setString(1,filiere.getLibelle());
-			requete.setString(2,filiere.getDebut().toString());
-			requete.setString(3,filiere.getFin().toString());
-			if(filiere.getSalle()==null) 
-			{
-				requete.setObject(4, null);
-			}
-			else 
-			{
-				requete.setInt(4,filiere.getSalle().getId());
-			}
-			requete.setInt(5, filiere.getId());
-			requete.executeUpdate();
-			requete.close();
-			conn.close();
-		}
-		catch(Exception e) {e.printStackTrace();}
+	public void delete(Filiere filiere) {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			filiere = em.merge(filiere);
+			em.remove(filiere);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	@Override
-	public void delete(Integer id) {
-		try 
-		{
-			Connection conn = DriverManager.getConnection(urlBDD,loginBDD,passwordBDD);
-			PreparedStatement requete = conn.prepareStatement("DELETE FROM filiere where id=?");
-			requete.setInt(1, id);
-			requete.executeUpdate();
-			requete.close();
-			conn.close();
-		}
-		catch(Exception e) {e.printStackTrace();}
+	public void deleteById(Integer id) {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			Filiere filiere = em.find(Filiere.class, id);
+			em.remove(filiere);
+		em.getTransaction().commit();
+		em.close();
 	}
+
+	@Override
+	public Filiere findByIdWithModules(Integer idFiliere) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

@@ -308,7 +308,7 @@ public class App {
 			System.out.println("Sauvegarde de vos visites en BDD :");
 			for(Visite v : medecin.getConsultations()) 
 			{
-				visiteSrv.insert(v);
+				v=visiteSrv.insert(v);
 				System.out.println(v);
 			}
 			medecin.getConsultations().clear();

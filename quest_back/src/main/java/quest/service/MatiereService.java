@@ -21,16 +21,16 @@ public class MatiereService {
 	
 	public void insert(Matiere matiere) 
 	{
-		daoMatiere.insert(matiere);
+		daoMatiere.save(matiere);
 	}
 	
 	public void update(Matiere matiere) 
 	{
-		daoMatiere.update(matiere);
+		daoMatiere.save(matiere);
 	}
 
 	public void delete(Integer id) 
 	{
-		daoMatiere.delete(id);
+		daoMatiere.deleteById(id);
 	}
 }

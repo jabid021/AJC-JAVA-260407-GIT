@@ -11,10 +11,11 @@ import org.apache.logging.log4j.core.config.Configurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import quest.dao.DAOFiliere;
-import quest.dao.DAOModule;
-import quest.dao.DAOOrdinateur;
-import quest.dao.DAOSalle;
+import quest.context.Singleton;
+import quest.dao.IDAOFiliere;
+import quest.dao.IDAOModule;
+import quest.dao.IDAOOrdinateur;
+import quest.dao.IDAOSalle;
 import quest.model.Filiere;
 import quest.model.Formateur;
 import quest.model.Genre;
@@ -29,13 +30,13 @@ import quest.service.PersonneService;
 public class App {
 	private static Logger log = LoggerFactory.getLogger(App.class);
 
-	static MatiereService matiereSrv = new MatiereService();
-	static PersonneService personneSrv = new PersonneService();
+	static MatiereService matiereSrv = Singleton.getInstance().getMatiereSrv();
+	static PersonneService personneSrv =  Singleton.getInstance().getPersonneSrv();
 
-	static DAOOrdinateur daoOrdinateur = new DAOOrdinateur();
-	static DAOFiliere daoFiliere = new DAOFiliere();
-	static DAOSalle daoSalle = new DAOSalle();
-	static DAOModule daoModule = new DAOModule();
+	static IDAOOrdinateur daoOrdinateur =  Singleton.getInstance().getDaoOrdinateur();
+	static IDAOFiliere daoFiliere =  Singleton.getInstance().getDaoFiliere();
+	static IDAOSalle daoSalle =  Singleton.getInstance().getDaoSalle();
+	static IDAOModule daoModule =  Singleton.getInstance().getDaoModule();
 	static Random r = new Random();
 
 	static Personne connected;
@@ -186,7 +187,7 @@ public class App {
 	public static void supprimerSalle() {
 		afficherSalle();
 		int id = saisieInt("Saisir l'id de la salle à supprimer");
-		daoSalle.delete(id);
+		daoSalle.deleteById(id);
 	}
 
 	public static void modifierSalle() {
@@ -202,7 +203,7 @@ public class App {
 		String cp = saisieString("Saisir le cp");
 		Salle salle = new Salle(id,nom,numero,voie,ville,cp);
 
-		daoSalle.update(salle);
+		daoSalle.save(salle);
 	}
 
 	public static void ajouterSalle() {
@@ -215,7 +216,7 @@ public class App {
 		String cp = saisieString("Saisir le cp");
 
 		Salle salle = new Salle(null,nom,numero,voie,ville,cp);
-		daoSalle.insert(salle);
+		daoSalle.save(salle);
 	}
 
 	public static void afficherSalle() {
@@ -257,7 +258,7 @@ public class App {
 	public static void supprimerFiliere() {
 		afficherFiliere();
 		int id = saisieInt("Saisir l'id de la filiere à supprimer");
-		daoFiliere.delete(id);
+		daoFiliere.deleteById(id);
 	}
 
 	public static void modifierFiliere() {
@@ -279,7 +280,7 @@ public class App {
 		}
 
 		Filiere filiere = new Filiere(id,libelle,LocalDate.parse(debut),LocalDate.parse(fin),salle);
-		daoFiliere.update(filiere);
+		daoFiliere.save(filiere);
 
 	}
 
@@ -298,7 +299,7 @@ public class App {
 		}
 
 		Filiere filiere = new Filiere(null,libelle,LocalDate.parse(debut),LocalDate.parse(fin),salle);
-		daoFiliere.insert(filiere);
+		daoFiliere.save(filiere);
 	}
 
 	public static void afficherFiliere() {
@@ -335,7 +336,7 @@ public class App {
 	public static void supprimerOrdinateur() {
 		afficherOrdinateur();
 		int id = saisieInt("Saisir l'id de l'ordinateur à supprimer");
-		daoOrdinateur.delete(id);
+		daoOrdinateur.deleteById(id);
 	}
 
 	public static void modifierOrdinateur() {
@@ -357,7 +358,7 @@ public class App {
 		}
 
 		Ordinateur ordinateur = new Ordinateur(id,marque,ram,utilisateur);
-		daoOrdinateur.update(ordinateur);
+		daoOrdinateur.save(ordinateur);
 	}
 
 	public static void ajouterOrdinateur() {
@@ -375,7 +376,7 @@ public class App {
 		}
 
 		Ordinateur ordinateur = new Ordinateur(null,marque,ram,utilisateur);
-		daoOrdinateur.insert(ordinateur);
+		daoOrdinateur.save(ordinateur);
 	}
 
 	public static void afficherOrdinateur() {
@@ -573,7 +574,7 @@ public class App {
 	public static void supprimerModule(int idFiliere) {
 		afficherModulesFiliere(idFiliere);
 		int id = saisieInt("Saisir l'id du module");
-		daoModule.delete(id);
+		daoModule.deleteById(id);
 
 	}
 
@@ -600,7 +601,7 @@ public class App {
 		}
 
 		Module module = new Module(null,quest,LocalDate.parse(debut),LocalDate.parse(fin),matiere,filiere,formateur);
-		daoModule.insert(module);
+		daoModule.save(module);
 	}
 
 	public static void afficherModulesFiliere(int idFiliere) {

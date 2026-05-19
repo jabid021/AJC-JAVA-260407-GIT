@@ -31,9 +31,9 @@ public class VisiteService {
 		return daoVisite.findByMedecinIdAndDateVisiteBetween(idMedecin, debut, fin);
 	}
 	
-	public void insert(Visite visite) 
+	public Visite insert(Visite visite) 
 	{
-		daoVisite.save(visite);
+		return daoVisite.save(visite);
 	}
 	
 	public void update(Visite visite) 
