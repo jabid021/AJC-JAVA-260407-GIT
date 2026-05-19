@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Embedded;
@@ -20,7 +21,7 @@ public class Client extends Personne {
 	@Embedded
 	private Adresse adresse;
 	
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)
 	/*@JoinTable
 	(
 			name="achats",
