@@ -28,7 +28,7 @@ public class DAOFiliere implements IDAOFiliere {
 	public Filiere save(Filiere filiere) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-			filiere = em.merge(filiere);
+		filiere = em.merge(filiere);
 		em.getTransaction().commit();
 		em.close();
 		return filiere;
@@ -38,8 +38,8 @@ public class DAOFiliere implements IDAOFiliere {
 	public void delete(Filiere filiere) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-			filiere = em.merge(filiere);
-			em.remove(filiere);
+		filiere = em.merge(filiere);
+		em.remove(filiere);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -48,17 +48,45 @@ public class DAOFiliere implements IDAOFiliere {
 	public void deleteById(Integer id) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-			Filiere filiere = em.find(Filiere.class, id);
-			em.remove(filiere);
+		Filiere filiere = em.find(Filiere.class, id);
+		em.remove(filiere);
 		em.getTransaction().commit();
 		em.close();
 	}
 
 	@Override
 	public Filiere findByIdWithModules(Integer idFiliere) {
-		// TODO Auto-generated method stub
-		return null;
+
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+
+		Filiere filiere = null;
+
+		try {
+
+			filiere = em.createQuery(
+					"""
+					select f
+					from Filiere f
+					left join fetch f.modules
+					where f.ide = :idModule
+					""",
+					Filiere.class)
+					.setParameter("idFiliere", idFiliere)
+					.getSingleResult();
+
+		} catch (Exception e) {
+
+			filiere = null;
+
+		} finally {
+
+			em.close();
+		}
+
+		return filiere;
+
 	}
-
-
 }
+
+
+

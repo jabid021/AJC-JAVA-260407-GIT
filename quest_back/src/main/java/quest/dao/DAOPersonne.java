@@ -58,32 +58,122 @@ public class DAOPersonne implements IDAOPersonne {
 
 	@Override
 	public List<Stagiaire> findAllStagiaire() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+
+		List<Stagiaire> stagiaires =
+				em.createQuery(
+						"select s from Stagiaire s",
+						Stagiaire.class)
+				  .getResultList();
+
+		em.close();
+
+		return stagiaires;
 	}
 
 	@Override
 	public List<Formateur> findAllFormateur() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+
+		List<Formateur> formateurs =
+				em.createQuery(
+						"select f from Formateur f",
+						Formateur.class)
+				  .getResultList();
+
+		em.close();
+
+		return formateurs;
 	}
 
 	@Override
 	public List<Stagiaire> findStagiaireWithoutOrdinateur() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+
+		List<Stagiaire> stagiaires =
+				em.createQuery(
+						"""
+						select s
+						from Stagiaire s
+						where s.ordinateur is null
+						""",
+						Stagiaire.class)
+				  .getResultList();
+
+		em.close();
+
+		return stagiaires;
 	}
 
 	@Override
 	public Formateur findByIdWithModules(Integer idFormateur) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+
+		Formateur formateur = null;
+
+		try {
+
+			formateur =
+					em.createQuery(
+							"""
+							select distinct f
+							from Formateur f
+							left join fetch f.modules
+							where f.id = :idFormateur
+							""",
+							Formateur.class)
+					  .setParameter("idFormateur", idFormateur)
+					  .getSingleResult();
+
+		} catch (Exception e) {
+
+			formateur = null;
+
+		} finally {
+
+			em.close();
+		}
+
+		return formateur;
 	}
 
 	@Override
 	public Personne findByLoginAndPassword(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+
+		Personne personne = null;
+
+		try {
+
+			personne =
+					em.createQuery(
+							"""
+							select p
+							from Personne p
+							where p.login = :login
+							and p.password = :password
+							""",
+							Personne.class)
+					  .setParameter("login", login)
+					  .setParameter("password", password)
+					  .getSingleResult();
+
+		} catch (Exception e) {
+
+			personne = null;
+
+		} finally {
+
+			em.close();
+		}
+
+		return personne;
+		
+		
 	}
 
 

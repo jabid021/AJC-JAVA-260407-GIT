@@ -56,8 +56,20 @@ public class DAOModule implements IDAOModule {
 
 	@Override
 	public List<Module> findAllByFiliereId(Integer idFiliere) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Module> modules =
+				em.createQuery(
+						"select  from Module m where m.modules.id = :idFiliere",
+						Module.class)
+				.setParameter("idModule", idFiliere)
+				.getResultList();
+
+		em.close();
+
+		return modules;
+
+		
 	}
 
 
