@@ -1,0 +1,44 @@
+
+
+table {
+    width: clamp(1000px, 80%, 1800px);
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+th, td {
+    padding: .5rem;
+}
+
+table, tbody, thead, td:has(img), tr {
+    margin: 0;
+    padding: 0;
+}
+
+table tbody img {
+    max-width: 400px;
+    margin: 0;
+}
+
+td {
+    text-align: center;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url("rocketleague.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    color: rgb(226, 255, 226);
+}
