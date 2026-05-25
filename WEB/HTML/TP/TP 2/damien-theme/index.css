@@ -1,9 +1,16 @@
 
 
+body {
+    background-image: url("assets/rocketleague.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    color: rgb(226, 255, 226);
+}
+
 table {
     width: clamp(1000px, 80%, 1800px);
     border-collapse: collapse;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 table, th, td {
@@ -12,6 +19,19 @@ table, th, td {
 
 th, td {
     padding: .5rem;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+td a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+td a:hover {
+    text-decoration: underline;
 }
 
 table, tbody, thead, td:has(img), tr {
@@ -28,17 +48,14 @@ td {
     text-align: center;
 }
 
-tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+tbody tr {
+    transition: background-color .1s ease-in;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    background-image: url("assets/rocketleague.jpg");
-    background-attachment: fixed;
-    background-size: cover;
-    color: rgb(226, 255, 226);
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.6);
 }
