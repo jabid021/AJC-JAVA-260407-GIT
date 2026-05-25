@@ -1,0 +1,91 @@
+body {
+    background-image: url("../assets/fondEtoiles.png");
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+    width: calc(100% - 4rem);
+    margin: 0 2rem 0 2rem;
+}
+
+tr:nth-child(2) {
+    background-color: #D4AF37;
+}
+
+tr:nth-child(even of .other-games) {
+  background-color: #2A2148;
+}
+
+tr:nth-child(odd of .other-games) {
+  background-color: #1A2238;
+}
+
+td {
+    text-align: center;
+}
+
+p {
+    color:#F4F7FB;
+}
+
+h1 {
+    color:#F4F7FB;
+    text-align: center;
+}
+
+.debug {
+    border: 1px solid black;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.header-table {
+    background-color: #2F4F9D;
+    color: white;
+}
+
+.table-jaquette {
+    width: 3rem;
+    height: 4rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.cover-img {
+    margin: auto;
+    width: 4rem;
+    height: 5rem;
+    border-radius: 0.5rem;
+    filter: drop-shadow(1px 5px 6px black);
+}
+
+.grade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green-grade {
+    text-align: center;
+    background-color: green;
+    border-radius: 25%;
+    padding: 0.75rem;
+}
+
+/* a fix */
+.number-not-crown {
+    background-image: url("../assets/khLogoNoCrown.png");
+    background-blend-mode: darken;
+}
+
+/* a fix */
+.number-crown {
+    background-image: url("../assets/khLogoCrown.png");
+    background-blend-mode: darken;
+}
