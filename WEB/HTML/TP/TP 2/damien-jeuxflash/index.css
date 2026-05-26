@@ -1,0 +1,68 @@
+
+
+body {
+    background-image: url("assets/rocketleague.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    color: rgb(226, 255, 226);
+}
+
+table {
+    width: clamp(1000px, 80%, 1800px);
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+th, td {
+    padding: .5rem;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+td a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+table, tbody, thead, td:has(img), tr {
+    margin: 0;
+    padding: 0;
+}
+
+table tbody img {
+    width: 400px;
+    height: 140px;
+    object-fit: cover;
+    object-position:top;
+    margin: 0;
+}
+
+table tbody img#sonny-image {
+    object-position: center;
+}
+
+table tbody img#noisette-image {
+    height: auto;
+}
+
+td {
+    text-align: center;
+}
+
+tbody tr {
+    transition: background-color .1s ease-in;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
