@@ -1,0 +1,70 @@
+<meta charset="utf-8">
+
+
+<form method="POST">
+  <fieldset>
+    <legend>Informations personnelles</legend>
+    <table>
+      <tr>
+        <td>Email</td>
+        <td><input required="required" name="email" type="email" placeholder="lorem@mail.fr"/></td>
+      </tr>
+      <tr>
+        <td>Mot de passe</td>
+        <td><input required="required" name="password" type="password" placeholder="********"/></td>
+      </tr>
+      <tr>
+        <td>Sexe</td>
+        <td>
+          <select required="required" name="civilite">
+            <option value="">Merci de choisir une civilite</option>
+            <option value="Homme">Homme</option>
+            <option selected value="Femme">Femme</option>
+            <option value="NB">NB</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Date de naissance</td>
+        <td><input required="required" name="naissance" type="date" value="2000-01-01"/></td>
+      </tr>
+    </table>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Préférences</legend>
+    <table>
+      <tr>
+        <td>Couleur favorite</td>
+        <td>
+          <input required="required" name="couleur" value="Rouge" id="couleur-rouge" type="radio"/><label for="couleur-rouge">Rouge</label>
+          <input required="required" name="couleur" value="Vert" id="couleur-vert" type="radio"/><label for="couleur-vert">Vert</label>
+          <input required="required" name="couleur" value="Bleu" id="couleur-bleu" type="radio"/><label for="couleur-bleu">Bleu</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Centres d'intérêts</td>
+        <td>
+          <input name="interets[]" id="interet-sport" value="Sport" type="checkbox"/><label for="interet-sport">Sport</label>
+          <input name="interets[]" id="interet-danse" value="Danse" type="checkbox"/><label for="interet-danse">Danse</label>
+          <input name="interets[]" id="interet-musique" value="Musique" type="checkbox"/><label for="interet-musique">Musique</label>
+          <input name="interets[]" id="interet-informatique" value="Informatique" type="checkbox"/><label for="interet-informatique">Informatique</label>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Commentaires</legend>
+    <table>
+      <tr><td>Message</td>
+        <td>
+          <textarea required="required" name="message" rows="4" cols="25"></textarea>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+  <input type="submit" value="Envoyer">
+</form>

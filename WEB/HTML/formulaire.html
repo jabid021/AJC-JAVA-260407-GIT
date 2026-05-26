@@ -1,5 +1,5 @@
 <!--
-champs texte (input) => text, password, date, time, email, url, number, tel*, hiden
+champs texte (input) => text, password, date, time, email, url, number, tel* (affiche le clavier numerique sur un mobile), hidden
 
 Zone de texte : textarea
 
@@ -10,11 +10,40 @@ Choix : unique (0,1) radio / multiple (0-*) checkbox
 
 buttons => submit / reset / button
 
-submit =>
-button =>
-reset =>
+<input type="submit" value="Valider"> => Valider et envoyer un formulaire (ne marche que dans un formulaire)
+<input type="reset"> => remet toutes les values d'origines dans le formulaire
+<button>Valider</button> => Si on est dans un formulaire, fait office de submit, si en dehors d'un form, à coupler avec du JS
+<input type="button"> => Uniquement à coupler avec du JS
+
+
+
+Une requete vers un serveur :
+
+[protocol]://[domaine]/pageCible  [methode]
+
+[protocol]://[domaine]/pageCible?param1=value1&param2=value2&param3=value3... [methode]
+
+protocol => http / https
+
+https://www.google.fr?query=votreRecherche  [GET]
+http://localhost:8080/monProjet/ficheStagiaire?id=1 [GET]
+http://localhost:8080/monProjet/stagiaire [POST]
+
+Attributs de la balise form :
+
+action => page vers laquelle sont sent les données du formulaire
+method =>
+GET (par defaut) => Les parametres sont envoyés dans l'url (via un a href ou un form)
+POST (Uniquement via un formulaire) => Les parametres sont envoyés directement au serveur
+PUT / PATCH / DELETE
+enctype =>
+  par defaut : application/x-www-form-urlencoded
+  Si on veut envoyer des fichiers + autre chose => multipart/form-data
+
 -->
-<form>
+
+<a href="TP/TP3/tp3.html?prenom=jordan">Vers le tp3</a>
+<form action="pageCible" method="POST" enctype="multipart/form-data">
 
 
   <fieldset>
@@ -23,13 +52,13 @@ reset =>
     <table>
       <tr>
         <td>Login</td>
-        <td><input name="login" type="text" value="Jaxx" placeholder="Saisir votre login" /></td>
+        <td><input disabled="disabled" name="login" type="text" value="Jaxx" placeholder="Saisir votre login" /></td>
       </tr>
 
 
       <tr>
         <td>Password</td>
-        <td><input name="password" type="password" placeholder="Saisir votre password"/></td>
+        <td><input autofocus name="password" type="password" placeholder="Saisir votre password"/></td>
       </tr>
 
       <tr>
@@ -44,7 +73,7 @@ reset =>
 
       <tr>
         <td>Email</td>
-        <td><input name="email" type="email" placeholder="Saisir votre email" /></td>
+        <td><input size="80"  name="email" minlength="8" maxlength="15" type="email" placeholder="Saisir votre email" /></td>
       </tr>
 
     </table>
@@ -55,12 +84,19 @@ reset =>
     <table>
       <tr>
         <td>Date Naissance</td>
-        <td><input name="naissance" type="date"  value="1993-05-01"/></td>
+        <td><input name="naissance" type="date"  value="1993-05-01" min="1970-01-01" max="2026-05-26"/></td>
       </tr>
+
+
+      <tr>
+        <td>Date RDV</td>
+        <td><input name="rdvDate" type="date" value="2026-05-25" step="7"/></td>
+      </tr>
+
 
       <tr>
         <td>Heure RDV</td>
-        <td><input name="rdv" type="time" value="08:00:30" /></td>
+        <td><input name="rdv" type="time" value="08:00:00" min="08:00" max="17:30" step="900"/></td>
       </tr>
 
       <tr>
@@ -74,6 +110,25 @@ reset =>
 
 
       <tr>
+        <td>Choisir votre background</td>
+        <td><input type="color" name="background" /></td>
+      </tr>
+
+
+      <tr>
+        <td>Choix de la matiere</td>
+        <td>
+          <select name="matiere">
+            <option value="1">Java</option>
+            <option value="3">SQL</option>
+            <option value="4">Spring</option>
+          </select>
+        </td>
+      </tr>
+
+
+
+      <tr>
         <td>Votre OS </td>
         <td>
           <select name="os">
@@ -84,12 +139,53 @@ reset =>
         </td>
       </tr>
 
+
+
+      <tr>
+        <td>Votre OS </td>
+        <td>
+          <select name="os">
+            <optgroup label="MSDOS">
+              <option>Windows</option>
+            </optgroup>
+            <optgroup label="UNIX">
+              <option selected>MacOs</option>
+              <option>Linux</option>
+            </optgroup>
+          </select>
+        </td>
+      </tr>
+
+
+
+      <tr>
+        <td>VOS OS </td>
+        <td>
+          <select multiple name="os-multiple[]">
+            <optgroup label="MSDOS">
+              <option>Windows</option>
+            </optgroup>
+            <optgroup label="UNIX">
+              <option selected>MacOs</option>
+              <option>Linux</option>
+            </optgroup>
+          </select>
+        </td>
+      </tr>
       <tr>
         <td>Dev</td>
         <td>
           <label for="dev-sql">SQL</label> <input checked id="dev-sql" type="checkbox">
           Java <input type="checkbox">
           Python <input type="checkbox">
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>Notes sur 10</td>
+        <td>
+          <input id="inputRange" name="note" type="range" min="0" max="10"><span id="valueRange">5</span>
         </td>
       </tr>
 
@@ -103,12 +199,56 @@ reset =>
         </td>
       </tr>
 
+      <tr><td>CV :</td><td><input type="file"></td></tr>
+
       <tr>
         <td>
-          <input type="submit" value="Save">
+          <input  type="submit" value="Save">
+          <input type="reset" value="Reset">
         </td>
         <tr>
+
+          <tr><td>Valider :</td><td>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Valider</label>
+            </div>
+          </td>
+        </tr>
+
         </table>
 
       </fieldset>
     </form>
+
+
+
+
+    <form method="post" action="updateCompte.html">
+
+      <input type="hidden" name="id" value="37">
+      Filiere :
+      <select required name="filiere">
+        <option value="">CHOISIR VOTRE FILIERE</option>
+        <option value="1">Filiere 1 - Sopra JAVA 240209</option>
+        <option value="2">Filiere 2 - Sopra JAVA 250515</option>
+        <option value="3">Filiere 3 - Sopra JAVA 231114</option>
+        <option value="4">Filiere 4 - Sopra JAVA 260209</option>
+      </select>
+      <input type="text" name="nom" value="Abid">
+      <input type="text" name="prenom" value="Jordan">
+      <input type="submit" value="Modifier">
+
+    </form>
+
+
+
+    <script>
+
+
+      inputRange.oninput = function()
+      {
+        valueRange.innerHTML = inputRange.value;
+      };
+
+    </script>
