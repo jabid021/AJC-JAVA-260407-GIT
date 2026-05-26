@@ -1,14 +1,24 @@
 
-<h1 align="center"><a href="comete-bonus2.jpg" target="_blank">🐱</a> Top 5 de pourquoi mon chat Comète est la meilleure <a href="comete-bonus.jpg" target="_blank">☄️</a></h1>
-<audio id="AudioMiaou" src="miaou.mp3" loop></audio>
+<h1 align="center"><a href="comete-bonus2.jpg" target="_blank">🐱</a> Top 5 de pourquoi mon chat <span id="motComete">Comète</span> est la meilleure <a href="comete-bonus.jpg" target="_blank">☄️</a></h1>
+<audio id="AudioMiaou" src="meow.mp3"></audio>
+<audio id="AudioEspace" src="espace.mp3" loop autoplay></audio>
+
+
 <script>
-  // Essaie l'autoplay
-  document.querySelector('#AudioMiaou').play().catch(() => {
-    // Si bloqué, attend le premier clic
-    document.addEventListener('click', function() {
-      document.querySelector('#AudioMiaou').play();
-    }, { once: true });
-  });
+  
+
+ document.getElementById('motComete').addEventListener('click', function() {
+  const audio = document.getElementById('AudioMiaou');
+  audio.currentTime = 0; // remet au début si déjà joué
+  audio.play();
+});
+
+document.querySelector('#AudioEspace').play().catch(() => {
+  document.addEventListener('click', function() {
+    document.querySelector('#AudioEspace').play();
+  }, { once: true });
+});
+
 </script>
 
 <table align="center" cellpadding="15" cellspacing="0" width="40%" >
@@ -76,6 +86,9 @@
 
     h1 {
       text-align: center;
+      width: 85%;
+      margin: 20px auto;
+      align-self: center;
       color: white;
       padding: 15px;
       padding-left: 5px;
@@ -104,9 +117,10 @@
 
    table {
     width: 70%;
-    margin: auto;
+    margin: 60px auto;
     border-collapse: collapse;
     overflow: hidden;
+    
     
     background-color: rgba(58, 135, 165, 0.6);
     border-radius: 20px;
@@ -195,6 +209,10 @@ img, video {
     }
   }
 
+#motComete {
+  cursor: pointer;
+  text-decoration: none;
+}
 
 </style>     
 
