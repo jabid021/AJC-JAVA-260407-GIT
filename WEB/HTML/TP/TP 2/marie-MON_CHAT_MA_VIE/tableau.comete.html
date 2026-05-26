@@ -17,7 +17,7 @@
     <tr>
       <th>Raisons</th>
       <th>Explications</th>
-      <th>Image</th>
+      <th>Preuve à l'appui</th>
     </tr>
   </thead>
   <tbody>
@@ -54,13 +54,67 @@
     </tr>
   </tbody>
 </table>
+
+<!-- cliquer sur le bouton pour afficher le formulaire -->
+
+<button id="btnFormulaire" onclick="document.getElementById('formulaire').style.display='block'; this.style.display='none';">
+  📝 Laisser un message à Comète
+</button>
+
+<!-- formulaire affiché -->
+
+<form id="formulaire"style="display:none" align="center">
+  <h2 align="center" style="color: white;">💬 Laisse un message à Comète !</h2>
+
+  <table>
+    <tr>
+      <td>Ton prénom</td>
+      <td><input type="text" name="prenom" placeholder="Ton prénom..."/></td>
+    </tr>
+      <td>Traits préférés</td>
+      <td>
+        <input id="belle" name="traits" type="checkbox" value="belle"><label for="belle"> Belle ✨</label><br>
+        <input id="intelligente" name="traits" type="checkbox" value="intelligente"><label for="intelligente"> Intelligente 🧠</label><br>
+        <input id="curieuse" name="traits" type="checkbox" value="curieuse"><label for="curieuse"> Curieuse 🔍</label><br>
+        <input id="joueuse" name="traits" type="checkbox" value="joueuse"><label for="joueuse"> Joueuse 🎾</label><br>
+        <input id="caline" name="traits" type="checkbox" value="caline"><label for="caline"> Câline 🥰</label>
+      </td>
+    </tr>
+    <tr>
+  <td>Note Comète</td>
+  <td>
+    <div id="etoiles">
+      <span class="etoile" data-value="1">⭐</span>
+      <span class="etoile" data-value="2">⭐</span>
+      <span class="etoile" data-value="3">⭐</span>
+      <span class="etoile" data-value="4">⭐</span>
+      <span class="etoile" data-value="5">⭐</span>
+    </div>
+    <input type="hidden" name="etoiles" id="valeurEtoiles" value="5">
+  </td>
+</tr>
+    <tr>
+      <td>Message pour Comète</td>
+      <td><textarea name="message" rows="4" cols="40" placeholder="Écris un message à Comète 🐾..."></textarea></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button type="submit">Envoyer 🐱</button></td>
+    </tr>
+  </table>
+</form>
+
+
 </div>
 
 <div id="overlay"><img id="overlay-img" src="" alt=""></div>
 
 <script>
+
+  /*gratouille comete*/
+
   let grattage = 0;
-  const max = 200;
+  const max = 50;
   const comete = document.getElementById('comete-accueil');
 
   comete.addEventListener('mousemove', function(e) {
@@ -79,6 +133,8 @@
     }
 });
 
+/*zoomer les images au clique*/ 
+
 document.querySelectorAll('table img').forEach(function(img) {
   img.style.cursor = 'zoom-in';
   img.addEventListener('click', function() {
@@ -87,11 +143,36 @@ document.querySelectorAll('table img').forEach(function(img) {
   });
 });
 
+/*fermer le zoom au clique*/ 
+
 document.getElementById('overlay').addEventListener('click', function() {
   this.style.display = 'none';
 });
 
+/*notation avec les etoiles*/
+
+document.querySelectorAll('.etoile').forEach(function(etoile) {
+  etoile.addEventListener('click', function() {
+    const valeur = this.dataset.value;
+    document.getElementById('valeurEtoiles').value = valeur;
+    document.querySelectorAll('.etoile').forEach(function(e) {
+      e.classList.toggle('active', e.dataset.value <= valeur);
+    });
+  });
+});
+
+/*submit le formulaire et reset une fois qu'envoyé*/ 
+
+document.querySelector('#formulaire button[type="submit"]').addEventListener('click', function(e) {
+  e.preventDefault();
+  alert('Merci pour ton message à Comète ! 🐱');
+  document.getElementById('formulaire').reset();
+});
+
+
 </script>
+
+<!-- font sur internet-->
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -313,4 +394,36 @@ img, video {
   box-shadow: 0 0 40px rgba(255,200,100,0.5);
 }
 
-</style>    
+
+#btnFormulaire {
+  display: block;
+  margin: 30px auto;
+  background: linear-gradient(to right, #1e1e79, #8B4513);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#btnFormulaire:hover {
+  opacity: 0.85;
+  transition: 0.3s;
+}
+
+.etoile {
+  font-size: 35px;
+  cursor: pointer;
+  filter: grayscale(100%);
+  transition: filter 0.2s;
+}
+
+.etoile.active {
+  filter: grayscale(0%);
+}
+
+</style>
+
