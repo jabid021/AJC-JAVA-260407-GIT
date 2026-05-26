@@ -1,0 +1,71 @@
+<form>
+  <fieldset>
+    <legend>Informations personnelles</legend>
+    <table>
+      <tr>
+        <td>Login</td>
+        <td><input name="login" type="text" placeholder="lorem@mail.fr" /></td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td><input name="password" type="password" placeholder="**********" /></td>
+      </tr>
+      <tr>
+        <td>Sexe</td>
+        <td>
+          <select name="sexe">
+            <option>Homme</option>
+            <option selected>Femme</option>
+            <option>Non-binaire</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Date de naissance</td>
+        <td><input name="naissance" type="date" value="2000-01-01" /></td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Préférences</legend>
+    <table>
+      <tr>
+        <td>Couleur favorite</td>
+        <td>
+          <label style="color: #967BB6;"><input checked id="lavande" name="couleur" type="radio" value="#967BB6"> Lavande</label>
+          <label style="color: #FBCEB1;"><input id="abricot" name="couleur" type="radio" value="#FBCEB1"> Abricot</label>
+          <label style="color: #008B8B;"><input id="bleu-canard" name="couleur" type="radio" value="#008B8B"> Bleu Canard</label>
+          <label style="color: #960018;"><input id="carmin" name="couleur" type="radio" value="#960018"> Carmin</label>
+          <label style="color: #7FFF00;"><input id="chartreuse" name="couleur" type="radio" value="#7FFF00"> Chartreuse</label>
+          <label style="color: #F5E6A3;"><input id="paille" name="couleur" type="radio" value="#F5E6A3"> Paille</label>
+          <label style="color: #008080;"><input id="sarcelle" name="couleur" type="radio" value="#008080"> Sarcelle</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Centres d'intérêt</td>
+        <td>
+          <input id="sport" name="interets" type="checkbox" value="sport" checked><label for="sport">Sport</label>
+          <input id="danse" name="interets" type="checkbox" value="danse"><label for="danse">Danse</label>
+          <input id="musique" name="interets" type="checkbox" value="musique"><label for="musique">Musique</label>
+          <input id="informatique" name="interets" type="checkbox" value="informatique"><label for="informatique">Informatique</label>
+          <input id="chimie" name="interets" type="checkbox" value="chimie"><label for="chimie">Chimie</label>
+          <input id="arts-plastiques" name="interets" type="checkbox" value="arts-plastiques"><label for="arts-plastiques">Arts Plastiques</label>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Commentaires</legend>
+    <table>
+      <tr>
+        <td>Message</td>
+        <td><textarea name="message" id="message" cols="40" rows="5" placeholder="Saisir votre message"></textarea></td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <br>
+  <button type="submit">Envoyer</button>
+</form>
