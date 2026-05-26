@@ -40,8 +40,19 @@ table, tbody, thead, td:has(img), tr {
 }
 
 table tbody img {
-    max-width: 400px;
+    width: 400px;
+    height: 140px;
+    object-fit: cover;
+    object-position:top;
     margin: 0;
+}
+
+table tbody img#sonny-image {
+    object-position: center;
+}
+
+table tbody img#noisette-image {
+    height: auto;
 }
 
 td {
