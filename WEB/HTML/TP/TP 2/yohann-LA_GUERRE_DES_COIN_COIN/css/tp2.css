@@ -8,6 +8,13 @@ h1 {
     text-shadow: 0 0 15px #ffe81f;
 }
 
+.container_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .container_table {
     display: flex;
     justify-content: center;
@@ -47,9 +54,19 @@ td:not(:nth-of-type(4n), :nth-of-type(1)) {
 
 .td_description {
     width: 60%;
-    padding: 50px;
+    padding: 20px;
 }
 
+.td_description p {
+    font-weight: bold;
+    line-height: 1.8;
+    text-align: justify;
+
+    transform: perspective(400px) rotateX(35deg);
+    transform-origin: bottom center;
+
+    text-shadow: 0 0 5px #ffe81f;
+}
 
 td:nth-of-type(3n),
 td:nth-of-type(4n) {
