@@ -1,24 +1,16 @@
 
+<div id="accueil">
+  <img id="comete-accueil" src="assets/img/comete-accueil.jpg" alt="Comète accueil">
+  <p id="instruction">Gratte le bidou de Comète !</p>
+  <div id="barre-container">
+    <div id="barre"></div>
+  </div>
+</div>
+
+
+<div id="contenu" style="display:none;">
 <h1 align="center"><a href="assets/img/comete-bonus2.jpg" target="_blank">🐱</a> Top 5 des raisons pourquoi mon chat <span id="motComete">Comète</span> est la meilleure <a href="assets/img/comete-bonus.jpg" target="_blank">☄️</a></h1>
 <audio id="AudioMiaou" src="assets/audio/meow.mp3"></audio>
-
-
-<script>
-  
-
- document.getElementById('motComete').addEventListener('click', function() {
-  const audio = document.getElementById('AudioMiaou');
-  audio.currentTime = 0; // remet au début si déjà joué
-  audio.play();
-});
-
-document.querySelector('#AudioEspace').play().catch(() => {
-  document.addEventListener('click', function() {
-    document.querySelector('#AudioEspace').play();
-  }, { once: true });
-});
-
-</script>
 
 <table align="center" cellpadding="15" cellspacing="0" width="40%" >
   <thead>
@@ -62,13 +54,93 @@ document.querySelector('#AudioEspace').play().catch(() => {
     </tr>
   </tbody>
 </table>
+</div>
+
+<div id="overlay"><img id="overlay-img" src="" alt=""></div>
+
+<script>
+  let grattage = 0;
+  const max = 250;
+  const comete = document.getElementById('comete-accueil');
+
+  comete.addEventListener('mousemove', function(e) {
+    grattage++;
+    document.getElementById('barre').style.width = (grattage / max * 100) + '%';
+
+    if (grattage >= max) {
+      document.getElementById('accueil').style.display = 'none';
+      document.getElementById('contenu').style.display = 'block';
+
+      document.getElementById('motComete').addEventListener('click', function() {
+        const audio = document.getElementById('AudioMiaou');
+        audio.currentTime = 0;
+        audio.play();
+      });
+    }
+});
+
+document.querySelectorAll('table img').forEach(function(img) {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', function() {
+    document.getElementById('overlay-img').src = this.src;
+    document.getElementById('overlay').style.display = 'flex';
+  });
+});
+
+document.getElementById('overlay').addEventListener('click', function() {
+  this.style.display = 'none';
+});
+
+</script>
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
 
+  
 <style>
+
+  #accueil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#comete-accueil {
+  width: 400px;
+  height: auto;
+  border-radius: 30px;
+  cursor: grab;
+  box-shadow: 0 0 30px rgba(255, 200, 100, 0.5);
+}
+
+#instruction {
+  color: white;
+  font-size: 28px;
+  margin-top: 20px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+#barre-container {
+  width: 300px;
+  height: 20px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+#barre {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #1e1e79, #ff8c42);
+  border-radius: 10px;
+  transition: width 0.1s;
+}
+
     body {
       margin: 20px;
       background-color: rgba(255, 243, 230, 0.85);
@@ -213,5 +285,40 @@ img, video {
   text-decoration: none;
 }
 
-</style>     
+#comete-accueil {
+  width: 500px;
+  height: auto;
+  border-radius: 10px;
+  cursor: grab; 
+  cursor-border: 2px solid #fff;
+  box-shadow: 0 0 30px rgba(255, 200, 100, 0.5);}
 
+
+#instruction {
+  color: white;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}  
+
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+}
+
+#overlay img {
+  max-width: 90%;
+  max-height: 90vh;
+  min-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(255,200,100,0.5);
+}
+
+</style>    
