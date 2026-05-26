@@ -4,7 +4,7 @@ body {
 
 table {
     border-collapse: separate;
-    border-spacing: 0 1em;
+    border-spacing: 0;
     width: calc(100% - 4rem);
     margin: 0 2rem 0 2rem;
 }
@@ -18,11 +18,16 @@ tr:nth-child(even of .other-games) {
 }
 
 tr:nth-child(odd of .other-games) {
-  background-color: #1A2238;
+  background-color: #101B3A;
 }
 
 td {
     text-align: center;
+    padding: 0.5rem;
+}
+
+th {
+    padding: 0.5rem;
 }
 
 p {
@@ -76,16 +81,4 @@ h1 {
     background-color: green;
     border-radius: 25%;
     padding: 0.75rem;
-}
-
-/* a fix */
-.number-not-crown {
-    background-image: url("../assets/khLogoNoCrown.png");
-    background-blend-mode: darken;
-}
-
-/* a fix */
-.number-crown {
-    background-image: url("../assets/khLogoCrown.png");
-    background-blend-mode: darken;
 }
