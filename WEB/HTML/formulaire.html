@@ -1,0 +1,114 @@
+<!--
+champs texte (input) => text, password, date, time, email, url, number, tel*, hiden
+
+Zone de texte : textarea
+
+Liste deroulante (select / option)
+
+Choix : unique (0,1) radio / multiple (0-*) checkbox
+
+
+buttons => submit / reset / button
+
+submit =>
+button =>
+reset =>
+-->
+<form>
+
+
+  <fieldset>
+
+    <legend>Bloc 1</legend>
+    <table>
+      <tr>
+        <td>Login</td>
+        <td><input name="login" type="text" value="Jaxx" placeholder="Saisir votre login" /></td>
+      </tr>
+
+
+      <tr>
+        <td>Password</td>
+        <td><input name="password" type="password" placeholder="Saisir votre password"/></td>
+      </tr>
+
+      <tr>
+        <td>Age</td>
+        <td><input name="age" type="number" min="0" max="99" value="0"/></td>
+      </tr>
+
+      <tr>
+        <td>Salaire</td>
+        <td><input name="salaire" value="1499.99" type="number" step="0.01" /></td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td><input name="email" type="email" placeholder="Saisir votre email" /></td>
+      </tr>
+
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Bloc 2</legend>
+    <table>
+      <tr>
+        <td>Date Naissance</td>
+        <td><input name="naissance" type="date"  value="1993-05-01"/></td>
+      </tr>
+
+      <tr>
+        <td>Heure RDV</td>
+        <td><input name="rdv" type="time" value="08:00:30" /></td>
+      </tr>
+
+      <tr>
+        <td>Semaine conges</td>
+        <td><input name="semaine" type="week" value="2026-W31" /></td>
+      </tr>
+      <tr>
+        <td>Commentaire </td>
+        <td><textarea name="commentaire" cols="80" rows="5" placeholder="Saisir votre commentaire">Value par defaut</textarea></td>
+      </tr>
+
+
+      <tr>
+        <td>Votre OS </td>
+        <td>
+          <select name="os">
+            <option>Windows</option>
+            <option selected>MacOs</option>
+            <option>Linux</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Dev</td>
+        <td>
+          <label for="dev-sql">SQL</label> <input checked id="dev-sql" type="checkbox">
+          Java <input type="checkbox">
+          Python <input type="checkbox">
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>Civilite</td>
+        <td>
+          <label for="civ-homme">Homme</label> <input checked id="civ-homme" name="civ" type="radio">
+          <label for="civ-femme">Femme </label><input id="civ-femme" name="civ" type="radio">
+          <label for="civ-nb">NB</label> <input id="civ-nb" name="civ" type="radio">
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="submit" value="Save">
+        </td>
+        <tr>
+        </table>
+
+      </fieldset>
+    </form>
