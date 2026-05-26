@@ -1,4 +1,6 @@
 
+<link rel="stylesheet" href="style.css">
+
 <div id="accueil">
   <img id="comete-accueil" src="assets/img/comete-accueil.jpg" alt="Comète accueil">
   <p id="instruction">Gratte le bidou de Comète !</p>
@@ -71,7 +73,7 @@
       <td>Ton prénom</td>
       <td><input type="text" name="prenom" placeholder="Ton prénom..."/></td>
     </tr>
-      <td>Traits préférés</td>
+      <td>Trait(s) préférés</td>
       <td>
         <input id="belle" name="traits" type="checkbox" value="belle"><label for="belle"> Belle ✨</label><br>
         <input id="intelligente" name="traits" type="checkbox" value="intelligente"><label for="intelligente"> Intelligente 🧠</label><br>
@@ -409,6 +411,18 @@ img, video {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+#formulaire table {
+  width: 45%;
+  margin: 50px auto;
+  box-shadow: none;
+  background: none;
+}
+
+#formulaire td {
+  text-align: center;
+  padding: 10px 15px;
+}
+
 #btnFormulaire:hover {
   opacity: 0.85;
   transition: 0.3s;
@@ -424,6 +438,7 @@ img, video {
 .etoile.active {
   filter: grayscale(0%);
 }
+
 
 </style>
 

@@ -1,0 +1,96 @@
+/*GENERAL*/
+
+html,
+body{
+    margin:0;
+    height:120%;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+
+/*BODY*/
+
+body{
+    display:flex;
+    flex-direction:column;
+}
+
+
+/*HEADER*/ 
+
+
+header{
+    height:15%;
+    display:flex;
+    border:2px solid black;
+}
+
+header div{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* pour le logo a gauche */
+
+header div:nth-of-type(1){
+    width:15%;
+    display:flex;
+    font-size:60px;
+    font-weight:bold;
+}
+
+/*accueil*/
+
+header div:nth-of-type(2){
+    width:85%;
+    font-size:40px;
+    text-transform:uppercase;
+    background-color:grey;
+}
+
+
+/*MAIN*/
+
+main{
+    flex:1;
+    display:flex;
+}
+
+main nav{
+    width:17%;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+main content{
+    width:68%;
+    padding:20px;
+}
+
+main aside{
+    width:15%;
+    padding:20px;
+}
+
+footer{
+    background-color: rgb(245, 245, 18);
+    display:flex;
+    align-items:center;
+    height:100px;
+}
+
+footer nav{
+    width:30%;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+footer div{
+width:50%;
+text-align: center;
+}

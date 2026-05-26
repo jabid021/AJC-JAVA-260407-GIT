@@ -1,0 +1,220 @@
+/*_____________________ PAGE D'ACCUEIL AVEC LES GRATOUILLES _____________________*/
+ 
+#accueil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+ 
+#comete-accueil {
+  width: 400px;
+  height: auto;
+  border-radius: 30px;
+  cursor: grab;
+  box-shadow: 0 0 30px rgba(255, 200, 100, 0.5);
+}
+ 
+#instruction {
+  color: white;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+ 
+#barre-container {
+  width: 300px;
+  height: 20px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+ 
+#barre {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #1e1e79, #ff8c42);
+  border-radius: 10px;
+  transition: width 0.1s;
+}
+ 
+/*_____________________ BODY/MAIN _____________________*/
+ 
+body {
+  margin: 20px;
+  background-image: url("assets/img/galaxy.jpg");
+  background-size: cover;
+  background-position: left center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #333;
+  padding: 20px 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 25px;
+}
+ 
+h1 {
+  text-align: center;
+  width: 90%;
+  margin: 20px auto;
+  color: white;
+  padding: 15px;
+  border-radius: 15px;
+  background: linear-gradient(to right, #1e1e79, #8B4513);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+ 
+h1 a {
+  text-decoration: none;
+}
+ 
+audio {
+  display: block;
+  margin: 20px auto;
+}
+ 
+ul {
+  text-align: left;
+}
+ 
+/*_____________________ TABLEAU TOP 5 _____________________*/
+ 
+table {
+  width: 70%;
+  margin: 60px auto;
+  border-collapse: collapse;
+  background-color: rgba(58, 135, 165, 0.6);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.85);
+}
+ 
+thead {
+  background-color: rgba(150, 170, 255, 0.85);
+  color: #1e1e79;
+}
+ 
+thead th {
+  font-size: 23px;
+}
+ 
+th, td {
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 23px;
+}
+ 
+tbody th {
+  background-color: rgba(180, 200, 255, 0.85);
+  color: #1e1e79;
+  width: 80px;
+  font-size: 24px;
+}
+ 
+tbody tr:nth-child(odd) th  { background-color: rgba(180, 200, 255, 0.85); }
+tbody tr:nth-child(even) th { background-color: rgba(150, 170, 255, 0.85); }
+tbody tr:nth-child(odd) td  { background-color: rgba(173, 166, 236, 0.685); }
+tbody tr:nth-child(even) td { background-color: rgba(150, 170, 255, 0.5); }
+ 
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 248, 243, 0.75);
+}
+ 
+tbody tr:hover {
+  background-color: rgba(255, 233, 212, 0.85);
+  transition: 0.3s;
+}
+ 
+img, video {
+  width: 220px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+ 
+/*_____________________ Easter egg : Cliquer sur le mot Comete _____________________*/
+ 
+#motComete {
+  cursor: pointer;
+  text-decoration: none;
+}
+ 
+/*_____________________ ZOOM SUR LES PHOTOS AU CLIC _____________________*/
+ 
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+}
+ 
+#overlay img {
+  max-width: 90%;
+  max-height: 90vh;
+  min-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(255,200,100,0.5);
+}
+ 
+/*_____________________ AFFICHER LE FORMULAIRE AVEC LE BOUTON _____________________*/
+ 
+#btnFormulaire {
+  display: block;
+  margin: 30px auto;
+  background: linear-gradient(to right, #1e1e79, #8B4513);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+ 
+#btnFormulaire:hover {
+  opacity: 0.85;
+  transition: 0.3s;
+}
+ 
+/*_____________________ TABLEAU FORMULAIRE _____________________*/
+ 
+#formulaire h2 {
+  text-align: center;
+  color: white;
+}
+ 
+#formulaire table {
+  width: 45%;
+  margin: 20px auto;
+  box-shadow: none;
+  background: none;
+}
+ 
+#formulaire td {
+  text-align: center;
+  padding: 10px 15px;
+}
+ 
+/*_____________________ NOTATION AVEC LES ETOILES SUR 5 _____________________*/
+ 
+.etoile {
+  font-size: 35px;
+  cursor: pointer;
+  filter: grayscale(100%);
+  transition: filter 0.2s;
+}
+ 
+.etoile.active {
+  filter: grayscale(0%);
+}
