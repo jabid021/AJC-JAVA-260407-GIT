@@ -171,3 +171,7 @@ tbody tr:hover td {
   width: 30px;
   height: 30px;
 }
+
+#sc-player {
+    display: none;
+}
