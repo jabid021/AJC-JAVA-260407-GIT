@@ -117,6 +117,20 @@ table {
 .level-5 .badge { background: #FAECE7; color: #993C1D; }
 
 
+.level-0:hover { background: linear-gradient(90deg, #e8f8f2, #ffffff); }
+.level-1:hover { background: linear-gradient(90deg, #eaf7f0, #ffffff); }
+.level-2:hover { background: linear-gradient(90deg, #f0f7e4, #ffffff); }
+.level-3:hover { background: linear-gradient(90deg, #fdf3e3, #ffffff); }
+.level-4:hover { background: linear-gradient(90deg, #f0effe, #ffffff); }
+.level-5:hover {
+    background: radial-gradient(circle, #ff000044, #1a0000);
+    animation: pulse 0.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from { background-color: #3a0000; }
+    to   { background-color: #ff000033; }
+}
 
 
 tbody tr td {
