@@ -2,21 +2,103 @@
 
 Comment faire du CSS
 
+prop : value
+
 1) css inline (directement dans une balise avec style="prop1:value1;prop2:value2;...") (A EVITER)
 2) css interne (une balise <style> a part dans la page .html, disponible que sur cette page)
 3) css externe (un fichier .css a part qui est reutilisable sur plusieurs pages, contient le css global du site)
 
 plusieurs facons de pointer sur mes balises pour leur attribuer du css
+
+1) tags => le nom de la balise : p , ul , li , h1
+2) id => #idDeLaBalise (un id est sensé etre unique sur la page / un element ne peut avoir qu'un seul id)
+3) class => .nomDeLaClasse (plusieurs element qui ont cette classe / un element peut cumuler plusieurs classes)
+
+
+S'il y a des conflits sur les props, color : yellow dans demo.html à la ligne 19  puis color blue dans style.css, la color finale sera blue
+
+
+tag < class < id < inline
+
 -->
 
 <style>
 
-p
+a:visited
 {
-color:yellow;
-background-color:darkgreen;
+color:orange;
 }
 
+p
+{
+  color:yellow;
+  background-color:darkgreen;
+}
+
+h4 a
+{
+text-decoration:unset;
+color:red;
+cursor:unset;
+}
+
+
+
+#paragPrincipal
+{
+  border : solid black 3px;
+  color:red;
+}
+
+.cssImportant
+{
+  font-family:Roboto;
+}
+
+.uneAutreClass,tr
+{
+  cursor : not-allowed;
+}
+
+p:first-of-type:hover
+{
+  background-color:blue;
+}
+
+
+p:nth-of-type(2)
+{
+  color:red;
+}
+
+
+tr
+{
+  background-color: cyan;
+}
+
+
+img:hover
+{
+  transform : scale(1.5) rotate(180deg);
+  transition-duration : 0.8s;
+}
+
+tr:active
+{
+  font-size:35px;
+}
+
+
+input
+{
+  color:red;
+}
+
+input:focus
+{
+  color:green;
+}
 </style>
 
 
@@ -35,6 +117,8 @@ background-color:darkgreen;
 
 
 
+<a href="">Un autre lien</a><br>
+<a href="http://www.ajc-ingenierie.fr/unePage">Un autre lien</a><br>
 
 <h1 align="center">Grand titre</h1>
 <h2 class="cssImportant uneAutreClass">ZogZog</h2>
@@ -44,7 +128,7 @@ background-color:darkgreen;
 <p align="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p id="paragPrincipal">Lorem <u>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </u>incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <h6>plus petit</h6>
-<p class="cssImportant">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p style="color:purple" class="cssImportant">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p title="paragraphe important...">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 <input type="text" placeholder="Saisir votre login"><br>
