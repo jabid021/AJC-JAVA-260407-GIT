@@ -60,7 +60,7 @@
 
 <script>
   let grattage = 0;
-  const max = 250;
+  const max = 200;
   const comete = document.getElementById('comete-accueil');
 
   comete.addEventListener('mousemove', function(e) {
@@ -115,6 +115,7 @@ document.getElementById('overlay').addEventListener('click', function() {
   border-radius: 30px;
   cursor: grab;
   box-shadow: 0 0 30px rgba(255, 200, 100, 0.5);
+  
 }
 
 #instruction {
@@ -284,15 +285,6 @@ img, video {
   cursor: pointer;
   text-decoration: none;
 }
-
-#comete-accueil {
-  width: 500px;
-  height: auto;
-  border-radius: 10px;
-  cursor: grab; 
-  cursor-border: 2px solid #fff;
-  box-shadow: 0 0 30px rgba(255, 200, 100, 0.5);}
-
 
 #instruction {
   color: white;
