@@ -1,0 +1,109 @@
+<!--
+
+Comment faire du CSS
+
+1) css inline (directement dans une balise avec style="prop1:value1;prop2:value2;...") (A EVITER)
+2) css interne (une balise <style> a part dans la page .html, disponible que sur cette page)
+3) css externe (un fichier .css a part qui est reutilisable sur plusieurs pages, contient le css global du site)
+
+plusieurs facons de pointer sur mes balises pour leur attribuer du css
+-->
+
+<style>
+
+p
+{
+color:yellow;
+background-color:darkgreen;
+}
+
+</style>
+
+
+
+
+<link rel="stylesheet" href="style.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 align="center">Grand titre</h1>
+<h2 class="cssImportant uneAutreClass">ZogZog</h2>
+<h3>Hôpital</h3>
+<h4 style="color:red">Grand t<a href="bravo.html">i</a>tre</h4>
+<h5>Grand titre</h5>
+<p align="center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p id="paragPrincipal">Lorem <u>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </u>incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h6>plus petit</h6>
+<p class="cssImportant">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p title="paragraphe important...">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<input type="text" placeholder="Saisir votre login"><br>
+
+<img title="Le logo d'ajc" src="../HTML/assets/img/AJC_Ingenierie.png" width="100" alt="Logo AJC" /><br>
+
+<p>
+  <a href="../HTML/formulaire.html">Vers le formulaire</a><br>
+
+  <a href="">Un autre lien</a><br>
+</p>
+
+
+
+
+<table border align="center" width="80%">
+  <tr>
+    <th>Head-Index</th>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th class="cssImportant">Age</th>
+    <th>Ordinateur</th>
+    <th>Lien</th>
+  </tr>
+
+  <tr align="center">
+    <th>1</th>
+    <td>Abid</td>
+    <td>Jordan</td>
+    <td>32</td>
+    <td>1</td>
+    <td><a href="fichePersonne.html?id=1&prenom=jordan&age=32">Voir la fiche</a></td>
+  </tr>
+
+  <tr>
+    <th>2</th>
+    <td  rowspan="2" align="right">Doe</td>
+    <td>John</td>
+    <td align="center" colspan="2">42</td>
+    <!--td invisible grace au colspan -->
+    <td><a href="fichePersonne.html?id=2&prenom=John&age=42">Voir la fiche</a></td>
+  </tr>
+
+  <tr>
+    <th>3</th>
+    <!--<td>Doe</td>-->
+    <td style="color:red;background-color:blue">Jane</td>
+    <td>42</td>
+    <td>17</td>
+    <td><a href="fichePersonne.html?id=2&prenom=John&age=42">Voir la fiche</a></td>
+  </tr>
+
+
+  <tr>
+    <th>Index</th>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>Age</th>
+    <th>Ordinateur</th>
+    <th>Lien</th>
+  </tr>
+</table>
