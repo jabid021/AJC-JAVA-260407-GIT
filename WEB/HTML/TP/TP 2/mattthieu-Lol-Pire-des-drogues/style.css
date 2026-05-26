@@ -126,6 +126,7 @@ tbody tr td {
 
 tbody tr:hover td {
   opacity: 1;
+  cursor:help;
 }
 
 .bar-wrap {
