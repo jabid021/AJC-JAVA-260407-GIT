@@ -1,25 +1,27 @@
-*{
-    margin: 0;
-    padding: 0;
-    
+* {
+  margin: 0;
+  padding: 0;
+
 }
 
-body{
-    background-color: #ebebe7;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+  background-color: #ebebe7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.4s ease;
+
 }
 
 .container {
-  max-width:800px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 
-h1{
+h1 {
   text-align: center;
 }
 
-.subtitle{
+.subtitle {
   text-align: center;
   color: #555;
   font-style: italic;
@@ -39,21 +41,21 @@ h1{
   display: flex;
   align-items: center;
   gap: 20px;
-  width: 100%; 
+  width: 100%;
 }
 
 .danger-bar {
-  flex: 1; 
+  flex: 1;
   height: 5px;
   border-radius: 99px;
   background: linear-gradient(to right, #0b755b, #f0e556, #f50c0c);
 }
 
 
-tr{
+tr {
   background-color: #ffffff;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-   border-radius: 40px;
+  border-radius: 40px;
 }
 
 
@@ -97,7 +99,7 @@ tr th:last-child {
 
 table {
   border-collapse: separate;
-  border-spacing: 0 30px; 
+  border-spacing: 0 30px;
 }
 
 
@@ -109,27 +111,70 @@ table {
   border-radius: 99px;
 }
 
-.level-0 .badge { background: #E1F5EE; color: #085041; }
-.level-1 .badge { background: #E1F5EE; color: #0F6E56; }
-.level-2 .badge { background: #EAF3DE; color: #3B6D11; }
-.level-3 .badge { background: #FAEEDA; color: #854F0B; }
-.level-4 .badge { background: #EEEDFE; color: #534AB7; }
-.level-5 .badge { background: #FAECE7; color: #993C1D; }
+.level-0 .badge {
+  background: #E1F5EE;
+  color: #085041;
+}
+
+.level-1 .badge {
+  background: #E1F5EE;
+  color: #0F6E56;
+}
+
+.level-2 .badge {
+  background: #EAF3DE;
+  color: #3B6D11;
+}
+
+.level-3 .badge {
+  background: #FAEEDA;
+  color: #854F0B;
+}
+
+.level-4 .badge {
+  background: #EEEDFE;
+  color: #534AB7;
+}
+
+.level-5 .badge {
+  background: #FAECE7;
+  color: #993C1D;
+}
 
 
-.level-0:hover { background: linear-gradient(90deg, #e8f8f2, #ffffff); }
-.level-1:hover { background: linear-gradient(90deg, #eaf7f0, #ffffff); }
-.level-2:hover { background: linear-gradient(90deg, #f0f7e4, #ffffff); }
-.level-3:hover { background: linear-gradient(90deg, #fdf3e3, #ffffff); }
-.level-4:hover { background: linear-gradient(90deg, #f0effe, #ffffff); }
+.level-0:hover {
+  background: linear-gradient(90deg, #e8f8f2, #ffffff);
+}
+
+.level-1:hover {
+  background: linear-gradient(90deg, #eaf7f0, #ffffff);
+}
+
+.level-2:hover {
+  background: linear-gradient(90deg, #f0f7e4, #ffffff);
+}
+
+.level-3:hover {
+  background: linear-gradient(90deg, #fdf3e3, #ffffff);
+}
+
+.level-4:hover {
+  background: linear-gradient(90deg, #f0effe, #ffffff);
+}
+
 .level-5:hover {
-    background: radial-gradient(circle, #ff000044, #1a0000);
-    animation: pulse 0.5s infinite alternate;
+  background: radial-gradient(circle, #ff000044, #1a0000);
+  animation: pulse 0.5s infinite alternate;
 }
 
 @keyframes pulse {
-    from { background-color: #3a0000; }
-    to   { background-color: #ff000033; }
+  from {
+    background-color: #3a0000;
+  }
+
+  to {
+    background-color: #ff000033;
+  }
 }
 
 
@@ -140,7 +185,7 @@ tbody tr td {
 
 tbody tr:hover td {
   opacity: 1;
-  cursor:help;
+  cursor: help;
 }
 
 .bar-wrap {
@@ -156,18 +201,41 @@ tbody tr:hover td {
 }
 
 
-.level-0 .bar { background: #0F6E56; width: 3%; }
-.level-1 .bar { background: #1D9E75; width: 8%; }
-.level-2 .bar { background: #639922; width: 22%; }
-.level-3 .bar { background: #BA7517; width: 50%; }
-.level-4 .bar { background: #7F77DD; width: 68%; }
-.level-5 .bar { background: #D85A30; width: 100%; }
+.level-0 .bar {
+  background: #0F6E56;
+  width: 3%;
+}
+
+.level-1 .bar {
+  background: #1D9E75;
+  width: 8%;
+}
+
+.level-2 .bar {
+  background: #639922;
+  width: 22%;
+}
+
+.level-3 .bar {
+  background: #BA7517;
+  width: 50%;
+}
+
+.level-4 .bar {
+  background: #7F77DD;
+  width: 68%;
+}
+
+.level-5 .bar {
+  background: #D85A30;
+  width: 100%;
+}
 
 
 
 
 
-.disclaimer{
+.disclaimer {
   text-align: center;
   border-top: 1px solid #ccc;
   margin-bottom: 40px;
@@ -188,5 +256,5 @@ tbody tr:hover td {
 }
 
 #sc-player {
-    display: none;
+  display: none;
 }
