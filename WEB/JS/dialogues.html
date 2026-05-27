@@ -1,0 +1,66 @@
+<!--
+ JavaScript != JAVA
+
+JavaScript JS => Js Vanilla
+  => JQuery (library)
+  => Frameworks => Angular / React / Node / Vue
+
+
+EcmaScript =>  Algo
+DOM =>  Document Object Model (comment modifier l'ensemble du document html)
+BOM =>   Browser Object Model (comment modifier le navigateur)
+
+-->
+
+<style>
+/* commentaire CSS */
+</style>
+
+<!-- commentaire HTML -->
+
+<script charset="utf-8">
+
+//commentaire sur une ligne
+/* bloc de commentaire
+sur plusieurs lignes*/
+
+var nom = "Abid"; // var est l'equivalent de static en java, cette variable est globale et disponible dans toutes la page
+
+console.log(nom);
+const pi = 3.14; // est l'equivalent de final en java
+
+for(let i=0;i<10;i++) //let i => variable avec un scope temporaire, est suppr de la memoire apres la fonction
+{
+  console.log("value "+i);
+}
+
+alert("CECI EST UNE ALERT");
+alert(`VOUS ETES ${nom}`);
+
+var age = prompt("Saisir votre age");
+
+console.log(`Vous etes ${nom}, vous avez ${age} ans`);
+
+age++;
+console.log(`Dans un an vous aurez ${age}`);
+
+
+if(confirm("EST CE QUE C'EST BON POUR VOUS ?"))
+{
+  alert("il a dit oui !");
+}
+else
+{
+  alert("Il a dit non !");
+}
+
+carre(10);
+
+function carre(x)
+{
+  let resultat = x * x;
+  console.log("le carre de "+x+" est "+resultat);
+  console.log(`le carre de ${x} est ${resultat}`);
+}
+
+</script>
