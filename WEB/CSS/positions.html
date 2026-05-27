@@ -1,0 +1,120 @@
+<!--
+
+En css, 5* positions sur les elements :
+
+- inherit (par defaut dans le navigateur, les elements se suivent les un apres les autres)
+- relative, absolute, fixed, sticky  =>  donnent accès aux props : top,left,right,bottom
+
+  position relative => l'element peut etre deplacé sans impacter le reste de la page qui fait comme si l'element etait toujours present
+  position absolute => l'element peut etre déplacé, le reste de la place va se placer comme si l'element etait manquant
+      par defaut, le top 0, left 0 => le coin supérieur gauche de l'ecran
+      si le parent est en relative, le top 0, left 0 => le coincoin supérieur gauche de la div parente
+
+  position fixed => l'element peut etre deplacer et restera fixe à l'ecran (top 0 left 0 => coin sup gauche de l'ecran),  le reste de la place va se placer comme si l'element etait manquant
+-->
+
+<style>
+
+body
+{
+  height:300vh;
+  background-color:#ded4c3;
+}
+
+content
+{
+  position:relative;
+  display:block;
+  background-color:grey;
+  width:80%;
+  margin-left:10%;
+  height:1250px;
+  margin-top:30px;
+}
+
+content div
+{
+  height:70px;
+}
+
+content div:nth-of-type(1)
+{
+  background-color:green;
+}
+
+content div:nth-of-type(2)
+{
+  background-color:blue;
+  position:relative;
+  top : 45px;
+  left : 45px;
+}
+
+
+
+content div:nth-of-type(3)
+{
+  background-color:red;
+}
+content div:nth-of-type(4)
+{
+  background-color:yellow;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+}
+content div:nth-of-type(5)
+{
+  background-color:purple;
+}
+content div:nth-of-type(6)
+{
+  background-color:brown;
+  position:absolute;
+  width:120px;
+  top:120px;
+  left:120px;
+}
+content div:nth-of-type(7)
+{
+  background-color:salmon;
+  position:sticky;
+  top:400px;
+  left:300px;
+}
+content div:nth-of-type(8)
+{
+  background-color:orange;
+}
+
+#chat
+{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background-color:grey;
+  position:fixed;
+  bottom:50px;
+  right:50px;
+}
+
+</style>
+
+
+
+  <content>
+    <div>Element 1</div>
+    <div>Element 2 (position relative)</div>
+    <div>Element 3</div>
+    <div>Element 4 (position fixed)</div>
+    <div>Element 5</div>
+    <div>Element 6 (position absolute)</div>
+    <div>Element 7( position sticky)</div>
+    <div>Element 8</div>
+  </content>
+
+  <div id="chat">?</div>
