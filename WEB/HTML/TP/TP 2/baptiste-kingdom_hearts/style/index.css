@@ -1,5 +1,11 @@
+@font-face {
+  font-family: "MAAAARIO";
+  src: url("../assets/font/SuperMario.ttf");
+}
+
 body {
     background-image: url("../assets/fondEtoiles.png");
+    font-family: "MAAAARIO", "Bitstream Vera Serif", serif;
 }
 
 table {
@@ -23,14 +29,13 @@ tr:nth-child(odd of .other-games) {
 
 td {
     text-align: center;
+}
+
+th, td {
     padding: 0.5rem;
 }
 
-th {
-    padding: 0.5rem;
-}
-
-p {
+span, p {
     color:#F4F7FB;
 }
 
@@ -53,11 +58,6 @@ h1 {
     color: white;
 }
 
-.table-jaquette {
-    width: 3rem;
-    height: 4rem;
-}
-
 .full-width {
     width: 100%;
 }
@@ -67,7 +67,15 @@ h1 {
     width: 4rem;
     height: 5rem;
     border-radius: 0.5rem;
-    filter: drop-shadow(1px 5px 6px black);
+    filter: drop-shadow(1px 5px 4px black);
+}
+
+.text-shadow {
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+.audio-player-shadow {
+    filter: drop-shadow(3px 4px 2px black);
 }
 
 .grade {
@@ -81,4 +89,5 @@ h1 {
     background-color: green;
     border-radius: 25%;
     padding: 0.75rem;
+    filter: drop-shadow(3px 4px 2px black);
 }
