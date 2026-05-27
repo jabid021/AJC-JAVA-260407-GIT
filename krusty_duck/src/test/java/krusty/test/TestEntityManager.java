@@ -229,6 +229,8 @@ public class TestEntityManager {
 		List<Client> clientsBis3 =  em.createQuery("SELECT c from Client c JOIN c.achats a where a.quantite>=5 ").getResultList();
 	
 		
+		//em.createNativeQuery("select * from product");
+		
 		for(Client c : clientsBis3) 
 		{
 			System.out.println(c);

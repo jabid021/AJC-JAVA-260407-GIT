@@ -1,0 +1,334 @@
+<!-- Code dégueulasse en cours d'opti :) -->
+
+<style>
+
+  /* On importe une police qui ressemble à celle de Minecraft parce qu'on a le souci du détail */
+  @font-face {
+    font-family: 'Minecraftia';
+    src: url('assets/fonts/Minecraftia.ttf');
+  }
+
+
+  /* Définition du style de l'ensemble de la page */
+  body {
+    margin: 0; /* On vire les marges par défaut pour que les images de fond soient collées aux bords de la page*/
+  }
+
+  /* Définition du style de mon conteneur "accueil", la première partie de ma page */
+  #accueil {
+    height: 100vh;
+    background-image: url('assets/img/terre.jpg');
+    background-repeat: repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Définition du style du bouton, un truc un peu comme les boutons à l'accueil de Minecraft */
+  #bouton-entrer {
+    background-image: url('assets/img/pierrelisse.jpg');
+    background-repeat: repeat;
+    background-size: 25% 200%;  /* On joue avec la taille de l'image pour que les pixels soient à peu près carrés et que ce soit pas trop dégueu*/
+    border: 3px solid black;
+    box-shadow:
+    inset 3px 3px 0px #C2C2C2,
+    inset -3px -3px 0px #797979;
+    padding: 15px 30px;
+    cursor: pointer;
+    width: 30%;
+    font-family: 'Minecraftia', monospace;
+    color: white;
+    text-shadow: 3px 3px 0px #303030;
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  /* Définition du style du bouton "Voir le Top" quand on passe la souris dessus */
+  #bouton-entrer:hover {
+    box-shadow:
+    inset 3px 3px 0px #ffffff,
+    inset -3px -3px 0px #555555;
+  }
+
+  /* Définition de l'animation de bouton "Voir le Top" quand on clique dessus */
+  @keyframes clic {
+    0%   { transform: translate(0px, 0px); }
+    50%  { transform: translate(1px, 1px); }
+    100% { transform: translate(0px, 0px); }
+  }
+  #bouton-entrer.clique {
+    transform: translate(2px, 2px);
+    animation: clic 0.15s ease;
+  }
+
+
+  /* Définition du style de mon conteneur "contenu", la deuxième partie de ma page */
+  #top {
+    min-height: 100vh;
+    background-image: url('assets/img/terrenue.webp');
+    background-size:50% 55%; /* On joue avec la taille de l'image pour que la tailles des pixels matche celle de l'autre image de fond mais en fonction de la taille de l'écran c'est plus ou moins dégueu */
+    padding-top: 30px;    /* Création d'un espace entre le premier tableau et le haut du conteneur "contenu" */
+    padding-bottom: 30px; /* Création d'un espace entre le dernier tableau et le bas du conteneur "contenu" */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Définition du style des bloc de titre toujours dans le style des bouton à l'accueil du jeu */
+  #titre, #sous-titre {
+    background-image: url('assets/img/pierrelisse.jpg');
+    background-repeat: repeat;
+    background-size: 25% 200%;
+    border: 3px solid black;
+    box-shadow:
+    inset 3px 3px 0px #C2C2C2,
+    inset -3px -3px 0px #797979;
+    padding: 15px 30px;
+    font-family: 'Minecraftia', monospace;
+    color: white;
+    text-shadow: 3px 3px 0px #303030;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  #titre {
+    width: 50%;
+  }
+
+  /* Définition du style du bouton titre quand on passe la souris dessus */
+  #titre:hover {
+    box-shadow:
+    inset 3px 3px 0px #ffffff,
+    inset -3px -3px 0px #555555;
+  }
+
+  #sous-titre {
+    width: 38%;
+  }
+
+  /* Définition du style du bouton sous-titre quand on passe la souris dessus */
+  #sous-titre:hover {
+    box-shadow:
+    inset 3px 3px 0px #ffffff,
+    inset -3px -3px 0px #555555;
+  }
+
+/* Définition du style du tableau du top */
+  table.top {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C2C2C2 #797979 #797979 #C2C2C2;
+    outline: 2px solid #000000;
+    margin-bottom: 20px;
+    text-align:center;
+    font-family: 'Minecraftia', monospace;
+    color: white;
+    font-size: 1em;
+  }
+
+  table.top th
+  {
+    background-color: #000000d9;
+    font-size: 1.1em;
+    height: 40px;
+  }
+
+  table.top td,
+  table.top th {
+    border-style: solid;
+    border-width:2px;
+    border-color: #797979 #616161 #616161 #797979;
+    padding: 10px;
+  }
+
+  table.top ul {
+    padding-left: 15px;
+    margin: 0;
+  }
+
+  tr.rang-S td:first-child { background-color: #8211009d; }
+  tr.rang-A td:first-child { background-color: #CC5B049d; }
+  tr.rang-B td:first-child { background-color: #CC83049d; }
+  tr.rang-C td:first-child { background-color: #CCAC049d; }
+  tr.rang-D td:first-child { background-color: #018C059d; }
+  tr.rang-E td:first-child { background-color: #01578C9d; }
+  tr.rang-F td:first-child { background-color: #62018C9d; }
+
+/* Définition du style de la phrase de fin, dans le style du tableau de notif dans Minecraft */
+  p {
+    margin: 0;
+    background: #000000d9;
+    width: 100%;
+    font-family: 'Minecraftia', monospace;
+    color: white;
+    text-align: left;
+    padding: 5px 0px 5px 20px;
+    box-sizing: border-box;
+  }
+
+</style>
+
+<audio id="MinecraftTheme" src="assets/audio/minecrafttheme.mp3" loop></audio>
+
+<p>
+Je me sens obligée de le précisier parce que mon mec a pourri mon groove mais je vous en supplie, cliquez sur le bouton, scrollez pas juste vers le bas. 😭
+</p>
+
+<div id="accueil">
+  <button id="bouton-entrer">
+    Voir le Top
+  </button>
+</div>
+
+<div id="top">
+
+  <a id="titre" href="https://minecraft.fandom.com/fr/wiki/Bois" target="_blank">
+    Tier List des différents bois dans Minecraft 🌳
+  </a>
+
+  <a id="sous-titre" href="https://media1.tenor.com/m/9GhBNyA5kKcAAAAC/please-dont-hurt-me-im-weak.gif" target="_blank">
+    (ou comment se faire des ennemis 🙈)
+  </a>
+
+  <table class="top" width="95%" align="center">
+
+    <thead>
+      <tr>
+        <th>Top</th>
+        <th>Nom</th>
+        <th>Visuel</th>
+        <th>Biome</th>
+        <th>Review</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="rang-S" style="background-color: #181818d9;">
+        <td>S</td>
+        <td>Sapin</td>
+        <td><img alt="Bois de sapin"  width="50px" height="50px" src="assets/img/sapin.png"></td>
+        <td>Taiga</td>
+        <td>Je vais pas être très originale mais c'est clairement le meilleur, à mon avis. Il est esthétique, facile à trouver, facile à miner en grande quantité... Le GOAT. 🐐</td>
+      </tr>
+
+      <tr class="rang-A" style="background-color: #303030d9;">
+        <td>A</td>
+        <td>Palétuvier</td>
+        <td><img alt="Bois de palétuvier"  width="50px" height="50px" src="assets/img/paletuvier.png"></td>
+        <td>Marais à mangroves</td>
+        <td>Je le trouve parfait pour donner un peu de couleur aux builds sans que ce soit trop extravagant. J'adore la couleur et je trouve que les trappes et les portes sont trop belles. 😍</td>
+      </tr>
+
+      <tr class="rang-B" style="background-color: #181818d9;">
+        <td>B</td>
+        <td>Chêne noir</td>
+        <td><img alt="Bois de chêne noir"  width="50px" height="50px" src="assets/img/chenenoir.png"></td>
+        <td>Forêt sombre</td>
+        <td>Un peu l'alter ego du sapin mais avec un côté plus ✨classy✨ grâce à la couleur sombre. Je le trouve cool pour les détails des toitures ou des murs de builds. </td>
+      </tr>
+
+      <tr class="rang-C" style="background-color: #303030d9;">
+        <td rowspan="2">C</td>
+        <td>Hyphes carmin</td>
+        <td><img alt="Bois de hyphes carmin"  width="50px" height="50px" src="assets/img/hyphescarmin.png"></td>
+        <td>Forêt carmin</td>
+        <td rowspan="2">Ceux-là, c'est un peu mes préférés, en vrai. Les couleurs sont trop belles, les portes et les trappes sont archi stylées, c'est juste que faut jouer sa vie pour aller les chercher dans le Nether et j'ai trop la flemme. 🥵</td>
+      </tr>
+
+      <tr style="background-color: #303030d9;">
+        <td>Hyphes biscornues</td>
+        <td><img alt="Bois de hyphes biscornues"  width="50px" height="50px" src="assets/img/hyphesbiscornues.png"></td>
+        <td>Forêt biscornue</td>
+
+      </tr>
+
+      <tr class="rang-D" style="background-color: #181818d9">
+        <td rowspan="2">D</td>
+        <td>Bouleau</td>
+        <td><img alt="Bois de bouleau"  width="50px" height="50px" src="assets/img/bouleau.png"></td>
+        <td>
+          <ul>
+            <li>Forêt</li>
+            <li>Prairie</li>
+            <li>Forêt de bouleaux</li>
+          </ul></td>
+          <td rowspan="2">Simple, basique. 👌 Mais du coup, très efficace. Petite préférence pour le bouleau que je trouve sous-coté alors que le chêne est trop basique, pour le coup, trop fade.</td>
+        </tr>
+
+        <tr style="background-color: #181818d9">
+          <td>Chêne</td>
+          <td><img alt="Bois de chêne"  width="50px" height="50px" src="assets/img/chene.png"></td>
+          <td>
+            <ul>
+              <li>Forêt</li>
+              <li>Prairie</li>
+              <li>Plaine</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr class="rang-E" style="background-color: #303030d9">
+          <td rowspan="2">E</td>
+          <td>Acacia</td>
+          <td><img alt="Bois de acacia"  width="50px" height="50px" src="assets/img/acacia.png"></td>
+          <td>Savane</td>
+          <td>Lui, ça me fait un peu mal au coeur de le mettre si bas parce qu'il est orange, c'est ma couleur préférée, mais l'écorce est trop moche, les portes et les trappes sont pas si belles, et y a d'autres blocs oranges plus jolis. 😕</td>
+        </tr>
+
+        <tr style="background-color: #303030d9">
+          <td>Acajou</td>
+          <td><img alt="Bois de acajou"  width="50px" height="50px" src="assets/img/acajou.png"></td>
+          <td>Jungle</td>
+          <td>J'ai déjà vu des builds archi stylés avec du bois d'acajou mais perso, j'ai du mal à l'intégrer, je trouve la couleur vraiment pas folle. 🤔</td>
+        </tr>
+
+        <tr class="rang-F" style="background-color: #181818d9">
+          <td rowspan="2">F</td>
+          <td>Chêne pâle</td>
+          <td><img alt="Bois de chêne pâle"  width="50px" height="50px" src="assets/img/chenepale.png"></td>
+          <td>Jardin pâle</td>
+          <td rowspan="2">Je risque de mes faire des ennemis mais on est sur les deux bois les plus OSEF du jeu. Les biomes et les arbres en tant que tels sont très beaux/stylés mais les bois servent à R. Le rose du cerisier est fadasse à souhait et et on a déjà des blocs blancs plus stylés que du chêne pâle. Sorry not sorry. 🤷‍♀️</td>
+        </tr>
+
+        <tr style="background-color: #181818d9;">
+          <td>Cerisier</td>
+          <td><img alt="Bois de cerisier"  width="50px" height="50px" src="assets/img/cerisier.png"></td>
+          <td>Bosquet de cerisiers</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>
+      Ce classement a été réalisé au risque de me faire embrouiller par toutes mes girlies fan du cerisier. 🌸
+    </p>
+
+  </div>
+
+
+
+  <script>
+    // Autoplay musique
+    document.querySelector('#MinecraftTheme').play().catch(() => {
+      document.addEventListener('click', function() {
+        document.querySelector('#MinecraftTheme').play();
+      }, { once: true });
+    });
+
+    // Bouton entrer — animation + scroll
+    document.getElementById('bouton-entrer').addEventListener('click', function() {
+      this.classList.add('clique');
+      setTimeout(function() {
+        document.getElementById('top').scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    });
+  </script>
