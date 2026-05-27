@@ -1,0 +1,16 @@
+<h1>TP 6 - Boites de dialogue</h1>
+
+
+<script charset="utf-8">
+
+  let password;
+  let message="password non changé"
+  if(confirm("Changer le password ?"))
+  {
+    password=prompt("Saisir le nouveau password");
+    message=`Mot de passe changé (${password})`;
+    alert(message)
+  }
+  console.log(message);
+
+</script>
