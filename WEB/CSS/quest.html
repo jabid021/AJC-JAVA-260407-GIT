@@ -1,0 +1,285 @@
+<style>
+  body
+  {
+  	background-color :#F4EFE7;
+  }
+
+  content
+  {
+  	display:block;
+  	margin:30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #F4EFE7;
+    color: #3b322c;
+    border: 1px solid #d8cdbf;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(80, 60, 40, 0.06);
+    font-size: 0.96rem;
+  }
+
+  table tr {
+    background: #d9c7ae;
+  }
+
+  table th {
+    padding: 14px 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.88rem;
+    color: #2f2722;
+    border-bottom: 2px solid #c8b79f;
+  }
+
+  table th:first-child {
+    border-top-left-radius: 14px;
+  }
+
+  table th:last-child {
+    border-top-right-radius: 14px;
+  }
+
+  table tr:nth-child(odd) {
+    background-color: #F4EFE7;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #ebe3d8;
+  }
+
+  table tr:hover {
+    background-color: #e2d7c9;
+    transition: background-color 0.2s ease;
+  }
+
+  table td {
+    padding: 14px 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e3d9cc;
+  }
+
+  table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .message-form {
+    display: inline-block;
+    margin: 28px 0 20px 0;
+    padding: 12px 16px;
+    background: #dce3d6;
+    color: #2f3a2c;
+    border-left: 5px solid #7ea07a;
+    border-right: 5px solid #7ea07a;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+
+  form.form-clean {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 520px;
+    background: #DCE3D6;
+    border: 1px solid #bcc8b6;
+    padding: 24px;
+    border-radius: 14px;
+  }
+
+  form.form-clean input[type="text"],
+  form.form-clean input[type="date"],
+  form.form-clean input[type="email"],
+  form.form-clean input[type="number"],
+  form.form-clean input[type="password"],form.form-clean select {
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    border: 1px solid #cfc3b4;
+    border-radius: 10px;
+  }
+
+  form.form-clean input[type="radio"],
+  form.form-clean input[type="checkbox"] {
+    accent-color: #7ea07a;
+  }
+  .choice-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    margin-bottom: 14px;
+    align-items: center;
+  }
+
+  .choice-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .choice-item input[type="radio"],
+  .choice-item input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .choice-item label {
+    margin: 0;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  form.form-clean .form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .btn-deconnecter
+  {
+  	position:absolute;
+  	top:35px;
+  	right :45px;
+  }
+
+
+</style>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Gestion des stagiaires</title>
+</head>
+<body>
+<%@ include file="/WEB-INF/securityAdmin.jsp" %>
+<content>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Login</th>
+			<th>Password</th>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>Civilite</th>
+			<th>Email</th>
+			<th>Adresse</th>
+			<th>Filiere</th>
+			<th>Actions</th>
+		</tr>
+		<c:if test="${stagiaires.isEmpty()}"><tr><td align="center" colspan="10">AUCUN STAGIAIRE</td></tr></c:if>
+
+		<c:forEach items="${stagiaires}" var="stagiaire">
+			<tr>
+				<td>${stagiaire.id}</td>
+				<td>${stagiaire.login}</td>
+				<td>${stagiaire.password}</td>
+				<td>${stagiaire.nom}</td>
+				<td>${stagiaire.prenom}</td>
+				<td>${stagiaire.civilite}</td>
+				<td>${stagiaire.email}</td>
+				<td>${stagiaire.adresse.numero} ${stagiaire.adresse.voie}, ${stagiaire.adresse.ville} ${stagiaire.adresse.cp}</td>
+				<td>${stagiaire.filiere.infoFiliere}</td>
+				<td>
+					<a class="btn btn-warning" href="stagiaire?id=${stagiaire.id}">Modifier</a>
+					<a class="btn btn-danger" href="stagiaire?id=${stagiaire.id}&delete">Supprimer</a>
+				</td>
+			</tr>
+		</c:forEach>
+
+	</table>
+	<c:if test="${stagiaire.id==null}">
+		<div class="message-form">Formulaire d'ajout</div>
+	</c:if>
+
+	<c:if test="${stagiaire.id!=null}">
+		<div class="message-form">Formulaire d'update (Stagiaire ${stagiaire.id})</div>
+	</c:if>
+
+	<form action="stagiaire" method="post" class="form-clean">
+	  <input type="hidden" name="id" value="${stagiaire.id}">
+
+	  <label for="login">Login</label>
+	  <input required="required" id="login" type="text" name="login" placeholder="Saisir le login" value="${stagiaire.login}">
+
+	  <label for="password">Password</label>
+	  <input required="required" id="password" type="password" name="password" placeholder="Saisir le password" value="${stagiaire.password}">
+
+	   <label for="nom">Nom</label>
+	  <input required="required" id="nom" type="text" name="nom" placeholder="Saisir le nom" value="${stagiaire.nom}">
+
+	   <label for="prenom">Prenom</label>
+	  <input required="required" id="prenom" type="text" name="prenom" placeholder="Saisir le prenom" value="${stagiaire.prenom}">
+
+
+	  	<label>Civilite</label>
+		<div class="choice-group">
+			<c:forEach items="${civilites}" var="civ">
+				<div class="choice-item">
+					<c:choose>
+						<c:when test="${stagiaire.civilite==civ}">
+							<input type="radio" checked id="civilite-${civ}" name="civilite" value="${civ}">
+							<label for="civilite-${civ}">${civ}</label>
+						</c:when>
+						<c:otherwise>
+							<input type="radio" id="civilite-${civ}" name="civilite" value="${civ}">
+							<label for="civilite-${civ}">${civ}</label>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</c:forEach>
+		</div>
+
+	   <label for="email">Email</label>
+	  <input required="required" id="email" type="email" name="email" placeholder="Saisir l'email" value="${stagiaire.email}">
+
+
+
+
+	  <h2>Adresse</h2>
+	  <label for="numero">Numero</label>
+	  <input required="required" id="numero" type="text" name="adresse.numero" placeholder="Saisir le numero" value="${stagiaire.adresse.numero}">
+
+	   <label for="voie">Voie</label>
+	  <input required="required" id="voie" type="text" name="adresse.voie" placeholder="Saisir la voie" value="${stagiaire.adresse.voie}">
+
+	   <label for="ville">Ville</label>
+	  <input required="required" id="ville" type="text" name="adresse.ville" placeholder="Saisir la ville" value="${stagiaire.adresse.ville}">
+
+	   <label for="cp">CP</label>
+	  <input required="required" id="cp" type="text" name="adresse.cp" placeholder="Saisir le cp" value="${stagiaire.adresse.cp}">
+
+	  <label for="filiere">Filiere</label>
+	  <select id="filiere" required="required" name="filiere.id">
+	 	  <option value="">Choisir une filiere</option>
+	 	  <c:forEach items="${filieres}" var="filiere">
+	 	  	<c:choose>
+		 	  	<c:when test="${filiere.id==stagiaire.filiere.id}"> <option selected value="${filiere.id}">Filiere ${filiere.id} - ${filiere.libelle}</option></c:when>
+		 	  	<c:otherwise><option value="${filiere.id}">${filiere.infoFiliere}</option></c:otherwise>
+	 	  	</c:choose>
+	 	  </c:forEach>
+	  </select>
+
+
+	  <div class="form-actions">
+	    <input type="submit" value="Sauvegarder" class="btn btn-success">
+	    <a href="stagiaire" class="btn btn-primary">Annuler</a>
+	  </div>
+	</form>
+
+	<br><br>
+	<a class="btn btn-info" href="home">Retour</a>
+</content>
+</body>
+</html>
