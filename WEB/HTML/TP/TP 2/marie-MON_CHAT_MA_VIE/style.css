@@ -218,3 +218,17 @@ img, video {
 .etoile.active {
   filter: grayscale(0%);
 }
+
+
+/*_____________________ LIEN POUR REMONTER EN HAUT DE LA PAGE _____________________*/
+
+
+#haut {
+ position: absolute;
+  align-self: center;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  left: 35%;
+}
