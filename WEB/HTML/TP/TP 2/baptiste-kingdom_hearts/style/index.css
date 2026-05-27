@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "MAAAARIO";
+  src: url("../assets/font/SuperMario.ttf");
+}
+
+body {
+    background-image: url("../assets/fondEtoiles.png");
+    font-family: "MAAAARIO", "Bitstream Vera Serif", serif;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: calc(100% - 4rem);
+    margin: 0 2rem 0 2rem;
+}
+
+tr:nth-child(2) {
+    background-color: #D4AF37;
+}
+
+tr:nth-child(even of .other-games) {
+  background-color: #2A2148;
+}
+
+tr:nth-child(odd of .other-games) {
+  background-color: #101B3A;
+}
+
+td {
+    text-align: center;
+}
+
+th, td {
+    padding: 0.5rem;
+}
+
+span, p {
+    color:#F4F7FB;
+}
+
+h1 {
+    color:#F4F7FB;
+    text-align: center;
+}
+
+.debug {
+    border: 1px solid black;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.header-table {
+    background-color: #2F4F9D;
+    color: white;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.cover-img {
+    margin: auto;
+    width: 4rem;
+    height: 5rem;
+    border-radius: 0.5rem;
+    filter: drop-shadow(1px 5px 4px black);
+}
+
+.text-shadow {
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+.audio-player-shadow {
+    filter: drop-shadow(3px 4px 2px black);
+}
+
+.grade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green-grade {
+    text-align: center;
+    background-color: green;
+    border-radius: 25%;
+    padding: 0.75rem;
+    filter: drop-shadow(3px 4px 2px black);
+}
