@@ -107,6 +107,36 @@ notes.sort(triNumerique);
 console.log(notes);
 
 
+let personne1 = new Object();
+personne1.nom="Abid";
+personne1.prenom="Jordan";
+personne1.age=33;
+
+personne1["formateur"]=true;
+
+
+let personne2 =  {nom:"Doe",prenom:"John",age:42};
+personne2.formateur=false;
+console.log(personne2);
+
+
+let saisie2 = prompt("Choisir la prop à afficher ? ");
+
+console.log(personne2.saisie2); // Ne marche pas, js cherche un attribut saisie
+console.log(personne2[saisie2]); //va regarder si un attribut avec le contenu de la var saisie existe
+
+let tabPersonne = [personne1,personne2, {nom:"Doe",prenom:"Jane",age:42}];
+
+console.log(tabPersonne);
+
+
+
+console.log(personne1);
+
+
+
+
+
 function triNombreLettre(prenom1,prenom2)
 {
   return prenom1.length - prenom2.length;
