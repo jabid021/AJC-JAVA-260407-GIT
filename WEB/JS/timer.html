@@ -1,0 +1,88 @@
+<style>
+#btnStop
+{
+  display:none;
+}
+
+#message
+{
+  font-size:60px;
+  text-align:center;
+}
+
+</style>
+
+<p id="message">Un TPT sauvage apparait 🦆 (maybe click dessus ?)...</p>
+
+
+<input type="button" id="btnStop" value="STOP...">
+
+
+
+<p id="sapin">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<input type="button" id="btnStopSapin" value="MES YEUX....">
+
+<script>
+
+
+//setTimeout() //se lance 1 fois dans x mil secondes
+//setInterval() //se lance toutes les x mil secondes
+let secondes=10;
+
+let colorSapin = "red";
+let monInterval;
+let intervalTimer;
+
+message.onclick=function()
+{
+  alert("C'ETAIT UN PIEGE...");
+  btnStop.style.display="inline-block";
+  intervalTimer = setInterval(decompte,1000);
+  message.style.color="red";
+  message.onclick=null;
+}
+
+
+btnStop.onclick=desamorcer;
+
+function desamorcer()
+{
+    clearInterval(intervalTimer);
+    message.style.color="green";
+    btnStop.disabled=true;
+}
+
+
+
+function decompte()
+{
+  secondes--;
+  message.innerHTML=`Ce message va s'autodetruire dans ${secondes} seconde(s)`;
+
+  if(secondes==0)
+  {
+    message.innerHTML="BOUM!...";
+    btnStop.disabled=true;
+    clearInterval(intervalTimer);
+  }
+
+}
+
+btnStopSapin.onclick= function()
+{
+  clearInterval(monInterval);
+  sapin.style.color="black";
+}
+
+
+setTimeout(function(){monInterval = setInterval(changeColorSapin,500);},10000);
+
+function changeColorSapin()
+{
+  colorSapin = (colorSapin=="red") ? "green" : "red";
+  sapin.style.color=colorSapin;
+}
+
+
+</script>
