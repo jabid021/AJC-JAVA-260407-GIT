@@ -1,0 +1,120 @@
+<h1>Demo JavaScript</h1>
+
+<script>
+
+
+let nb = "10";
+
+if(nb===10)
+{
+  console.log(nb+" = 10");
+}
+else
+{
+  console.log("string != int");
+}
+
+let prenom="Jordan";
+
+prenom="Jean-"+prenom;
+console.log(prenom);
+
+console.log(prenom.toLowerCase());
+
+
+let age = "33";
+age+=1; //age etant un String ("33") => age +1  = 331
+age="33";
+age = parseInt(age);
+age+=1;
+console.log(` vous avez ${age}ans`);
+
+
+switch(prenom)
+{
+  case "Jordan-Jean":console.log("merci Yohann");break;
+  case "Jean-Jordan":console.log("ca c'est ok");
+  default : console.log("je connais pas ce prenom... quack");
+}
+
+console.log((age>=18)?"Majeur":"Mineur");
+
+try{
+  console.log("min vaut "+min);
+}
+catch(e){console.log(e);}
+console.log("suite...");
+
+let saisie;
+/*do
+{
+  saisie=prompt("Saisir yes !");
+
+}while(saisie!="yes");*/
+
+console.log("--------------");
+for(index in prenom)
+{
+  console.log(index+" - "+prenom[index]);
+}
+
+for(lettre of prenom)
+{
+  console.log(lettre);
+}
+
+
+console.log(add(5,10));
+
+
+function add(a,b)
+{
+  console.log(a+b);
+  //return a+b;
+}
+
+let notes = [10,18,15,2,7,20,8];
+console.log(notes);
+console.log(notes.length);
+
+let bigblue = ["Jordan","Jean","John","Tpt"];
+//bigblue.length=15;
+for(p of bigblue)
+{
+  console.log(p);
+}
+
+bigblue[4]="Baptiste";
+bigblue[bigblue.length]="Cécile";
+
+bigblue.push("Cléa") //Ajoute à la fin du tableau
+bigblue.push("TOTO");
+bigblue.shift()//Retire le 1er element;
+bigblue.unshift("Damien") //Ajoute au debut du tableau
+bigblue.pop();//Retire à la fin
+
+/*console.log(bigblue);
+bigblue.sort();
+console.log(bigblue);
+bigblue.reverse();
+console.log(bigblue);*/
+
+bigblue.sort(triNombreLettre);
+console.log(bigblue);
+console.log("------------TRI TABLEAU NOTES-----------------");
+console.log(notes);
+notes.sort(triNumerique);
+console.log(notes);
+
+
+function triNombreLettre(prenom1,prenom2)
+{
+  return prenom1.length - prenom2.length;
+}
+
+function triNumerique(nombre1,nombre2)
+{
+  return nombre1-nombre2;
+}
+
+</script>
