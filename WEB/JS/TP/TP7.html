@@ -1,0 +1,35 @@
+<h1>TP 7</h1>
+
+
+<script charset="utf-8">
+
+
+  let tabPays = [
+  {pays:"France",capitale:"Paris"},
+  {pays:"Espagne",capitale:"Madrid"},
+  {pays:"Luxembourg",capitale:"Luxembourg"},
+  {pays:"UK",capitale:"Londres"},
+  {pays:"Italie",capitale:"Rome"}
+  ];
+
+  let question=1;
+  let score = 0;
+
+  for(p of tabPays)
+  {
+    let reponse = prompt(`(QUESTION ${question}/${tabPays.length}) : Quelle est la capitale du pays : ${p.pays}`);
+    if(reponse.toLowerCase()==p.capitale.toLowerCase())
+    {
+      score++;
+      alert("Bonne réponse !");
+    }
+    else
+    {
+      alert (`Mauvaise réponse, c'etait : ${p.capitale}`);
+    }
+    question++;
+  }
+  let message = `Fin de la partie, votre score est de ${score}/${tabPays.length}`;
+  console.log(message);
+  alert(message);
+</script>
