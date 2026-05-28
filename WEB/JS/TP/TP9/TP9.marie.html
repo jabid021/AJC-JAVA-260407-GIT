@@ -1,0 +1,90 @@
+<meta charset="utf-8">
+
+<h1 id="chrono">00:00</h1>
+<input type="button" id="btnStart" value="Start" align="center">
+<input type="button" id="btnStop" disabled value="Stop" align="center">
+<input type="button" id="btnReset" value="Reset" align="center">
+
+
+<script>
+
+  let minute=0;
+  let seconde=0;
+
+    var interval;
+
+    function startChrono() {
+      interval = setInterval(function() {
+        seconde++;
+        if (seconde == 60) {
+          minute++;
+          seconde = 0;
+        }
+        document.getElementById("chrono").textContent = 
+          (minute < 10 ? "0" : "") + minute + ":" + 
+          (seconde < 10 ? "0" : "") + seconde;
+      }, 1000);
+    }
+
+    document.getElementById("btnStart").addEventListener("click", function() {
+      startChrono();
+      this.disabled = true;
+      document.getElementById("btnStop").disabled = false;
+    });
+
+    document.getElementById("btnStop").addEventListener("click", function() {
+      clearInterval(interval);
+      this.disabled = true;
+      document.getElementById("btnStart").disabled = false;
+    });
+
+    document.getElementById("btnReset").addEventListener("click", function() {
+      clearInterval(interval);
+      minute = 0;
+      seconde = 0;
+      document.getElementById("chrono").textContent = "00:00";
+      document.getElementById("btnStart").disabled = false;
+      document.getElementById("btnStop").disabled = true;
+    });
+
+
+
+</script>
+
+
+<style>
+
+#chrono {
+  font-size: 48px;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+input[type="button"] {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+}
+
+#btnStart {
+  background-color: #28a745;
+}
+
+#btnStop {
+  background-color: #dc3545;
+}
+input[type="button"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  color: #666;
+
+}
+
+
+
+
+</style>
