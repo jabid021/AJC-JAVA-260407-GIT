@@ -1,0 +1,193 @@
+<style>
+.uneAutreClasse
+{
+  color:blue;
+  border:solid black 1px;
+  background-color:yellow;
+}
+</style>
+<html>
+<head>
+
+  <meta charset="utf-8"/>
+  <title>Demo DOM (Document Object Model)</title>
+</head>
+
+<body>
+
+  <h1 class="demoPointeur" id="header1">TITRE DE LA PAGE</h1>
+
+  <p class="demoPointeur" title="c'est ca un title en html">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+  <h2 id="header-2" title="Ceci est un titre qui apparait au survol de la balise h2">Sous titre</h2>
+
+  <div id="divParags">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor <b>sit amet, consectetur adipisicing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+
+
+  <div id="divParags2">Vide</div>
+
+  <input type="text" id="inputLogin" value="Jordan"><br>
+  <input type="checkbox"  id="input-chexkbox-validate"> C'est VALIDE ?
+
+  <select id="selectDemo">
+    <option value="windows">Windows</option>
+    <option selected="selected" value="mac">MacOS</option>
+    <option value="linux">Linux</option>
+  </select>
+
+  <input type="submit" id="btnValidate">
+</body>
+</html>
+
+
+
+
+<script charset="utf-8">
+
+/*
+Qu'est ce qu'on peut manipuler dans le dom :
+
+- le style (tout le css)
+- attributs (ajouter/ retirer un attribut d'une balise)
+- contenu html
+- class (ajouter / retirer une classe d'une balise)
+- value (quand on point sur un element dans un formulaire)
+
+
+En JS, on peut pointer sur nos elements de 3 facons su notre page :
+
+- id => document.getElementById("l'id qu'on cherche");
+- classe => document.getElementsByClassName("la classe qu'on recherche");
+- tags => document.getElementsByTagName("les balises qu'on recherche");
+
+
+pour les id uniquement, 2 facons de pointer l'element :
+  - document.getElementById("divParags");*
+  - divParags (uniquement si l'id n'a pas d'espace/pas de tiret / pas de underscore)
+    Attention à ne pas avoir de variables ou de fonction avec le meme nom dans le js
+
+*/
+
+
+console.log(document.getElementById("divParags"));
+console.log(document.getElementsByClassName("demoPointeur"));
+console.log(document.getElementsByTagName("p"));
+
+
+let balise = document.getElementById("header1");
+
+
+//Modifier le css :
+balise.style.color="red";
+balise.style.backgroundColor="cyan";
+balise.style.border="solid black 2px";
+balise.style.setProperty("font-size","35px");
+
+/*let changement = prompt("Choisir une prop");
+balise.style.changement="red";
+balise.style.setProperty(changement,"yellow");
+*/
+divParags.style.color="green";
+
+
+
+//Modifier le html :
+
+console.log(balise.innerHTML);
+console.log(divParags.innerHTML);
+balise.innerHTML="Nouveau titre";
+divParags.innerHTML="<ul><li>Item1</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>";
+
+divParags.innerHTML+="<h1>SUITE</h1>";  //Risque de Faille XSS
+
+divParags.innerText="<ul><li>Item1</li></ul><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"; //considere le contenu comme un string uniquement
+
+
+
+//Modifier les values d'un input / element formulaire
+console.log(`value dans l'input login : ${inputLogin.value}`);
+inputLogin.value="John";
+inputLogin.value="";
+
+console.log(selectDemo.value);
+selectDemo.value="linux";
+
+//Modifier les attributs d'un element :
+
+document.getElementById("input-chexkbox-validate").setAttribute("checked","checked");
+
+balise.setAttribute("un_attribut","uneValue"); // setAttribute, ajouter un attribut s'il n'existe pas, replace la value s'il existe deja
+balise.setAttribute("un_attribut","uneValue2");
+console.log(balise.getAttribute("un_attribut")); // return la value d'un attribut s'il exite, sinon return null
+balise.removeAttribute("un_attribut"); //retire l'attribut et sa value
+
+
+
+document.getElementById("input-chexkbox-validate").checked=false;
+//btnValidate.setAttribute("disabled","disabled"); Fait la meme chose que
+btnValidate.disabled=true;
+
+
+
+
+//Modifier les CLASSES d'un element :
+
+console.log(balise.classList);
+divParags2.classList.add("uneAutreClasse");
+
+if(confirm("retirer la classe au parag2 ?"))
+{
+  divParags2.classList.remove("uneAutreClasse");
+}
+
+
+divParags2.classList.toggle("uneAutreClasse"); // Toggle ajoute la classe si non presente, remove si presente
+
+
+////------------------------Interact avec des classes / tags----------------
+
+
+//document.getElementsByTagName("p").style.color="blue"; //Ne marchera jamais car tagName / className return un tableau et pas un element unique, il faut passer par une boucle !
+
+for(balise of document.getElementsByTagName("p"))
+{
+  balise.style.color="blue";
+}
+
+for(balise of document.getElementsByClassName("demoPointeur"))
+{
+  balise.style.color="grey";
+}
+
+
+//Il y a une derniere facon de pointer nos elements sur la page via des selecteur semblables au css :
+
+console.log(document.querySelector("#divParags p")); //return le premier p dans la balise #divParags
+console.log(document.querySelectorAll("#divParags p")); //return tous les p dans la balise #divParags
+
+
+
+
+setInterval(changeTitle,2000);
+function changeTitle()
+{
+  if(document.title=="Demo DOM (Document Object Model)")
+  {
+    document.title="NEW MESSAGE (1)";
+  }
+  else
+  {
+    document.title="Demo DOM (Document Object Model)";
+  }
+
+  if(document.hasFocus()==false)
+  {
+    document.title="REVIENS.....quack";
+  }
+
+}
+</script>
