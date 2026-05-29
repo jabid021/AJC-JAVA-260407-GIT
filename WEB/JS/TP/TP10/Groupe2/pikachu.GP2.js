@@ -92,12 +92,10 @@ function deplacer(event) {
 
 //5) Verifier que pikachu ne sort pas de la div grass
 
-<<<<<<< HEAD
   if (posX < 0) posX = 0;
   if (posX > grass.offsetWidth  - pikachu.offsetWidth)  posX = grass.offsetWidth  - pikachu.offsetWidth;
   if (posY < 0) posY = 0;
   if (posY > grass.offsetHeight - pikachu.offsetHeight) posY = grass.offsetHeight - pikachu.offsetHeight;
-=======
 var posX = 0;
 var posY = 0;
 var mouvement = 30;
@@ -108,11 +106,9 @@ imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
 
 
 btnStart.onclick = Lancer;
->>>>>>> origin/main
 
  // Mettre à jour la position et l'image
 
-<<<<<<< HEAD
 pikachu.style.left = posX + "px";
 pikachu.style.top = posY + "px";
 imgPikachu.setAttribute(
@@ -121,7 +117,6 @@ imgPikachu.setAttribute(
   );
 }
 
-=======
 
 
 inputName.onkeyup = function (event) {
@@ -230,4 +225,3 @@ function changement(){
     }
   }
 }
->>>>>>> origin/main
