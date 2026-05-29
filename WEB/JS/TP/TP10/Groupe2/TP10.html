@@ -24,15 +24,32 @@
     left:0;
   }
 
+  #centrePokemon{
+    position:absolute;
+    top : 0;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+
 </style>
 
 
 <script defer src="pikachu.js" charset="utf-8"></script>
+
+
   <audio id="themePokemon" src="assets/audio/theme.mp3"></audio>
+
 <div id="formStart">
-  <input id="inputName" type="text" placeholder="pikachu"><input id="btnStart" disabled type="button" value="Start !">
+  <input id="inputName" type="text" placeholder="pikachu">
+  <input id="btnStart" disabled type="button" value="Start !">
 </div>
 
 <div id="grass">
-  <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png"></div>
+  <div id="pikachu">
+    <img id="imgPikachu" src="assets/img/pikachuDown.png" width="30px">
+  </div>
+  <div id="centrePokemon">
+    <img id="imgCentre" src="assets/img/centrePokemon.png" width="180px"/>
+  </div>
 </div>
