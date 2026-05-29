@@ -9,7 +9,7 @@
 <script>
 
   let minute=0;
-  let seconde=0;
+  let seconde=58;
 
     var interval;
 
@@ -20,11 +20,25 @@
           minute++;
           seconde = 0;
         }
+        if (minute == 60) {
+          minute = 0;
+        }
+
         document.getElementById("chrono").textContent = 
           (minute < 10 ? "0" : "") + minute + ":" + 
           (seconde < 10 ? "0" : "") + seconde;
+           checkOneMinute();
       }, 1000);
+      
+      function checkOneMinute() {
+      if (minute === 1 && seconde === 0) {
+        document.getElementById("chrono").textContent = "01:00";
+        alert("1 minute reached!");
+      };
     }
+
+    }
+   
 
     document.getElementById("btnStart").addEventListener("click", function() {
       startChrono();
@@ -46,8 +60,6 @@
       document.getElementById("btnStart").disabled = false;
       document.getElementById("btnStop").disabled = true;
     });
-
-
 
 </script>
 
@@ -77,14 +89,13 @@ input[type="button"] {
 #btnStop {
   background-color: #dc3545;
 }
+
 input[type="button"]:disabled {
   background-color: #ccc;
   cursor: not-allowed;
   color: #666;
 
 }
-
-
 
 
 </style>
