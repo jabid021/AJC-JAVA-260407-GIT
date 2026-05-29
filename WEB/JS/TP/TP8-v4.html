@@ -1,0 +1,66 @@
+<meta charset="utf-8">
+
+<body style="background-color: lightyellow;">
+
+  <p id="paragPrinci" class="secondaire">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+  <p class="secondaire">Parag secondaire</p>
+
+  <p>Parag milieu</p>
+
+  <h3 class="secondaire">Titre secondaire</h3>
+
+  <p class="secondaire">Parag secondaire</p>
+  <p>Parag fin</p>
+
+
+  <select id="typeElement">
+    <option>id</option>
+    <option>class</option>
+    <option>tag</option>
+  </select>
+
+  <input type="text" id="nomElement" placeholder="Saisir le nom de l'element">
+  <input type="text" id="prop" placeholder="Quelle prop changer pour l'element">
+  <input type="text" id="valueProp" placeholder="Quelle value pour la prop">
+
+  <input type="button" id="btnValidate" value="Lancer la modif">
+</body>
+
+
+<script charset="utf-8">
+
+
+  btnValidate.onclick=faireUneModif;
+
+
+  function faireUneModif()
+  {
+    if(typeElement.value=="id")
+    {
+      let balise = document.getElementById(nomElement.value);
+      balise.style.setProperty(prop.value,valueProp.value);
+    }
+    else if(typeElement.value=="class")
+    {
+      for(balise of document.getElementsByClassName(nomElement.value))
+      {
+        balise.style.setProperty(prop.value,valueProp.value);
+      }
+    }
+    else
+    {
+      for(balise of document.getElementsByTagName(nomElement.value))
+      {
+        balise.style.setProperty(prop.value,valueProp.value);
+      }
+    }
+
+    typeElement.value="id";
+    nomElement.value="";
+    prop.value="";
+    valueProp.value="";
+
+  }
+
+</script>

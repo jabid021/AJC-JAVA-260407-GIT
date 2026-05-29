@@ -1,0 +1,42 @@
+<h1>BOM (Browser Object Model)</h1>
+
+
+<noscript>Attention, ce site necessite l'activation de JS pour fonctionner....</noscript>
+
+
+<input type="button" id="btnOpen" value="Open">
+<input type="button" id="btnClose" value="Close">
+
+<script charset="utf-8">
+  var fenetre;
+
+
+  console.log(screen);
+  console.log(screen.width);
+  console.log(screen.height);
+
+  console.log(history);
+  btnOpen.onclick=function()
+  {
+
+    //TRES NULL
+    //console.log(navigator.appName); //donnera toujours netscape
+    //PAS FOU
+    //fenetre=window.open("https://www.google.fr");
+
+    //Pas trop mal
+    //location.reload();
+    //location.href="TP/TP8.html";
+
+    //history.back(2);
+    history.go(1);
+  }
+
+  btnClose.onclick=function()
+  {
+    /*BOUUUUH NUUUUL*/
+    //fenetre.focus();
+  }
+
+
+</script>
