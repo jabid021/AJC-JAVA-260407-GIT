@@ -111,7 +111,7 @@ td:not(:nth-of-type(4n), :nth-of-type(1)) {
     }
 
     100% {
-        transform: perspective(400px) rotateX(35deg) translateY(-150%);
+        transform: perspective(400px) rotateX(35deg) translateY(-100%);
     }
 }
 
