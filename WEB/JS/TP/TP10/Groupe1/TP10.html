@@ -1,4 +1,10 @@
 <style>
+/* 
+  * {
+    margin:0;
+    padding:0;
+
+  } */
 
   body
   {
@@ -7,6 +13,7 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    height:100vh;
   }
   #grass
   {
@@ -22,17 +29,104 @@
     position:absolute;
     top:0;
     left:0;
+    translate: 0px -20px;
   }
+
+  #taupiqueur
+  {
+    position:absolute;
+    top:0;
+    left:0;
+  }
+
+  #compteur
+  {
+    position:fixed;
+    top:550px;
+    left:30px;
+    width: 300px;
+    height: 200px;
+    display: none;
+    align-items: center;
+    gap:30px;
+    z-index:1000000;
+  }
+
+  #nbcompteur{
+
+    font-size: 60;
+
+  }
+
+  #pierreFoudre {
+    position: absolute;
+    scale: 0.1;
+    translate: -240px -240px;
+  }
+
+  .photo {
+  position: absolute;
+  top: -150px;
+  width: 100px;
+  animation: tomber linear infinite;
+}
+
+#pluieJordan{
+
+  overflow: hidden;
+}
+
+.imgTaupiqueur{
+
+  width: 45px;
+
+}
+
+@keyframes tomber {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+
 
 </style>
 
 
 <script defer src="pikachu.js" charset="utf-8"></script>
-  <audio id="themePokemon" src="assets/audio/pokejordan.mp3"></audio>
+  <audio id="themePokemon" src="assets/audio/pokejordan.mp3" loop></audio>
 <div id="formStart">
   <input id="inputName" type="text" placeholder="pikachu"><input id="btnStart" disabled type="button" value="Start !">
 </div>
 
 <div id="grass">
   <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png"></div>
+  <div id="pierreFoudre" hidden>
+    <img id="imgPierreFoudre" src="assets/img/pierreFoudre.png" /></div>
+</div>
+
+<div id="compteur">
+  <div id="jordan"><img id="imgjordan" src="assets/img/jordan.png"></div>
+  <div id="nbcompteur"></div>
+</div>
+
+<div id="pluieJordan">
+
+<img src="assets/img/jordan.png" class="photo" style="left:2%; animation-duration:7s;">
+<img src="assets/img/jordan.png" class="photo" style="left:10%; animation-duration:3s;">
+<img src="assets/img/jordan.png" class="photo" style="left:20%; animation-duration:5s;">
+<img src="assets/img/jordan.png" class="photo" style="left:25%; animation-duration:7s;">
+<img src="assets/img/jordan.png" class="photo" style="left:17%; animation-duration:2s;">
+<img src="assets/img/jordan.png" class="photo" style="left:5%; animation-duration:4s;">
+<img src="assets/img/jordan.png" class="photo" style="left:70%; animation-duration:6s;">
+<img src="assets/img/jordan.png" class="photo" style="left:90%; animation-duration:5.5s;">
+<img src="assets/img/jordan.png" class="photo" style="left:75%; animation-duration:3s;">
+<img src="assets/img/jordan.png" class="photo" style="left:82%; animation-duration:7s;">
+<img src="assets/img/jordan.png" class="photo" style="left:95%; animation-duration:3s;">
+<img src="assets/img/jordan.png" class="photo" style="left:69%; animation-duration:5s;">
+
 </div>
