@@ -92,27 +92,13 @@ function deplacer(event) {
 
 //5) Verifier que pikachu ne sort pas de la div grass
 
-<<<<<<< HEAD
   if (posX < 0) posX = 0;
   if (posX > grass.offsetWidth  - pikachu.offsetWidth)  posX = grass.offsetWidth  - pikachu.offsetWidth;
   if (posY < 0) posY = 0;
   if (posY > grass.offsetHeight - pikachu.offsetHeight) posY = grass.offsetHeight - pikachu.offsetHeight;
-=======
-var posX = 0;
-var posY = 0;
-var mouvement = 30;
-var choix = ["pikachu", "coincoin"];
-var pokemon = "pikachu";
-var direction = "Down";
-imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
-
-
-btnStart.onclick = Lancer;
->>>>>>> origin/main
 
  // Mettre à jour la position et l'image
 
-<<<<<<< HEAD
 pikachu.style.left = posX + "px";
 pikachu.style.top = posY + "px";
 imgPikachu.setAttribute(
@@ -121,113 +107,3 @@ imgPikachu.setAttribute(
   );
 }
 
-=======
-
-
-inputName.onkeyup = function (event) {
-  let name = inputName.value;
-  if (name != "") {
-    btnStart.disabled = false;
-    console.log(event);
-    if (event.key == "Enter") {
-      Lancer();
-    }
-  }
-  else {
-    btnStart.disabled = true;
-  }
-}
-
-function Lancer() {
-  formStart.style.display = "none";
-  //themePokemon.play();
-  grass.style.display = "inline-block";
-  pikachu.setAttribute("title", inputName.value);
-  document.body.onkeydown = deplacement;
-}
-
-
-function deplacement(event) {
-  if (event.key == "ArrowDown" || event.key == "s") {
-    direction = "down";
-    if (pikachu.style.top.toString().slice(0, -2) < 660) 
-    {
-      posY += mouvement;
-    }
-  }
-  else if (event.key == "ArrowUp" || event.key == "z") {
-    direction = "up";
-    if (pikachu.style.top.toString().slice(0, -2) > 0) 
-    {
-      posY -= mouvement;
-    }
-  }
-  else if (event.key == "ArrowRight" || event.key == "d") {
-    direction = "right";
-    if (pikachu.style.left.toString().slice(0, -2) < 660) 
-    {
-      posX += mouvement;
-    }
-  }
-  else if (event.key == "ArrowLeft" || event.key == "q") {
-    direction = "left";
-    if (pikachu.style.left.toString().slice(0, -2) >  0) 
-    {
-      posX -= mouvement;
-    }
-  }
-
-  changement();
-  pikachu.style.top = posY + "px";
-  pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
-}
-
-
-/*
-function deplacement(event) {
-  if (event.ctrlKey == true) {
-    mouvement = 50;
-  } else {
-    mouvement = 30;
-  }
-  if (event.key == "ArrowDown"  event.key == "s") {
-    if (posY<grass.offsetHeight - pikachu.offsetHeight){
-    posY += mouvement;
-    direction = "Down";
-    }
-  } else if (event.key == "ArrowUp"  event.key == "z") {
-    if(posY>0){
-    posY -= mouvement;
-    direction = "Up";
-    }
-  } else if (event.key == "ArrowRight"  event.key == "d") {
-    if (posX<grass.offsetWidth - pikachu.offsetWidth){
-    posX += mouvement;
-    direction = "Right";
-}
-  } else if (event.key == "ArrowLeft"  event.key == "q") {
-    if(posX>0){
-    posX -= mouvement;
-    direction = "Left";
-    }
-  }
-
-  pikachu.style.top = posY + "px";
-  pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
-}
-*/
-
-function changement(){ 
-  let posPikaX = pikachu.style.left.toString().slice(0, -2);
-  let posPikaY = pikachu.style.top.toString().slice(0, -2);
-  if(posPikaX > 300 && posPikaX < 390 && posPikaY == 0){
-    if(pokemon == "pikachu"){
-      pokemon = "coincoin";
-    }else{
-      pokemon = "pikachu";
-    }
-  }
-}
->>>>>>> origin/main
