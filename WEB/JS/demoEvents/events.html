@@ -64,8 +64,9 @@ id.onchange = nomFonction / function()
   {
     height:50vh;
     position:relative;
-  //  background-image:url("pistes1.gif");
+    background-image:url("pistes1.gif");
     background-size:100% 100%;
+    display:none;
   }
 </style>
 
@@ -119,19 +120,31 @@ id.onchange = nomFonction / function()
 </div>
 
 <hr>
+<input type="button" value="Vroum vroum" id="btnVroum">
+<input type="button" value="Plus vroum" id="btnNoVroum">
 <div id="piste">
-
   <img id="carImg" src="blue.gif">
-
 </div>
 <script charset="utf-8">
 
-document.body.onkeydown = deplacements;
+
 
 let posX=0;
 let posY=0;
 let mouvement;
 let color="blue";
+
+btnVroum.onclick=function()
+{
+  document.body.onkeydown = deplacements;
+  piste.style.display="block";
+}
+
+btnNoVroum.onclick=function()
+{
+  document.body.onkeydown = null;
+  piste.style.display="none";
+}
 
 carImg.ondblclick = function()
 {
