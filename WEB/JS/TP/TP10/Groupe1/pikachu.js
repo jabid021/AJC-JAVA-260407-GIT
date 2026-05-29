@@ -4,16 +4,16 @@
 //4) Modifier la position de la div pikachu en fonction de la direction (+-30px par deplacement) et changer l'image
 //5) Verifier que pikachu ne sort pas de la div grass
 
-var posX=0;
-var posY=0;
-let pierreFoudreX =  Math.random() * 670;
+var posX = 0;
+var posY = 0;
+let pierreFoudreX = Math.random() * 670;
 let pierreFoudreY = Math.random() * 670;
-var mouvement=15;
-var pokemon="pikachu";
-var direction="Down";
-let score=0;
+var mouvement = 15;
+var pokemon = "pikachu";
+var direction = "Down";
+let score = 0;
 let listeTaupiqueurs = [];
-imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
+imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
 
 
 
@@ -33,7 +33,7 @@ document.addEventListener("keyup", () => {
 });
 
 
-function StartGame (){
+function StartGame() {
 
 
   let nom = inputName.value;
@@ -67,8 +67,7 @@ function evolve() {
   }
 }
 
-function spawnTaupiqueur()
-{ 
+function spawnTaupiqueur() {
 
   console.log("nouvo chauve");
   let taupiqueur = document.createElement("div");
@@ -85,32 +84,29 @@ function spawnTaupiqueur()
   grass.appendChild(taupiqueur);
 
   listeTaupiqueurs.push({
-  element: taupiqueur,
-  x: randomX,
-  y: randomY
+    element: taupiqueur,
+    x: randomX,
+    y: randomY
 
   });
 
-setTimeout(() => {
+  setTimeout(() => {
     taupiqueur.remove();
-    listeTaupiqueurs =listeTaupiqueurs.filter(taupiq => taupiq.element !== taupiqueur);}, 5000);
+    listeTaupiqueurs = listeTaupiqueurs.filter(taupiq => taupiq.element !== taupiqueur);
+  }, 5000);
 }
 
-function collision()
-
-{ for(let taupiqueur of listeTaupiqueurs)
-  {
+function collision() {
+  for (let taupiqueur of listeTaupiqueurs) {
     let distanceX = Math.abs(posX - taupiqueur.x);
     let distanceY = Math.abs(posY - taupiqueur.y);
 
 
-    if(distanceX < 40 && distanceY < 40)
-
-    {
+    if (distanceX < 40 && distanceY < 40) {
       taupiqueur.element.remove();
-      listeTaupiqueurs =listeTaupiqueurs.filter(taupiq => taupiq !== taupiqueur);
+      listeTaupiqueurs = listeTaupiqueurs.filter(taupiq => taupiq !== taupiqueur);
       score++;
-      console.log("Score : "+score);
+      console.log("Score : " + score);
       nbcompteur.textContent = `x ${score}`;
 
     }
@@ -119,35 +115,33 @@ function collision()
 
 }
 
-function deplacement(event)
-{
+function deplacement(event) {
 
-    if (pokemon == "pikachu") {
-    let newDirection = direction;
+  let newDirection = direction;
 
-    if ((event.key == "ArrowDown" || event.key == "s") && posY < 650) {
-      posY += mouvement;
-      newDirection = "Down";
-    } else if ((event.key == "ArrowUp" || event.key == "z") && posY > 0) {
-      posY -= mouvement;
-      newDirection = "Up";
-    } else if ((event.key == "ArrowRight" || event.key == "d") && posX < 650) {
-      posX += mouvement;
-      newDirection = "Right";
-    } else if ((event.key == "ArrowLeft" || event.key == "q") && posX > 0) {
-      posX -= mouvement;
-      newDirection = "Left";
-    }
-    if (newDirection !== direction) {
-      frame = 1;
-      direction = newDirection;
-    }
-    pikachu.style.top = posY + "px";
-    pikachu.style.left = posX + "px";
-    frame = (frame % frameMax) + 1;
-    imgPikachu.setAttribute("src", `assets/img/${direction}/${frame}.png`);
+  if ((event.key == "ArrowDown" || event.key == "s") && posY < 650) {
+    posY += mouvement;
+    newDirection = "Down";
+  } else if ((event.key == "ArrowUp" || event.key == "z") && posY > 0) {
+    posY -= mouvement;
+    newDirection = "Up";
+  } else if ((event.key == "ArrowRight" || event.key == "d") && posX < 650) {
+    posX += mouvement;
+    newDirection = "Right";
+  } else if ((event.key == "ArrowLeft" || event.key == "q") && posX > 0) {
+    posX -= mouvement;
+    newDirection = "Left";
+  }
+  if (newDirection !== direction) {
+    frame = 1;
+    direction = newDirection;
+  }
+  pikachu.style.top = posY + "px";
+  pikachu.style.left = posX + "px";
+  frame = (frame % frameMax) + 1;
+  imgPikachu.setAttribute("src", `assets/img/${pokemon}/${direction}/${frame}.png`);
 
-     if (
+  if (
     posY < pierreFoudreY + 50 &&
     posY > pierreFoudreY - 50 &&
     posX < pierreFoudreX + 50 &&
@@ -155,38 +149,13 @@ function deplacement(event)
   ) {
     evolve();
   }
-  } 
 
-  else {
 
-  if((event.key=="ArrowDown" || event.key=="s")&& posY<650)
-  {
-    posY += mouvement;
-    direction = "Down"
 
-  }
-  else if((event.key=="ArrowUp" || event.key=="z") && posY>0)
-  {
-    posY -= mouvement;
-    direction = "Up"
-  }
-  else if((event.key=="ArrowRight" || event.key=="d") && posX<650)
-  {
-    posX += mouvement;
-    direction = "Right"
-  }
-  else if((event.key=="ArrowLeft" || event.key=="q") && posX>0)
-  {
-    posX -= mouvement;
-    direction = "Left"
-  }
 
-  pikachu.style.top=posY+"px";
-  pikachu.style.left=posX+"px";
 
-  imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
-}
 
-collision();
+
+  collision();
 
 }
