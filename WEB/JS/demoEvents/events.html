@@ -1,0 +1,46 @@
+<!--
+
+events souris => click, mousedown (quand le clic gauche est press), mouseup (quand le clic est relaché), dblclick, mouseover, mouseout, mousemove
+events clavier => keypress, keydown, keyup
+events formulaire => change, focus, blur (on enleve le focus) input
+
+id.onchange = nomFonction / function()
+-->
+
+<style>
+
+  #content
+  {
+    background-color:lightgrey;
+  }
+
+  p:nth-of-type(1):hover
+  {
+    color:red;
+    font-size:35px;
+  }
+
+  #titrePrincipal:hover + #paragPrincipal
+  {
+    border:solid black 1px;
+  }
+</style>
+
+<script defer src="parags.js"></script>
+
+<div id="content">
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <h1 id="titrePrincipal">Ici pour zoom le paragraphe</h1>
+  <p id="paragPrincipal">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+  <input type="color" id="choixColor">
+  <input type="button" id="btnResetColor" value="Reset">
+</div>
+
+
+
+<script charset="utf-8">
+
+
+</script>
