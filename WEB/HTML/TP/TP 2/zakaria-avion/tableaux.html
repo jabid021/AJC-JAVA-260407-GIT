@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+  <title>Types d'avion ✈</title>
+</head>
+
+
+<h1>Les 5 types d'avion les plus courants dans l'industrie aéronautique </h1>
+
+<audio id="cockpit-audio">
+    <source src="cockpit_2.mp3" type="audio/mpeg">
+</audio>
+
+<div>
+  <p class="intro"> En aviation, la bienveillance n'est pas qu'une qualité humaine — elle est directement liée à la sécurité. Un équipage qui communique bien et se respecte mutuellement commet moins d'erreurs, ce qui réduit les risques d'accidents. De plus, les passagers qui se sentent bien traités sont plus susceptibles de suivre les consignes de sécurité, contribuant ainsi à un environnement de vol plus sûr pour tous.</p>
+</div>
+
+<div class="table-wrapper">
+  <table>
+
+    <colgroup>
+      <col class="c-model">
+      <col class="c-domain">
+      <col class="c-date">
+      <col class="c-specs">
+      <col class="c-img">
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th>Modèle</th>
+        <th>Domaine</th>
+        <th>Date</th>
+        <th>Spécificités techniques</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>AVION DE CHASSE<br>Dassault Rafale</td>
+        <td>Militaire</td>
+        <td>2001</td>
+        <td class="cell-specs">
+          <ul>
+            <li><strong>Vitesse max :</strong> +2 000 km/h</li>
+            <li><strong>Altitude max :</strong> ~19 800 m</li>
+            <li><strong>Moteur :</strong> Turboréacteur</li>
+            <li><strong>Équipage :</strong> 1–2 pilotes</li>
+            <li><strong>Mission :</strong> Combat aérien</li>
+          </ul>
+        </td>
+        <td class="cell-img">
+          <img src="images/Rafale.jpg" alt="Dassault Rafale">
+        </td>
+      </tr>
+
+      <tr>
+        <td>AVION COMMERCIAL<br>Boeing 747</td>
+        <td>Civil</td>
+        <td>1970</td>
+        <td class="cell-specs">
+          <ul>
+            <li><strong>Vitesse croisière :</strong> +850 km/h</li>
+            <li><strong>Passagers :</strong> 100–800</li>
+            <li><strong>Autonomie :</strong> 5 000–15 000 km</li>
+            <li><strong>Moteur :</strong> Turbofan double flux</li>
+            <li><strong>Mission :</strong> Transport passagers</li>
+          </ul>
+        </td>
+        <td class="cell-img">
+          <img src="images/boeing-747.jpg" alt="Boeing 747">
+        </td>
+      </tr>
+
+      <tr>
+        <td>AVION D'AFFAIRES<br>Dassault Falcon 7X</td>
+        <td>Privé</td>
+        <td>2007</td>
+        <td class="cell-specs">
+          <ul>
+            <li><strong>Vitesse croisière :</strong> 900 km/h</li>
+            <li><strong>Passagers :</strong> 4–19</li>
+            <li><strong>Autonomie :</strong> jusqu'à 13 000 km</li>
+            <li><strong>Moteur :</strong> Turbofan compact</li>
+            <li><strong>Mission :</strong> Déplacement premium</li>
+          </ul>
+        </td>
+        <td class="cell-img">
+          <img src="images/Dassault_Falcon_7X.jpg" alt="Dassault Falcon 7X">
+        </td>
+      </tr>
+
+      <tr>
+        <td>AVION DE SECOURS<br>Canadair CL-415</td>
+        <td>Secours</td>
+        <td>1994</td>
+        <td class="cell-specs">
+          <ul>
+            <li><strong>Vitesse croisière :</strong> 375 km/h</li>
+            <li><strong>Capacité eau :</strong> 6 100 L</li>
+            <li><strong>Moteur :</strong> Turbopropulseur</li>
+            <li><strong>Équipage :</strong> 2–3 pilotes</li>
+            <li><strong>Mission :</strong> Lutte incendie</li>
+          </ul>
+        </td>
+        <td class="cell-img">
+          <img src="images/Canadair.jpg" alt="Canadair CL-415">
+        </td>
+      </tr>
+
+      <tr>
+        <td>AVION AGRICOLE<br>Air Tractor AT-802</td>
+        <td>Agriculture</td>
+        <td>1990</td>
+        <td class="cell-specs">
+          <ul>
+            <li><strong>Vitesse croisière :</strong> 200–270 km/h</li>
+            <li><strong>Capacité cuve :</strong> 800–6 100 L</li>
+            <li><strong>Moteur :</strong> Turbopropulseur</li>
+            <li><strong>Équipage :</strong> 1 pilote</li>
+            <li><strong>Mission :</strong> Épandage aérien</li>
+          </ul>
+        </td>
+        <td class="cell-img">
+          <img src="images/AT-802.jpg" alt="Air Tractor AT-802">
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<script>
+  const rows = document.querySelectorAll("tbody tr");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  rows.forEach(row => observer.observe(row));
+
+  
+
+  window.addEventListener("load", () => {
+  const reponse = confirm("Envie d'écouter des pilotes qui imitent des sons d'animaux ?");
+  
+  if (reponse) {
+    document.getElementById("cockpit-audio").play();
+  }
+});
+
+
+
+  
+</script>
+
+
+</html>
