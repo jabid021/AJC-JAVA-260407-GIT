@@ -1,9 +1,4 @@
-
-
-
-
 //1) saisir le nom du pokemon et valider avec le bouton ou Enter (le nom ne doit pas etre vide !)
-
 
 let posX = 330;
 let posY = 30;
@@ -30,20 +25,27 @@ function verif_name(event) {
 }
 
 const div_crottes = document.getElementsByClassName("div-crottes")[0];
+audioTheme = document.getElementById("theme");
 
 function start_game() {
-  console.log('Start game')
+  console.log("Start game");
+
+  audioTheme.play();
+
   posX = 330;
   posY = 30;
   direction = "Down";
   animal = select_animal.value;
-  genre=select_sex.value;
+  genre = select_sex.value;
   pikachu.style.display = "block";
 
   pikachu.style.left = posX + "px";
   pikachu.style.top = posY + "px";
 
-  imgPikachu.setAttribute("src", "assets/img/" + genre + animal + direction + ".png");
+  imgPikachu.setAttribute(
+    "src",
+    "assets/img/" + genre + animal + direction + ".png",
+  );
   alert("Ramassez toutes les crottes avant de rentrer !");
   formStart.style.display = "none";
   grass.style.display = "block";
@@ -55,7 +57,6 @@ function start_game() {
   var title = inputName.value + " et son " + animal;
   pikachu.setAttribute("title", title);
 
-
   /// Generer des crottes aléatoirement
   for (let i = 0; i < 5; i++) {
     const x = Math.random() * (grass.offsetWidth - 100);
@@ -63,10 +64,9 @@ function start_game() {
 
     crottes.push({
       x: x,
-      y: y
+      y: y,
     });
-    grass.innerHTML +=
-      `<div class="crotte" id="crotte_${i}" style="top:${y}px; left:${x}px;">
+    grass.innerHTML += `<div class="crotte" id="crotte_${i}" style="top:${y}px; left:${x}px;">
     <img src="assets/img/caca.png" alt="" width="30px" height="30px">
   </div>`;
   }
@@ -78,43 +78,39 @@ btnStart.onclick = start_game;
 
 ////////////////////////// DEPLACEMENT //////////////////////////
 function deplacement(event) {
-
   if (event.key == "ArrowDown" || event.key == "s") {
-
     if (posY < grass.offsetHeight - pikachu.offsetHeight) {
       posY += mouvement;
       direction = "Down";
     }
-  }
-  else if (event.key == "ArrowUp" || event.key == "z") {
-
+  } else if (event.key == "ArrowUp" || event.key == "z") {
     if (posY >= mouvement) {
       posY -= mouvement;
       direction = "Up";
     }
-
-  }
-  else if (event.key == "ArrowRight" || event.key == "d") {
-
+  } else if (event.key == "ArrowRight" || event.key == "d") {
     if (posX < grass.offsetWidth - pikachu.offsetWidth) {
       posX += mouvement;
       direction = "Right";
     }
-  }
-  else if (event.key == "ArrowLeft" || event.key == "q") {
-
+  } else if (event.key == "ArrowLeft" || event.key == "q") {
     if (posX >= mouvement) {
       posX -= mouvement;
       direction = "Left";
     }
-
   }
 
   pikachu.style.top = posY + "px";
   pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + genre + animal + direction + ".png");
+  imgPikachu.setAttribute(
+    "src",
+    "assets/img/" + genre + animal + direction + ".png",
+  );
   ramasser_crotte();
 }
+
+audioCrotte = new Audio("assets/audio/fart.mp3");
+audioVictoire = new Audio("assets/audio/victory.mp3");
 
 function ramasser_crotte() {
   const perso = document.getElementById("pikachu");
@@ -122,9 +118,8 @@ function ramasser_crotte() {
 
   const rectPerso = perso.getBoundingClientRect();
 
-
-  console.log('Crottes restantes');
-  console.log(document.querySelectorAll('.crotte').length)
+  console.log("Crottes restantes");
+  console.log(document.querySelectorAll(".crotte").length);
   for (let index = 0; index < crottes.length; index++) {
     const crotte = crottes[index];
     const rectCrotte = crotte.getBoundingClientRect();
@@ -135,13 +130,20 @@ function ramasser_crotte() {
       rectPerso.bottom > rectCrotte.top
     ) {
       crotte.remove();
-      console.log(crottes)
-      console.log(document.querySelectorAll('.crotte').length + " crottes restantes")
-      compteurCrotte.innerHTML = `${5 - (document.querySelectorAll('.crotte').length)}/5`;
-      if (document.querySelectorAll('.crotte').length == 0) {
+      audioCrotte.play();
+      console.log(crottes);
+      console.log(
+        document.querySelectorAll(".crotte").length + " crottes restantes",
+      );
+      compteurCrotte.innerHTML = `${5 - document.querySelectorAll(".crotte").length}/5`;
+      if (document.querySelectorAll(".crotte").length == 0) {
         setTimeout(() => {
-          alert('Vous avez ramassé toutes les crottes ! Retournez maintenant au refuge !');
+          alert(
+            "Vous avez ramassé toutes les crottes ! Retournez maintenant au refuge !",
+          );
         }, 500);
+        audioTheme.pause();
+        audioVictoire.play();
       }
     }
   }
@@ -153,7 +155,6 @@ function ramasser_crotte() {
 }
 
 function rentrer_shelter() {
-
   console.log(pikachu, centrePokemon);
   const rectPerso = pikachu.getBoundingClientRect();
   const rectCentrePokemon = centrePokemon.getBoundingClientRect();
@@ -166,19 +167,17 @@ function rentrer_shelter() {
     rectPerso.bottom > rectCentrePokemon.top + marge
   ) {
     pikachu.style.display = "none";
-  
-    console.log('rentré ! ')
+    audioTheme.pause();
+    console.log("rentré ! ");
     //pikachu.remove();
     setTimeout(() => {
-      alert('Vous etes rentré au Shelter !');
+      alert("Vous etes rentré au Shelter !");
     }, 500);
     document.body.onkeydown = null;
+
     formStart.style.display = "block";
     grass.style.display = "none";
-    /*compteurCrotte.innerHTML = `0/5`; */ 
+    /*compteurCrotte.innerHTML = `0/5`; */
     div_crottes.style.display = "none";
   }
 }
-
-
-
