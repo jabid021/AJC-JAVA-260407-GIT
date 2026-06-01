@@ -14,6 +14,8 @@ let direction = "Down";
 
 let crottes = [];
 //imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
+let genre = select_sex.value;
+
 function verif_name(event) {
   console.log(inputName.value);
   console.log(event);
@@ -27,18 +29,20 @@ function verif_name(event) {
   }
 }
 
+
 function start_game() {
   console.log('Start game')
   posX = 330;
   posY = 30;
   direction = "Down";
   animal = select_animal.value;
+  genre=select_sex.value;
   pikachu.style.display = "block";
 
   pikachu.style.left = posX + "px";
   pikachu.style.top = posY + "px";
 
-  imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
+  imgPikachu.setAttribute("src", "assets/img/" + genre + animal + direction + ".png");
   alert("Ramassez toutes les crottes avant de rentrer !");
   formStart.style.display = "none";
   grass.style.display = "block";
@@ -106,7 +110,7 @@ function deplacement(event) {
 
   pikachu.style.top = posY + "px";
   pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
+  imgPikachu.setAttribute("src", "assets/img/" + genre + animal + direction + ".png");
   ramasser_crotte();
 }
 
