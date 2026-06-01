@@ -50,6 +50,7 @@ function start_game() {
   );
   alert("Ramassez toutes les crottes avant de rentrer !");
   formStart.style.display = "none";
+  qwack.style.top = "5%";
   grass.style.display = "block";
   div_crottes.style.display = "block";
   /*console.log(inputName);
