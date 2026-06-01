@@ -166,6 +166,7 @@ function rentrer_shelter() {
     rectPerso.bottom > rectCentrePokemon.top + marge
   ) {
     pikachu.style.display = "none";
+  
     console.log('rentré ! ')
     //pikachu.remove();
     setTimeout(() => {
@@ -174,7 +175,8 @@ function rentrer_shelter() {
     document.body.onkeydown = null;
     formStart.style.display = "block";
     grass.style.display = "none";
-    compteurCrotte.innerHTML = `0/5`;
+    /*compteurCrotte.innerHTML = `0/5`; */ 
+    div_crottes.style.display = "none";
   }
 }
 
