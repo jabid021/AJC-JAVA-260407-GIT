@@ -7,6 +7,22 @@
     align-items: center;
   }
 
+  #imgDuck {
+    position: absolute;
+    left: 25%;
+    top: 40%;
+    transform: translateX(-50%);
+    width: 180px;
+  }
+
+  #imgDog {
+    position: absolute;
+    left: 75%;
+    top: 40%;
+    transform: translateX(-50%);
+    width: 180px;
+  }
+
   #formStart {
     width: 20%;
     height: 10vh;
@@ -17,7 +33,6 @@
   }
 
   #formStart div {
-
     width: 100%;
     height: 100%;
     display: flex;
@@ -28,7 +43,6 @@
 
   label {
     width: 70%;
-
   }
 
   input,
@@ -62,28 +76,27 @@
     position: relative;
     width: 700px;
     height: 700px;
-    background-image: url("assets/img/Grass.png")
+    background-image: url("assets/img/Grass.png");
   }
 
   #pikachu {
     position: absolute;
     top: 30;
     left: 330;
-
   }
 
   #nomPerso {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 4px;
-  background: white;
-  padding: 2px 6px;
-  border-radius: 6px;
-  font-size: 14px;
-  white-space: nowrap;
-}
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    color: white;
+    transform: translateX(-50%);
+    margin-bottom: 4px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
 
   #centrePokemon {
     position: absolute;
@@ -103,7 +116,7 @@
   }
 
   .div-crottes {
-    display:none;
+    display: none;
     margin-left: 30px;
     color: white;
   }
@@ -115,14 +128,16 @@
   }
 </style>
 
-
 <script defer src="pikachu.js" charset="utf-8"></script>
 <audio id="theme" src="assets/audio/pixeland.mp3"></audio>
+<div id="imgAnimaux">
+  <img id="imgDuck" src="assets/img/duck.gif" alt="" width="60px" />
+  <img id="imgDog" src="assets/img/dog.gif" alt="" width="60px" />
+</div>
 <div id="formStart">
-  
   <div class="div-name">
     <label for="inputName">Accompagnant</label>
-    <input id="inputName" type="text" placeholder="Yohann" name="inputName">
+    <input id="inputName" type="text" placeholder="Yohann" name="inputName" />
   </div>
   <div class="div-sex">
     <label for="select_sex">De quel sexe est l'accompagnant ?</label>
@@ -140,18 +155,30 @@
   </div>
 
   <div class="div-start">
-    <input id="btnStart" disabled type="button" value="Partir en balade !">
+    <input id="btnStart" disabled type="button" value="Partir en balade !" />
   </div>
-
 </div>
 
 <div id="grass">
-  <div id="pikachu"><div id="nomPerso"></div><img id="imgPikachu" src="assets/img/pikachuDown.png" width="60px"></div>
-  <div id="centrePokemon"><img id="imgCentrePokemon" src="assets/img/centrePokemon.png" alt=""></div>
+  <div id="pikachu">
+    <div id="nomPerso"></div>
+    <img id="imgPikachu" src="assets/img/pikachuDown.png" width="60px" />
+  </div>
+  <div id="centrePokemon">
+    <img id="imgCentrePokemon" src="assets/img/centrePokemon.png" alt="" />
+  </div>
 </div>
 
 <div class="div-crottes">
-  <div id="crotte"><img id="imgCrotte" src="assets/img/caca.png" alt="" width="30px" height="30px"></div>
+  <div id="crotte">
+    <img
+      id="imgCrotte"
+      src="assets/img/caca.png"
+      alt=""
+      width="30px"
+      height="30px"
+    />
+  </div>
   <div class="compteurCrotte">
     <b id="compteurCrotte">0/5</b>
   </div>
