@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="jakarta.tags.core"%>   
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +14,15 @@
 <title>Gestion des salles</title>
 </head>
 <body>
-
-<p>${salles}</p>
+<!--  
+<p>Liste des nombres de 1 à 10<p>
+<ul>
+	<c:forEach begin="1" end="10" step="1" var="i">
+		<li>${i}</li>
+	</c:forEach>
+</ul>
+-->
 <content>
-
 	<table>
 		<tr>
 			<th>ID</th>
@@ -23,32 +30,51 @@
 			<th>Adresse</th>
 			<th>Actions</th>
 		</tr>
-		<tr>
-			<td>${salles[0].id}</th>
-			<td>${salles[0].nom}</th>
-			<td>${salles[0].adresse.numero} ${salles[0].adresse.voie}, ${salles[0].adresse.cp} ${salles[0].adresse.ville}</td>
-			<td>
-				<a href="salle?id=${salles[0].id}" class="btn btn-warning">Modifier</a>
-				<a href="salle?id=${salles[0].id}&delete" class="btn btn-danger">Supprimer</a>
-			</td>
-		</tr>
+		
+		<c:forEach var="salle" items="${salles}" >
+			<tr>
+				<td>${salle.id}</th>
+				<td>${salle.nom}</th>
+				<td>${salle.adresse.numero} ${salle.adresse.voie}, ${salle.adresse.cp} ${salle.adresse.ville}</td>
+				<td>
+					<a href="salle?id=${salle.id}" class="btn btn-warning">Modifier</a>
+					<a href="salle?id=${salle.id}&delete" class="btn btn-danger">Supprimer</a>
+				</td>
+			</tr>
+		</c:forEach>
+		
 	</table>
 	
-	<div class="message-form">Formulaire Salle</div>
+	
+	<c:if test="${salle.id==null}">
+		<div class="message-form">Formulaire d'ajout Salle</div>
+		<c:set var="buttonText" value="Ajouter"></c:set>
+	</c:if>
+	
+	<c:if test="${salle.id!=null}">
+		<div class="message-form">Formulaire d'update Salle</div>
+		<c:set var="buttonText" value="Modifier"></c:set>
+	</c:if>
+	
 	
 	
 	<form action="salle" method="POST" class="form-clean">
 		
-	<input type="hidden" name="id">
+	<input type="hidden" name="id" value="${salle.id}">
 	
-	<input type="text" name="nom" placeholder="Saisir nom">
-	<input type="text" name="adresse.numero" placeholder="Saisir numero">
-	<input type="text" name="adresse.voie" placeholder="Saisir voie">
-	<input type="text" name="adresse.cp" placeholder="Saisir cp">
-	<input type="text" name="adresse.ville" placeholder="Saisir ville">
+	<input required="required" type="text" name="nom" placeholder="Saisir nom" value="${salle.nom}">
+	<input required="required" type="text" name="adresse.numero" placeholder="Saisir numero" value="${salle.adresse.numero}">
+	<input required="required" type="text" name="adresse.voie" placeholder="Saisir voie" value="${salle.adresse.voie}">
+	<input required="required" type="text" name="adresse.cp" placeholder="Saisir cp" value="${salle.adresse.cp}">
+	<input required="required" type="text" name="adresse.ville" placeholder="Saisir ville" value="${salle.adresse.ville}">
 	
 	<div class="form-actions">
-		<input type="submit" class="btn btn-success" value="Save">
+		<input type="submit" class="btn btn-success" value="${buttonText}">
+		<input type="reset" class="btn btn-secondary" value="Reset">
+		
+		<c:if test="${salle.id!=null}">
+			<a href="salle" class="btn btn-primary">Annuler</a>
+		</c:if>
 	</div>
 	
 	</form>
