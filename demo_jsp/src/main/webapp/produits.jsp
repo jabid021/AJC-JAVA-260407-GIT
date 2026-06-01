@@ -18,7 +18,9 @@
 		</tr>
 		<tr>
 			<td>${listeDesProduits[0].id}</td><td>${listeDesProduits[0].nom}</td><td>${listeDesProduits[0].prix}</td><td>${listeDesProduits[0].stock}</td><td>${listeDesProduits[0].restaurant.nom}</td>
-		
+		</tr>
+		<tr>
+		<td>${listeDesProduits[1].id}</td><td>${listeDesProduits[1].nom}</td><td>${listeDesProduits[1].prix}</td><td>${listeDesProduits[1].stock}</td><td>${listeDesProduits[1].restaurant.nom}</td>
 		</tr>
 		<!-- Comment afficher des données provenants du controlleur -->
 </table>

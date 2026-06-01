@@ -1,4 +1,4 @@
-package controller;
+package demo.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import krusty.dao.DAOProduit;
 import krusty.model.Produit;
+import krusty.model.Restaurant;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +30,23 @@ public class ProduitController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DAOProduit daoProduit = new DAOProduit();
+		String nom = request.getParameter("nom");
+		double prix = Double.parseDouble(request.getParameter("prix"));
+		int stock = Integer.parseInt(request.getParameter("stock"));
+		Integer idRestaurant = Integer.parseInt(request.getParameter("restaurant.id"));
 		
+		Restaurant restaurant = new Restaurant();
+		restaurant.setId(idRestaurant);
+		
+		Produit produit = new Produit(nom,prix,stock,restaurant);
+		
+		System.out.println("produit form : "+produit);
+		daoProduit.save(produit);
+		
+		response.sendRedirect("produit");
+		
+	
 	}
 
 }
