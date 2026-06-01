@@ -1,0 +1,188 @@
+@font-face {
+  font-family: 'kawaiifont';
+  src: url('assets/fonts/KinderChildKawaiiBubble-WpnAz.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'soutenu';
+  src: url('assets/fonts/Sephora & Hayden.ttf') format('truetype');
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "kawaiifont", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: white;
+  background: #0f0f1a;
+  overflow-x: hidden;
+}
+
+.listraisons{
+
+text-align: left;
+
+}
+
+
+.listraisons li {
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px) brightness(0.6);
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: scale(1.05);
+}
+
+#bienvenue {
+
+text-align: center;
+margin-bottom: 20px;
+justify-content: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+#rules {
+
+text-align: center;
+
+}
+
+#ps {
+
+text-align: center;
+
+}
+
+#background.fade-out {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+#Titre {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+#Titre h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+#Table {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 30px;
+  text-align: center;
+}
+
+th {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 50px;
+  top :0;
+  
+}
+
+tbody{
+  overflow: hidden;
+}
+
+tr {
+  transition: background 0.3s ease;
+}
+
+tr:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+tbody tr:nth-of-type(1):hover {
+  background: rgba(212, 175, 55, 0.7);
+}
+
+tbody tr:nth-of-type(2):hover {
+  background: rgba(192, 192, 192, 0.7);
+}
+
+tbody tr:nth-of-type(3):hover {
+  background: rgba(205, 127, 50, 0.7);
+}
+
+audio {
+  filter: invert(1);
+}
+
+#Violetto{
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  width: 600px;
+
+}
+
+#Violetto img{
+
+  width: 100px;
+  animation: spin 0.8s linear infinite;
+
+
+}
+
+#Violetto:hover{
+
+color:violet;
+
+}
+
+#enjoy {
+
+font-size: 100px;
+font-family: "soutenu", sans-serif;
+
+}
+
+#enjoy:hover {
+
+color:violet;
+
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
