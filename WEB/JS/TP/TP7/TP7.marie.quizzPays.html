@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<title>TP7 Quizz Pays</title>
+<h1>TP7 Quizz Pays</h1>
+
+<script>
+
+
+var tabPays = [
+{"pays":"France","capitale":"Paris"},
+{"pays":"Espagne","capitale":"Madrid"},
+{"pays":"CoinCoinVille","capitale":"tpt"},
+{"pays":"Angleterre","capitale":"Londres"},
+{"pays":"Italie","capitale":"Rome"}
+];
+
+var score = 0;
+
+for (var i = 0; i < tabPays.length; i++) {
+  var reponse = prompt("(Question " + (i + 1) + "/" + tabPays.length + ") Quelle est la capitale du pays : " + tabPays[i].pays);
+
+  if (reponse !== null) {
+    if (reponse.toLowerCase() === tabPays[i].capitale.toLowerCase()) {
+      alert("Bonne réponse ! " + tabPays[i].capitale + " est bien la capitale de " + tabPays[i].pays + ".");
+      score++;
+    } 
+    
+    else {
+      alert("Mauvaise réponse. La capitale de " + tabPays[i].pays + " est " + tabPays[i].capitale + ".");
+    }
+  }
+}
+
+var message = "Votre score final est de : " + score + "/" + tabPays.length + ".";
+console.log(message);
+alert(message);
+
+</script>
