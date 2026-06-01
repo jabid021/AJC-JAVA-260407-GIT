@@ -1,0 +1,21 @@
+<title>TP6 boite de dialogue</title>
+
+<h1>TP6 boite de dialogue</h1>
+
+<script>
+
+let mdp;
+
+const changePassword = confirm("Voulez-vous changer votre mot de passe ?", "Oui/Non");
+
+if (changePassword) {
+    mdp = prompt("Entrez votre nouveau mot de passe :");
+    alert("Votre mot de passe a été changé. ("+mdp+")") 
+    console.log("Nouveau mot de passe : " + mdp);
+}
+else {
+    alert("mot de passe inchangé.");
+    console.log("Mot de passe inchangé.");
+}
+
+</script>
