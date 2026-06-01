@@ -29,6 +29,7 @@ function verif_name(event) {
   }
 }
 
+const div_crottes = document.getElementsByClassName("div-crottes")[0];
 
 function start_game() {
   console.log('Start game')
@@ -46,6 +47,7 @@ function start_game() {
   alert("Ramassez toutes les crottes avant de rentrer !");
   formStart.style.display = "none";
   grass.style.display = "block";
+  div_crottes.style.display = "block";
   /*console.log(inputName);
   console.log(btnStart);
   console.log(animal);*/
