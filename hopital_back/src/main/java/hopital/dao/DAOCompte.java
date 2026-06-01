@@ -29,7 +29,7 @@ public class DAOCompte implements IDAOCompte {
 	public Compte save(Compte compte) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		compte = em.merge(compte);
+			compte = em.merge(compte);
 		em.getTransaction().commit();
 		em.close();
 		return compte;
@@ -39,8 +39,8 @@ public class DAOCompte implements IDAOCompte {
 	public void delete(Compte compte) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		compte = em.merge(compte);
-		em.remove(compte);
+			compte = em.merge(compte);
+			em.remove(compte);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -49,15 +49,14 @@ public class DAOCompte implements IDAOCompte {
 	public void deleteById(Integer id) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Compte compte = em.find(Compte.class, id);
-		em.remove(compte);
+			Compte compte = em.find(Compte.class, id);
+			em.remove(compte);
 		em.getTransaction().commit();
 		em.close();
 	}
 
 	@Override
 	public Compte findByLoginAndPassword(String login, String password) {
-<<<<<<< Updated upstream
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		Compte compte =null;
 		try 
@@ -72,38 +71,8 @@ public class DAOCompte implements IDAOCompte {
 			e.printStackTrace();
 		}
 		em.close();
-=======
-
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		Compte compte = null;
-
-		try {
-
-			compte = em.createQuery(
-					"""
-					select c
-					from Compte c
-					where c.login = :login
-					and c.password = :password
-					""",
-					Compte.class)
-					.setParameter("login", login)
-					.setParameter("password", password)
-					.getSingleResult();
-
-		} catch (Exception e) {
-
-			compte = null;
-
-		} finally {
-
-			em.close();
-		}
-
->>>>>>> Stashed changes
 		return compte;
 	}
+
+
 }
-
-

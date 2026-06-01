@@ -28,7 +28,7 @@ public class DAOPatient implements IDAOPatient {
 	public Patient save(Patient patient) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		patient = em.merge(patient);
+			patient = em.merge(patient);
 		em.getTransaction().commit();
 		em.close();
 		return patient;
@@ -38,8 +38,8 @@ public class DAOPatient implements IDAOPatient {
 	public void delete(Patient patient) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		patient = em.merge(patient);
-		em.remove(patient);
+			patient = em.merge(patient);
+			em.remove(patient);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -48,8 +48,8 @@ public class DAOPatient implements IDAOPatient {
 	public void deleteById(Integer id) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Patient patient = em.find(Patient.class, id);
-		em.remove(patient);
+			Patient patient = em.find(Patient.class, id);
+			em.remove(patient);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -57,7 +57,6 @@ public class DAOPatient implements IDAOPatient {
 	@Override
 	public Patient findByIdWithVisites(Integer idPatient) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-<<<<<<< Updated upstream
 		Patient patient =null;
 		try 
 		{
@@ -70,35 +69,8 @@ public class DAOPatient implements IDAOPatient {
 			e.printStackTrace();
 		}
 		em.close();
-=======
-
-		Patient patient = null;
-
-		try {
-
-			patient = em.createQuery(
-					"""
-					select p
-					from Patient p
-					left join fetch p.visites
-					where p.id = :idPatient
-					""",
-					Patient.class)
-					.setParameter("idPatient", idPatient)
-					.getSingleResult();
-
-		} catch (Exception e) {
-
-			patient = null;
-
-		} finally {
-
-			em.close();
-		}
-
->>>>>>> Stashed changes
 		return patient;
 	}
+
+
 }
-
-

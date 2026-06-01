@@ -44,7 +44,7 @@ public abstract class Personnage {
     protected Lieu habitation;
     
   //Si on retire toutes les annotations, jpa gere la liste d'enum via un fichier binaire (serialize)
-  	@ElementCollection(targetClass = Humeur.class)
+  	@ElementCollection(targetClass = Humeur.class,fetch = FetchType.EAGER)
   	@Enumerated(EnumType.STRING)
   	@CollectionTable(name = "humeurs_des_persos", joinColumns = @JoinColumn(name = "id_du_perso"))
   	//@Column(name = "liste_humeur")
