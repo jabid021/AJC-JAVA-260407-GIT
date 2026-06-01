@@ -42,6 +42,8 @@ function start_game() {
   pikachu.style.left = posX + "px";
   pikachu.style.top = posY + "px";
 
+  document.getElementById("nomPerso").textContent = inputName.value;
+
   imgPikachu.setAttribute(
     "src",
     "assets/img/" + genre + animal + direction + ".png",
