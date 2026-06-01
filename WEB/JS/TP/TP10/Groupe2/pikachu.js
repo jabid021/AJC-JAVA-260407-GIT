@@ -4,123 +4,173 @@
 //4) Modifier la position de la div pikachu en fonction de la direction (+-30px par deplacement) et changer l'image
 //5) Verifier que pikachu ne sort pas de la div grass
 
-var posX = 0;
-var posY = 0;
-var mouvement = 30;
-var choix = ["pikachu", "coincoin"];
-var pokemon = "pikachu";
-var direction = "Down";
-imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
 
+let posX = 330;
+let posY = 30;
+let mouvement = 30;
 
-btnStart.onclick = Lancer;
+let animal = select_animal.value;
+let direction = "Down";
 
-
-
-
-inputName.onkeyup = function (event) {
-  let name = inputName.value;
-  if (name != "") {
+let crottes = [];
+//imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
+function verif_name(event) {
+  console.log(inputName.value);
+  console.log(event);
+  if (inputName.value != "") {
     btnStart.disabled = false;
-    console.log(event);
     if (event.key == "Enter") {
-      Lancer();
+      start_game();
     }
-  }
-  else {
+  } else {
     btnStart.disabled = true;
   }
 }
 
-function Lancer() {
+function start_game() {
+  console.log('Start game')
+  posX = 330;
+  posY = 30;
+  direction = "Down";
+  animal = select_animal.value;
+  pikachu.style.display = "block";
+
+  pikachu.style.left = posX + "px";
+  pikachu.style.top = posY + "px";
+
+  imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
+  alert("Ramassez toutes les crottes avant de rentrer !");
   formStart.style.display = "none";
-  //themePokemon.play();
-  grass.style.display = "inline-block";
-  pikachu.setAttribute("title", inputName.value);
+  grass.style.display = "block";
+  /*console.log(inputName);
+  console.log(btnStart);
+  console.log(animal);*/
+
+  var title = inputName.value + " et son " + animal;
+  pikachu.setAttribute("title", title);
+
+
+  /// Generer des crottes aléatoirement
+  for (let i = 0; i < 5; i++) {
+    const x = Math.random() * (grass.offsetWidth - 100);
+    const y = Math.random() * (grass.offsetHeight - 100);
+
+    crottes.push({
+      x: x,
+      y: y
+    });
+    grass.innerHTML +=
+      `<div class="crotte" id="crotte_${i}" style="top:${y}px; left:${x}px;">
+    <img src="assets/img/caca.png" alt="" width="30px" height="30px">
+  </div>`;
+  }
   document.body.onkeydown = deplacement;
 }
 
+inputName.onkeyup = verif_name;
+btnStart.onclick = start_game;
 
+////////////////////////// DEPLACEMENT //////////////////////////
 function deplacement(event) {
+
   if (event.key == "ArrowDown" || event.key == "s") {
-    direction = "down";
-    if (pikachu.style.top.toString().slice(0, -2) < 660) 
-    {
+
+    if (posY < grass.offsetHeight - pikachu.offsetHeight) {
       posY += mouvement;
+      direction = "Down";
     }
   }
   else if (event.key == "ArrowUp" || event.key == "z") {
-    direction = "up";
-    if (pikachu.style.top.toString().slice(0, -2) > 0) 
-    {
+
+    if (posY >= mouvement) {
       posY -= mouvement;
+      direction = "Up";
     }
+
   }
   else if (event.key == "ArrowRight" || event.key == "d") {
-    direction = "right";
-    if (pikachu.style.left.toString().slice(0, -2) < 660) 
-    {
+
+    if (posX < grass.offsetWidth - pikachu.offsetWidth) {
       posX += mouvement;
+      direction = "Right";
     }
   }
   else if (event.key == "ArrowLeft" || event.key == "q") {
-    direction = "left";
-    if (pikachu.style.left.toString().slice(0, -2) >  0) 
-    {
+
+    if (posX >= mouvement) {
       posX -= mouvement;
+      direction = "Left";
     }
-  }
 
-  changement();
-  pikachu.style.top = posY + "px";
-  pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
-}
-
-
-/*
-function deplacement(event) {
-  if (event.ctrlKey == true) {
-    mouvement = 50;
-  } else {
-    mouvement = 30;
-  }
-  if (event.key == "ArrowDown"  event.key == "s") {
-    if (posY<grass.offsetHeight - pikachu.offsetHeight){
-    posY += mouvement;
-    direction = "Down";
-    }
-  } else if (event.key == "ArrowUp"  event.key == "z") {
-    if(posY>0){
-    posY -= mouvement;
-    direction = "Up";
-    }
-  } else if (event.key == "ArrowRight"  event.key == "d") {
-    if (posX<grass.offsetWidth - pikachu.offsetWidth){
-    posX += mouvement;
-    direction = "Right";
-}
-  } else if (event.key == "ArrowLeft"  event.key == "q") {
-    if(posX>0){
-    posX -= mouvement;
-    direction = "Left";
-    }
   }
 
   pikachu.style.top = posY + "px";
   pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
+  imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
+  ramasser_crotte();
 }
-*/
 
-function changement(){ 
-  let posPikaX = pikachu.style.left.toString().slice(0, -2);
-  let posPikaY = pikachu.style.top.toString().slice(0, -2);
-  if(posPikaX > 300 && posPikaX < 390 && posPikaY == 0){
-    if(pokemon == "pikachu"){
-      pokemon = "coincoin";
-    }else{
-      pokemon = "pikachu";
+function ramasser_crotte() {
+  const perso = document.getElementById("pikachu");
+  const crottes = document.querySelectorAll(`.crotte`);
+
+  const rectPerso = perso.getBoundingClientRect();
+
+
+  console.log('Crottes restantes');
+  console.log(document.querySelectorAll('.crotte').length)
+  for (let index = 0; index < crottes.length; index++) {
+    const crotte = crottes[index];
+    const rectCrotte = crotte.getBoundingClientRect();
+    if (
+      rectPerso.left < rectCrotte.right &&
+      rectPerso.right > rectCrotte.left &&
+      rectPerso.top < rectCrotte.bottom &&
+      rectPerso.bottom > rectCrotte.top
+    ) {
+      crotte.remove();
+      console.log(crottes)
+      console.log(document.querySelectorAll('.crotte').length + " crottes restantes")
+      compteurCrotte.innerHTML = `${5 - (document.querySelectorAll('.crotte').length)}/5`;
+      if (document.querySelectorAll('.crotte').length == 0) {
+        setTimeout(() => {
+          alert('Vous avez ramassé toutes les crottes ! Retournez maintenant au refuge !');
+        }, 500);
+      }
     }
   }
+
+  // Rentrer si y'a plus de crotte
+  if (crottes.length == 0) {
+    rentrer_shelter();
+  }
 }
+
+function rentrer_shelter() {
+
+  console.log(pikachu, centrePokemon);
+  const rectPerso = pikachu.getBoundingClientRect();
+  const rectCentrePokemon = centrePokemon.getBoundingClientRect();
+  const marge = 50;
+
+  if (
+    rectPerso.left < rectCentrePokemon.right - marge &&
+    rectPerso.right > rectCentrePokemon.left + marge &&
+    rectPerso.top < rectCentrePokemon.bottom - marge &&
+    rectPerso.bottom > rectCentrePokemon.top + marge
+  ) {
+    pikachu.style.display = "none";
+    console.log('rentré ! ')
+    //pikachu.remove();
+    setTimeout(() => {
+      alert('Vous etes rentré au Shelter !');
+    }, 500);
+    document.body.onkeydown = null;
+    formStart.style.display = "block";
+    grass.style.display = "none";
+    compteurCrotte.innerHTML = `0/5`;
+  }
+}
+
+
+
