@@ -8,6 +8,7 @@ let animal = select_animal.value;
 let direction = "Down";
 
 let crottes = [];
+let buissons = [];
 //imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
 let genre = select_sex.value;
 
@@ -30,6 +31,7 @@ audioTheme = document.getElementById("theme");
 function start_game() {
   console.log("Start game");
 
+  audioTheme.volume = 0.3;
   audioTheme.play();
 
   posX = 330;
@@ -73,6 +75,21 @@ function start_game() {
     <img src="assets/img/caca.png" alt="" width="30px" height="30px">
   </div>`;
   }
+
+  /// Generer des buissons aléatoirement
+  for (let i = 0; i < 7; i++) {
+    const x = Math.random() * (grass.offsetWidth - 100);
+    const y = Math.random() * (grass.offsetHeight - 100);
+
+    buissons.push({
+      x: x,
+      y: y,
+    });
+
+    grass.innerHTML += `<div class="buisson" style="top:${y}px; left:${x}px;">
+  <img src="assets/img/buisson.png" alt="" width="30px" height="30px">
+</div>`;
+  }
   document.body.onkeydown = deplacement;
 }
 
@@ -81,6 +98,9 @@ btnStart.onclick = start_game;
 
 ////////////////////////// DEPLACEMENT //////////////////////////
 function deplacement(event) {
+  /*const ancienneX = posX;
+const ancienneY = posY;*/
+
   if (event.key == "ArrowDown" || event.key == "s") {
     if (posY < grass.offsetHeight - pikachu.offsetHeight) {
       posY += mouvement;
@@ -105,12 +125,45 @@ function deplacement(event) {
 
   pikachu.style.top = posY + "px";
   pikachu.style.left = posX + "px";
+
+  /*if (collision_buisson()) {
+  posX = ancienneX;
+  posY = ancienneY;
+
+  pikachu.style.top = posY + "px";
+  pikachu.style.left = posX + "px";
+}*/
+
   imgPikachu.setAttribute(
     "src",
     "assets/img/" + genre + animal + direction + ".png",
   );
   ramasser_crotte();
 }
+
+//COLLISION//
+
+/*function collision_buisson() {
+  const perso = document.getElementById("pikachu");
+  const buissons = document.querySelectorAll(".buisson");
+
+  const rectPerso = perso.getBoundingClientRect();
+
+  for (let i = 0; i < buissons.length; i++) {
+    const rectBuisson = buissons[i].getBoundingClientRect();
+
+    if (
+      rectPerso.left < rectBuisson.right &&
+      rectPerso.right > rectBuisson.left &&
+      rectPerso.top < rectBuisson.bottom &&
+      rectPerso.bottom > rectBuisson.top
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}*/
 
 audioCrotte = new Audio("assets/audio/fart.mp3");
 audioVictoire = new Audio("assets/audio/victory.mp3");
