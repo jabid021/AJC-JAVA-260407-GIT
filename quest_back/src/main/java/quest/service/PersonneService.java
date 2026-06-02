@@ -21,6 +21,11 @@ public class PersonneService {
 		return daoPersonne.findAllStagiaire();
 	}
 
+	public List<Stagiaire> getAllStagiaireDisponibles()
+	{
+		return daoPersonne.findStagiaireWithoutOrdinateur();
+	}
+	
 	public List<Formateur> getAllFormateur()
 	{
 		return daoPersonne.findAllFormateur();

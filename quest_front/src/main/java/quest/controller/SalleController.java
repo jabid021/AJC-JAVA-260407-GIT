@@ -64,7 +64,7 @@ public class SalleController extends HttpServlet {
 		List<Salle> salles = Singleton.getInstance().getDaoSalle().findAll();
 		request.setAttribute("salle", new Salle());
 		request.setAttribute("salles", salles);
-		this.getServletContext().getRequestDispatcher("/salles.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/salles.jsp").forward(request, response);
 		
 	}
 	public void chercherParId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -78,7 +78,7 @@ public class SalleController extends HttpServlet {
 		request.setAttribute("salle", salle);
 		request.setAttribute("salles", salles);
 		
-		this.getServletContext().getRequestDispatcher("/salles.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/salles.jsp").forward(request, response);
 		
 	}
 	public void supprimer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

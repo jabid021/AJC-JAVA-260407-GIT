@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="jakarta.tags.core"%>   
+
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<%@ include file="/WEB-INF/includePartout.jsp" %>
 
-<link rel="stylesheet" href="style.css">
 <title>Gestion des salles</title>
 </head>
 <body>
@@ -31,10 +29,12 @@
 			<th>Actions</th>
 		</tr>
 		
+		<c:if test="${salles.isEmpty()}"><tr><td colspan="100%" align="center">Aucune Salle</td></tr></c:if>
+		
 		<c:forEach var="salle" items="${salles}" >
 			<tr>
-				<td>${salle.id}</th>
-				<td>${salle.nom}</th>
+				<td>${salle.id}</td>
+				<td>${salle.nom}</td>
 				<td>${salle.adresse.numero} ${salle.adresse.voie}, ${salle.adresse.cp} ${salle.adresse.ville}</td>
 				<td>
 					<a href="salle?id=${salle.id}" class="btn btn-warning">Modifier</a>
@@ -61,7 +61,6 @@
 	<form action="salle" method="POST" class="form-clean">
 		
 	<input type="hidden" name="id" value="${salle.id}">
-	
 	<input required="required" type="text" name="nom" placeholder="Saisir nom" value="${salle.nom}">
 	<input required="required" type="text" name="adresse.numero" placeholder="Saisir numero" value="${salle.adresse.numero}">
 	<input required="required" type="text" name="adresse.voie" placeholder="Saisir voie" value="${salle.adresse.voie}">
@@ -80,7 +79,7 @@
 	</form>
 	
 	<br><br>
-	<a class="btn btn-info" href="espaceAdmin.jsp">Retour</a>
+	<a class="btn btn-info" href="home">Retour</a>
 </content>
 </body>
 </html>

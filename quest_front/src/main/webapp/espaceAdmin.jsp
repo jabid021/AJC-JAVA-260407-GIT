@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/WEB-INF/includePartout.jsp" %>
 <meta charset="UTF-8">
 <title>Gestion Admin</title>
 </head>
