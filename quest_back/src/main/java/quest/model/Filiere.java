@@ -113,7 +113,12 @@ public class Filiere {
 		this.cours = cours;
 	}
 
+	public String getInfosFiliere() 
+	{
+		return id+" - "+libelle;
+	}
 
+	
 	@Override
 	public String toString() {
 		return "Filiere [id=" + id + ", libelle=" + libelle + ", debut=" + debut + ", fin=" + fin + ", salle=" + salle

@@ -8,7 +8,8 @@
 <title>Gestion Admin</title>
 </head>
 <body>
-<h1>Page de gestion admin</h1>
+
+<h1>Bienvenue ${connected.login} sur votre page de gestion admin</h1>
 
 
 <ul>

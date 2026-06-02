@@ -63,7 +63,7 @@ public class Stagiaire extends Personne {
 	public void setOrdinateur(Ordinateur ordinateur) {
 		this.ordinateur = ordinateur;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Stagiaire [id=" + id + ", login=" + login + ", password=" + password + ", nom=" + nom + ", prenom="

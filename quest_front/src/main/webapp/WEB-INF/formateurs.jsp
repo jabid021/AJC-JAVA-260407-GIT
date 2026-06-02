@@ -12,14 +12,7 @@
 <title>Gestion des formateurs</title>
 </head>
 <body>
-<!--  
-<p>Liste des nombres de 1 à 10<p>
-<ul>
-	<c:forEach begin="1" end="10" step="1" var="i">
-		<li>${i}</li>
-	</c:forEach>
-</ul>
--->
+
 <content>
 	<table>
 		<tr>
