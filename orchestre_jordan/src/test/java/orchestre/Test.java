@@ -1,12 +1,20 @@
 package orchestre;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import orchestre.model.IMusicien;
 
 public class Test {
 
+	@Autowired
 	IMusicien pianiste;
 	
+	@Autowired
+	@Qualifier("guitariste")
 	IMusicien jordan;
+	
+	@Autowired
 	
 	IMusicien flutiste;
 	
