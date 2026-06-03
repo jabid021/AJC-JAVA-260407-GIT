@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
-    
+ <%@ include file="/WEB-INF/securityAdmin.jsp" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/WEB-INF/includePartout.jsp" %>
 <title>Gestion des matieres</title>
+<script
+  src="https://code.jquery.com/jquery-4.0.0.min.js"
+  integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+  crossorigin="anonymous"></script>
+  
 </head>
 <body>
 
 <content>
+<input type="text" id="filterLib" placeholder="Filtrer par libelle">
 	<table>
 		<tr>
 			<th>ID</th>
@@ -21,16 +26,17 @@
 	
 		<c:if test="${matieres.isEmpty()}"><tr><td colspan="100%" align="center">Aucune Matiere</td></tr></c:if>
 		
-		<c:forEach var="matiere" items="${matieres}" >
-			<tr>
-				<td>${matiere.id}</td>
-				<td>${matiere.libelle}</td><td>
-					<a href="matiere?id=${matiere.id}" class="btn btn-warning">Modifier</a>
-					<a href="matiere?id=${matiere.id}&delete" class="btn btn-danger">Supprimer</a>
-				</td>
-			</tr>
-		</c:forEach>
-		
+		<tbody id="contentTableau">
+			<c:forEach var="matiere" items="${matieres}" >
+				<tr>
+					<td>${matiere.id}</td>
+					<td>${matiere.libelle}</td><td>
+						<a href="matiere?id=${matiere.id}" class="btn btn-warning">Modifier</a>
+						<a href="matiere?id=${matiere.id}&delete" class="btn btn-danger">Supprimer</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 	
 	
@@ -68,3 +74,25 @@
 </content>
 </body>
 </html>
+
+
+<script>
+
+
+filterLib.oninput = function()
+{
+	let contentRecherche = filterLib.value;
+	$.ajax("matiere", {
+		type : "GET",
+		data : 
+		{
+			recherche : contentRecherche
+		},
+	    success: function (resp) {
+	    	contentTableau.innerHTML=resp;
+	    }
+	  });
+};
+
+
+</script>

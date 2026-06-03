@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 
-<%@ include file="/WEB-INF/includePartout.jsp" %>
-
 <title>Projet Quest</title>
 </head>
 <body>

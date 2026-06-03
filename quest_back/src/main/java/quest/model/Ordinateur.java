@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 @Entity
 @Table(name="ordinateur")
 public class Ordinateur {
@@ -21,6 +22,9 @@ public class Ordinateur {
 	@OneToOne
 	@JoinColumn(name="utilisateur")
 	private Stagiaire utilisateur;
+	
+	@Version
+	private int version;
 
 	public Ordinateur() {}
 	public Ordinateur(Integer numero, String marque, int ram, Stagiaire utilisateur) {
@@ -70,7 +74,13 @@ public class Ordinateur {
 	public void setRam(int ram) {
 		this.ram = ram;
 	}
-
+	
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
+	}
 	public String toString() {
 		return "Ordinateur [numero=" + numero + ", marque=" + marque + ", ram=" + ram + ", utilisateur=" + utilisateur
 				+ "]";

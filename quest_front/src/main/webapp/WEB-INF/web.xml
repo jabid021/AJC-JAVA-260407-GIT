@@ -11,5 +11,12 @@
   	<location>/WEB-INF/error404.jsp</location>
   </error-page>
   
+  <jsp-config>
+  	<jsp-property-group>
+  		<url-pattern>*.jsp</url-pattern>
+  		<include-prelude>/WEB-INF/includePartout.jsp</include-prelude>
+  		<!--  <include-coda></include-coda>-->
+  	</jsp-property-group>
+  </jsp-config>
   
 </web-app>

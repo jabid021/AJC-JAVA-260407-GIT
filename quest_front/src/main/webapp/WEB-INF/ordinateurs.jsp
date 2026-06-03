@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
-    
+ <%@ include file="/WEB-INF/securityAdmin.jsp" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/WEB-INF/includePartout.jsp" %>
+
 <title>Gestion des ordinateurs</title>
 </head>
 <body>
@@ -59,6 +59,7 @@
 	<form action="ordinateur" method="POST" class="form-clean">
 		
 		<input type="hidden" name="numero" value="${ordinateur.numero}">
+		<input type="hidden" name="version" value="${ordinateur.version}">
 		
 		<input required="required" type="text" name="marque" placeholder="Saisir marque" value="${ordinateur.marque}">
 		<input required="required" type="number" name="ram" placeholder="Saisir ram" value="${ordinateur.ram}" min="0" max="64">

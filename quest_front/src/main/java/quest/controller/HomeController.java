@@ -1,6 +1,8 @@
 package quest.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,6 +20,12 @@ public class HomeController extends HttpServlet {
 
       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(request.getParameter("logout")!=null) 
+		{
+			request.getSession().invalidate();
+		}
+		
 		
 		if(request.getSession().getAttribute("connected")==null) 
 		{
@@ -58,7 +66,23 @@ public class HomeController extends HttpServlet {
 		}
 		else 
 		{
+			List<String> roles = new ArrayList();
 			request.getSession().setAttribute("connected", connected);
+			
+			if(connected instanceof Stagiaire) 
+			{
+				roles.add("ROLE_STAGIAIRE");
+			}
+			else 
+			{
+				roles.add("ROLE_FORMATEUR");
+				if(((Formateur) connected).isAdmin()) 
+				{
+					roles.add("ROLE_ADMIN");
+				}
+			}
+			
+			request.getSession().setAttribute("roles", roles);
 			response.sendRedirect("home");
 		}
 		

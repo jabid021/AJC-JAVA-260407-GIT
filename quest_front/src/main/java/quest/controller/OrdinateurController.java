@@ -111,7 +111,7 @@ public class OrdinateurController extends HttpServlet {
 		Integer numero =  Integer.parseInt(request.getParameter("numero"));
 		String marque = request.getParameter("marque");
 		int ram = Integer.parseInt(request.getParameter("ram"));
-		
+		int version = Integer.parseInt(request.getParameter("version"));
 		Stagiaire utilisateur = null;
 		if(!request.getParameter("utilisateur.id").equals("")) 
 		{
@@ -120,7 +120,7 @@ public class OrdinateurController extends HttpServlet {
 		}
 	
 		Ordinateur ordinateur = new Ordinateur(numero, marque,ram,utilisateur);
-
+		ordinateur.setVersion(version);
 
 		Singleton.getInstance().getDaoOrdinateur().save(ordinateur);
 		

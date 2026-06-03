@@ -19,7 +19,14 @@ public class MatiereController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) 
 		{
-			chercherTous(request,response);
+			if(request.getParameter("recherche")==null) 
+			{
+				chercherTous(request,response);
+			}
+			else 
+			{
+				rechercheParLib(request,response);
+			}
 		} 
 		else 
 		{
@@ -48,7 +55,30 @@ public class MatiereController extends HttpServlet {
 
 	
 
-	
+	public void rechercheParLib(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		String recherche = request.getParameter("recherche");
+		
+		List<Matiere> matieres = Singleton.getInstance().getDaoMatiere().findByLibelleContaining(recherche);
+		
+		if(matieres.isEmpty()) 
+		{
+			response.getWriter().println("<tr><td colspan='100%' align='center'>Aucune Matiere</td></tr>");
+		}
+		for(Matiere m : matieres) 
+		{
+			
+			response.getWriter().println("<tr>");
+			response.getWriter().println("<td>"+m.getId()+"</td>");
+			response.getWriter().println("<td>"+m.getLibelle()+"</td>");
+			response.getWriter().println("<td>");
+			response.getWriter().println("<a href='matiere?id="+m.getId()+"' class='btn btn-warning'>Modifier</a>");
+			response.getWriter().println("<a href='matiere?id="+m.getId()+"&delete' class='btn btn-danger'>Supprimer</a>");
+			response.getWriter().println("</td>");
+			response.getWriter().println("</tr>");
+		}
+		
+	}
 	
 	public void chercherTous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{

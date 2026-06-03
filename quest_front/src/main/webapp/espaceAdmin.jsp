@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ <%@ include file="/WEB-INF/securityAdmin.jsp" %>   
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/includePartout.jsp" %>
 <meta charset="UTF-8">
 <title>Gestion Admin</title>
 </head>
