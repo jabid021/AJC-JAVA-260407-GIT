@@ -23,7 +23,7 @@
 </bean>
  -->
  
- 
+ <context:component-scan base-package="orchestre.model"/>
  
 </beans>
 
