@@ -13,9 +13,7 @@ public class Flutiste implements IMusicien{
 	private IInstrument flute;
 	
 	public Flutiste() 
-	{
-		this.prenom="Olivier";
-	}
+	{}
 	
 
 	public String getPrenom() {

@@ -1,36 +1,56 @@
 package demo.test;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import demo.composant.Audio;
 import demo.composant.Game;
-import demo.composant.Graphisme;
+import demo.composant.IConfig;
 import demo.config.AppConfig;
 
 public class Test {
-	public static void main(String[] args) {
-		
-		
+	
+	@Autowired
+	Game myGame;
+	
+	@Autowired
+	Game lePireJeu;
+	
+	@Autowired
+	@Qualifier("game")
+	Game unAutrenom;
+	
+	@Autowired
+	IConfig audio;
+	
+	@Autowired
+	IConfig graphisme;
+	
+	
+	public void run() {
 		//Definir la config principale Spring pour recup le context:
 		
 		//Config xml
 		//ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application-context.xml");
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+		//AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 		
-		Game g1 = (Game) ctx.getBean("myGame"); //Cree dans la page AppConfig
-		Game g2 = ctx.getBean("lePireJeu",Game.class); //Cree dans la page AppConfig
+		//Game g1 = (Game) ctx.getBean("myGame"); //Cree dans la page AppConfig
+		//Game g2 = ctx.getBean("lePireJeu",Game.class); //Cree dans la page AppConfig
 		
-		Game g = ctx.getBean("game",Game.class); //Generé auto par le @Component sur la classe Game
+		//Game g = ctx.getBean("game",Game.class); //Generé auto par le @Component sur la classe Game
 		
 		
-		Audio audio = ctx.getBean("audio",Audio.class);
-		Graphisme graphisme = (Graphisme) ctx.getBean("graphisme");
-		System.out.println(g1);
-		System.out.println(g2);
-		System.out.println(g);
+		//Audio audio = ctx.getBean("audio",Audio.class);
+		//Graphisme graphisme = (Graphisme) ctx.getBean("graphisme");
+		System.out.println(myGame);
+		System.out.println(lePireJeu);
+		System.out.println(unAutrenom);
 		System.out.println(audio);
 		System.out.println(graphisme);
-		ctx.close();
+		
+		
+		
+		//ctx.close();
 	}
 
 }

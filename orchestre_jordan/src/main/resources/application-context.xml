@@ -21,9 +21,11 @@
 <bean id="pianiste" class="orchestre.model.Pianiste">
 	<property name="instrument" ref="piano"/>
 </bean>
+
+ <context:component-scan base-package="orchestre.model"/>
  -->
  
- <context:component-scan base-package="orchestre.model"/>
+
  
 </beans>
 

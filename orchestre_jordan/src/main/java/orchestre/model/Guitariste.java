@@ -16,7 +16,7 @@ public class Guitariste implements IMusicien{
 	
 	public Guitariste() 
 	{
-		//System.out.println("Le flutiste vient d'equiper son instrument : "+instrument.getClass().getSimpleName());
+		//System.out.println("Le guitariste vient d'equiper son instrument : "+instrument.getClass().getSimpleName());
 	}
 	
 	public String getPrenom() {
