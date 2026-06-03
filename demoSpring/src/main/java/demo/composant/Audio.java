@@ -1,5 +1,8 @@
 package demo.composant;
 
+import org.springframework.stereotype.Component;
+
+@Component //Generer automatiquement un <bean id="audio" class="demo.composant.Audio/>
 public class Audio implements IConfig{
 
 	private int volume;

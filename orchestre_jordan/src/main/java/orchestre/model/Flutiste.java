@@ -32,7 +32,7 @@ public class Flutiste implements IMusicien{
 
 	@Override
 	public void jouer() {
-		System.out.println("Le guitariste "+prenom+" joue ! "+flute.son());
+		System.out.println("Le flutiste "+prenom+" joue ! "+flute.son());
 		
 	}
 }

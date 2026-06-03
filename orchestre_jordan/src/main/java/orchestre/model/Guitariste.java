@@ -6,7 +6,10 @@ public class Guitariste implements IMusicien{
 	private IInstrument instrument;
 	
 	
-	public Guitariste() {}
+	public Guitariste() 
+	{
+		//System.out.println("Le flutiste vient d'equiper son instrument : "+instrument.getClass().getSimpleName());
+	}
 	
 	public String getPrenom() {
 		return prenom;
@@ -29,5 +32,6 @@ public class Guitariste implements IMusicien{
 		System.out.println("Le guitariste "+prenom+" joue ! "+instrument.son());
 		
 	}
+	
 
 }
