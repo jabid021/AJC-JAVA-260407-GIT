@@ -26,7 +26,7 @@ public class TestSpringJPA {
 			System.out.println(p);
 		}
 		
-		Client client = new Client("prenom","nom",Genre.nb,LocalDate.now(),"numero","voie","tpt","cp");
+		Client client = new Client("prenomfdsdf","nom",Genre.nb,LocalDate.now(),"numero","voie","tpt","cp");
 		daoPersonne.save(client);
 		
 		for(Client c  : daoPersonne.findAllClient()) 

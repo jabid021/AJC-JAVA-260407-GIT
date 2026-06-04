@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -30,9 +29,9 @@ public class AppConfig {
 	@Bean
 	public BasicDataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setUrl(x);
+		dataSource.setUrl(env.getProperty("spring.datasource.url"));
 		dataSource.setUsername(env.getProperty("spring.datasource.username"));
-		dataSource.setPassword(x);
+		dataSource.setPassword(env.getProperty("spring.datasource.password"));
 		dataSource.setMaxTotal(Integer.parseInt(env.getProperty("spring.datasource.total")));
 		return dataSource;
 	}
@@ -51,9 +50,9 @@ public class AppConfig {
 
 	private Properties hibernateProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", x);
-		properties.setProperty("hibernate.show_sql", x);
-		properties.setProperty("hibernate.format_sql", x);
+		properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
+		properties.setProperty("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
+		properties.setProperty("hibernate.format_sql", env.getProperty("spring.jpa.format-sql"));
 		return properties;
 	}
 
@@ -63,11 +62,5 @@ public class AppConfig {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);
 		return transactionManager;
-	}
-
-
-	@Bean
-	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-		return new PersistenceExceptionTranslationPostProcessor();
 	}
 }

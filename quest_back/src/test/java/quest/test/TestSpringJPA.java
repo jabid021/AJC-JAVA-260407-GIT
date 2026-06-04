@@ -17,7 +17,7 @@ public class TestSpringJPA {
 	
 	public void run() 
 	{
-		
+		System.out.println("ALLLO");
 		for(Filiere f : daoFiliere.findAll()) 
 		{
 			System.out.println(f);
