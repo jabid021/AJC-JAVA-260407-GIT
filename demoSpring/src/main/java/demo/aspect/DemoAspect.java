@@ -1,21 +1,39 @@
 package demo.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
+
+@Component
+@Aspect
 public class DemoAspect {
 	
+	@Pointcut("execution(public void demo.composant.ClassMetier.demoClassMetier())")
+	public void monPointCut() {}
+	
+	
+	@Before("execution(public void demo.composant.ClassMetier.*())")
 	public void seLanceAvantDemo() 
 	{
 		System.out.println("Methode dans DemoAspect qui se lance BEFORE la methode demo de la classe ClassMetier");
 	}
 	
 
+	@After("monPointCut()")
 	public void seLanceApresDemo() 
 	{
 		System.out.println("Methode dans DemoAspect qui se lance AFTER la methode demo de la classe ClassMetier");
 	}
 	
 	
+	@Around("monPointCut()")
 	public void seLanceAutours(ProceedingJoinPoint pj) 
 	{
 		System.out.println("Methode dans DemoAspect qui se lance BEFORE (Via Around) la methode demo de la classe ClassMetier");
@@ -30,7 +48,7 @@ public class DemoAspect {
 	
 	
 	
-	
+	@AfterReturning(pointcut = "execution(public String demo.composant.*.demo3MetierPossibleExceptionEtReturn(String))", returning ="leNomDuReturnClassMetier" )
 	public void seLanceSiToutOkDansDemo3(String leNomDuReturnClassMetier) 
 	{
 		System.out.println("Tout s'est bien passe dans demo3");
@@ -38,6 +56,7 @@ public class DemoAspect {
 	}
 	
 	
+	@AfterThrowing(pointcut = "execution(public String demo.composant.*.demo3MetierPossibleExceptionEtReturn(String))", throwing = "e")
 	public void seLanceSiExceptionDemo3(Exception e) 
 	{
 		System.out.println("Demo 3 a eu un soucis,  voici son message : "+e.getMessage());

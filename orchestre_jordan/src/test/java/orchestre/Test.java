@@ -34,9 +34,18 @@ public class Test {
 		jordan.jouer();
 		flutiste.jouer(); */
 		
+		jordan.toString();
 		
-		System.out.println(jordan);
-		//jordan.toString();
+		System.out.println("----DEBUT DU CONCERT----");
+
+		try {
+		    jordan.jouer();
+		}catch(Exception e) 
+		    {
+		        System.out.println(e.getMessage());
+		    }
+		        
+		System.out.println("---FIN DU CONCERT----");
 
 	}
 

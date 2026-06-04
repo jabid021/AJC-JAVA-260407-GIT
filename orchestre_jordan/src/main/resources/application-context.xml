@@ -25,17 +25,17 @@
  <context:component-scan base-package="orchestre.model"/>
  -->
  
-
+<!--  
  <bean id="publicAspect" class="orchestre.aspect.PublicAspect"/>
  
  
  <aop:config>
  	<aop:aspect id="tpt" ref="publicAspect">
- 		<aop:after method="afterToStringGuitariste" pointcut="execution(public String orchestre.model.Guitariste.toString())"/>
+ 		<aop:after-returning method="afterToStringGuitariste"  returning="returnToString" pointcut="execution(public String orchestre.model.Guitariste.toString())"/>
  	</aop:aspect>
  </aop:config>
  
- 
+ -->
  
 </beans>
 
