@@ -1,4 +1,4 @@
-package quest.config;
+package eshop.config;
 
 import java.util.Properties;
 
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -19,11 +18,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
-@ComponentScan({"quest.dao","quest.service"})
+@ComponentScan("eshop.dao")
 @EnableTransactionManagement
-@PropertySource("classpath:application.properties")
 public class AppConfig {
-
 	@Autowired
 	private Environment env;
 	

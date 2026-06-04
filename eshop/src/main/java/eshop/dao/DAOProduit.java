@@ -2,79 +2,62 @@ package eshop.dao;
 
 import java.util.List;
 
-import eshop.context.Singleton;
-import eshop.model.Fournisseur;
+import org.springframework.stereotype.Repository;
+
 import eshop.model.Produit;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
+@Repository
+@Transactional
 public class DAOProduit implements IDAOProduit {
 
+	@PersistenceContext
+	private EntityManager em;
+	
 	@Override
 	public Produit findById(Integer id) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		Produit produit = em.find(Produit.class, id);
-		em.close();
-		return produit;
+		return em.find(Produit.class, id);
 	}
 
 	@Override
 	public List<Produit> findAll() {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		List<Produit> produits = em.createQuery("from Produit").getResultList();
-		em.close();
-		return produits;
+		return em.createQuery("from Produit").getResultList();
 	}
 
 	@Override
 	public Produit save(Produit produit) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-			produit = em.merge(produit);
-		em.getTransaction().commit();
-		em.close();
-		return produit;
+		return em.merge(produit);
 	}
 
 	@Override
 	public void delete(Produit produit) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-			produit = em.merge(produit);
-			em.remove(produit);
-		em.getTransaction().commit();
-		em.close();
+		produit = em.merge(produit);
+		em.remove(produit);
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-			Produit produit = em.find(Produit.class, id);
-			em.remove(produit);
-		em.getTransaction().commit();
-		em.close();
+		Produit produit = em.find(Produit.class, id);
+		em.remove(produit);
 	}
 
 	@Override
 	public List<Produit> findByLibLike(String libelle) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		List<Produit> produits = em.createQuery("SELECT p from Produit p where p.libelle like :recherche")
+		return em.createQuery("SELECT p from Produit p where p.libelle like :recherche")
 				.setParameter("recherche", libelle)
 				.getResultList();
-		em.close();
-		return produits;
 	}
 
 	@Override
 	public Produit findByIdWithVentes(Integer idProduit) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		Produit produit = null;
 		try {
 			produit = em.createQuery("SELECT p from Produit p LEFT JOIN FETCH p.ventes where p.id=:id",Produit.class)
 				.setParameter("id", idProduit)
 				.getSingleResult();
 		}catch(Exception e) {e.printStackTrace();}
-		em.close();
 		return produit;
 	}
 

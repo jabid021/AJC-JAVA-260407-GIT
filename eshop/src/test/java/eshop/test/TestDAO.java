@@ -1,20 +1,8 @@
 package eshop.test;
 
-import java.time.LocalDate;
-
-import eshop.context.Singleton;
-import eshop.dao.IDAOAchat;
-import eshop.dao.IDAOPersonne;
-import eshop.dao.IDAOProduit;
-import eshop.model.Achat;
-import eshop.model.Client;
-import eshop.model.Fournisseur;
-import eshop.model.Genre;
-import eshop.model.Produit;
-
 public class TestDAO {
 
-	public static IDAOAchat daoAchat = Singleton.getInstance().getDaoAchat();
+	/*public static IDAOAchat daoAchat = Singleton.getInstance().getDaoAchat();
 	public static IDAOPersonne daoPersonne = Singleton.getInstance().getDaoPersonne();
 	public static IDAOProduit daoProduit = Singleton.getInstance().getDaoProduit();
 
@@ -116,6 +104,6 @@ public class TestDAO {
 
 		daoPersonne.delete(client3); 
 	}
-	
+	*/
 
 }

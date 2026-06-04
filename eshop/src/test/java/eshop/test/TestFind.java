@@ -1,16 +1,8 @@
 package eshop.test;
 
-import java.util.List;
-
-import eshop.context.Singleton;
-import eshop.model.Achat;
-import eshop.model.Client;
-import eshop.model.Fournisseur;
-import eshop.model.Produit;
-
 public class TestFind {
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		List<Fournisseur> fournisseurs = Singleton.getInstance().getDaoPersonne().findAllFournisseur();
 		System.out.println("Voici la listes des fournisseurs : ");
@@ -99,6 +91,6 @@ public class TestFind {
 		
 		
 		
-	}
+	}*/
 
 }
