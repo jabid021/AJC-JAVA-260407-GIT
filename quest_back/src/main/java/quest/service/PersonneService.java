@@ -2,15 +2,20 @@ package quest.service;
 
 import java.util.List;
 
-import quest.dao.DAOPersonne;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import quest.dao.IDAOPersonne;
 import quest.model.Formateur;
 import quest.model.Personne;
 import quest.model.Stagiaire;
 
+@Service
 public class PersonneService {
 	//private static Logger log = LoggerFactory.getLogger(PersonneService.class);
 
-	static DAOPersonne daoPersonne = new DAOPersonne();
+	@Autowired
+	IDAOPersonne daoPersonne;
 
 	public List<Personne> getAll()
 	{

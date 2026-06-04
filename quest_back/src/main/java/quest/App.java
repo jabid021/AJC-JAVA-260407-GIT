@@ -1,34 +1,7 @@
 package quest;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.core.config.Configurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import quest.context.Singleton;
-import quest.dao.IDAOFiliere;
-import quest.dao.IDAOModule;
-import quest.dao.IDAOOrdinateur;
-import quest.dao.IDAOSalle;
-import quest.model.Filiere;
-import quest.model.Formateur;
-import quest.model.Genre;
-import quest.model.Matiere;
-import quest.model.Module;
-import quest.model.Ordinateur;
-import quest.model.Personne;
-import quest.model.Salle;
-import quest.model.Stagiaire;
-import quest.service.MatiereService;
-import quest.service.PersonneService;
 public class App {
-	private static Logger log = LoggerFactory.getLogger(App.class);
+	/*private static Logger log = LoggerFactory.getLogger(App.class);
 
 	static MatiereService matiereSrv = Singleton.getInstance().getMatiereSrv();
 	static PersonneService personneSrv =  Singleton.getInstance().getPersonneSrv();
@@ -695,5 +668,5 @@ public class App {
 
 		menuPrincipal();
 	}
-
+*/
 }

@@ -2,12 +2,17 @@ package quest.service;
 
 import java.util.List;
 
-import quest.dao.DAOMatiere;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import quest.dao.IDAOMatiere;
 import quest.model.Matiere;
 
+@Service
 public class MatiereService {
 	
-	static DAOMatiere daoMatiere = new DAOMatiere();
+	@Autowired
+	IDAOMatiere daoMatiere;
 	
 	public List<Matiere> getAll()
 	{

@@ -42,7 +42,7 @@ public class Test {
 		    jordan.jouer();
 		}catch(Exception e) 
 		    {
-		        System.out.println(e.getMessage());
+		        //System.out.println(e.getMessage());
 		    }
 		        
 		System.out.println("---FIN DU CONCERT----");
