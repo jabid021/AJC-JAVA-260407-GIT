@@ -3,16 +3,17 @@ package orchestre.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 import orchestre.model.Flutiste;
 import orchestre.model.Guitariste;
-import orchestre.model.IInstrument;
 import orchestre.model.IMusicien;
 import orchestre.model.Pianiste;
 import orchestre.model.Piano;
 
 @Configuration
 @ComponentScan("orchestre.model")
+@ImportResource("classpath:application-context.xml")
 public class AppConfig {
 
 	

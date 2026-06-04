@@ -40,6 +40,11 @@ public class Guitariste implements IMusicien{
 		System.out.println("Le guitariste "+prenom+" joue ! "+instrument.son());
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Guitariste [prenom=" + prenom + "]";
+	}
 	
 
 }

@@ -2,11 +2,10 @@ package demo.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import demo.composant.ClassMetier;
 import demo.composant.Game;
 import demo.composant.IConfig;
-import demo.config.AppConfig;
 
 public class Test {
 	
@@ -25,6 +24,9 @@ public class Test {
 	
 	@Autowired
 	IConfig graphisme;
+	
+	@Autowired
+	ClassMetier cm;
 	
 	
 	public void run() {
@@ -48,8 +50,17 @@ public class Test {
 		System.out.println(audio);
 		System.out.println(graphisme);
 		
+		System.out.println("--------------");
 		
+		System.out.println("DEMO AOP");
+		cm.demoClassMetier();
 		
+		System.out.println("------");
+		
+		try {
+			cm.demo3MetierPossibleExceptionEtReturn("Un message random en param");
+		}
+		catch(Exception e) {e.printStackTrace();}
 		//ctx.close();
 	}
 

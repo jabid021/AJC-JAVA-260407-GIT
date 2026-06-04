@@ -30,9 +30,13 @@ public class Test {
 		//IMusicien jordan = ctx.getBean(Guitariste.class);
 		//IMusicien flutiste = ctx.getBean("musicien",Flutiste.class);
 		
-		pianiste.jouer();
+		/*pianiste.jouer();
 		jordan.jouer();
-		flutiste.jouer(); 
+		flutiste.jouer(); */
+		
+		
+		System.out.println(jordan);
+		//jordan.toString();
 
 	}
 

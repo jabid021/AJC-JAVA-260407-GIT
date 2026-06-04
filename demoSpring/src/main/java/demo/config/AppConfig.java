@@ -3,11 +3,13 @@ package demo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 import demo.composant.Game;
 
 @Configuration
 @ComponentScan("demo.composant")
+@ImportResource("classpath:application-context.xml") //Permet d'aller lire la config dans le fichier xml en + de la config JAVA
 public class AppConfig {
 
 	/*<bean id="myGame" class="demo.composant.Game">
