@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <title>TOP 8 ROCK</title>
+    <link href="style.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/png" href="image/freddie.png" />
+  </head>
+
+  <body>
+    <div id="start-screen">
+      <p>Click to enter</p>
+    </div>
+    <span id="musicFond">Stop moi cette musique de fond</span>
+    <span id="credits">Crédits: <span id="credit-value">0</span></span>
+
+    <span id="clique">CLIQUE SUR UNE CHANSON POUR L'ECOUTER</span>
+
+    <audio id="fond_rock" src="son/fond_rock.mp3" loop></audio>
+
+    <header>
+      <span>
+        <img src="image/play_rouge.png" alt="play" />NOW LOADING
+        <img src="image/play_rouge.png" alt="play"
+      /></span>
+      <div id="titre">
+        <img id="music" src="image/music.png" alt="music" />
+        <h1>TOP 10 ROCK</h1>
+        <img id="music" src="image/music.png" alt="music" />
+      </div>
+      <h2>ALL TIME FAVORITES</h2>
+    </header>
+
+    <a href="#playing">
+      <img id="jukebox_img" src="gif/jukebox-pixel.gif" alt="jukebox" />
+    </a>
+    <a href="https://www.youtube.com/watch?v=ckJqSiTgQUo" target="_blank"
+      ><img id="freddie" src="gif/freddieGIF.gif" alt="Freddie Mercury"
+    /></a>
+    <a href="https://www.youtube.com/watch?v=n49id_-NAU0" target="_blank"
+      ><img id="acdc" src="image/acdc.png" alt="acdc"
+    /></a>
+
+    <a><img id="guitar" src="image/guitar.png" alt="guitar" /></a>
+
+    <div class="musique" style="overflow-x: auto">
+      <table id="tableau">
+        <thead>
+          <tr>
+            <th>SINGER</th>
+            <th>RNK</th>
+            <th>SONG</th>
+            <th>YEAR</th>
+            <th>GENRE</th>
+            <th>LIKES</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td id="Queen">
+              <img src="image/queen.png" alt="Queen" />
+            </td>
+            <td class="rank">🌟</td>
+            <td class="song" id="firstsong">
+              <audio src="son/Queen - Bohemian Rhapsody (Lyrics).mp3"></audio>
+              <div class="titre">Bohemian Rhapsody</div>
+
+              <div class="singer">QUEEN</div>
+            </td>
+            <td class="date">1975</td>
+            <td class="genre">ROCK SYMPHONIQUE</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pixelSinger">
+              <img src="image/elton.png" alt="Elton John" />
+            </td>
+            <td class="rank">2</td>
+            <td class="song">
+              <audio
+                src="son/Elton John - Goodbye Yellow Brick Road (lyrics).mp3"
+              ></audio>
+              <div class="titre">Goodbye Yellow Brick Road</div>
+              <div class="singer">ELTON JOHN</div>
+            </td>
+            <td class="date">1973</td>
+            <td class="genre">SOFT ROCK</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pixelSinger">
+              <img src="image/elton.png" alt="Elton John" />
+            </td>
+            <td class="rank">3</td>
+            <td class="song">
+              <audio src="son/Elton John - Rocket Man (Lyrics).mp3"></audio>
+              <div class="titre">Rocketman</div>
+              <div class="singer">ELTON JOHN</div>
+            </td>
+            <td class="date">1972</td>
+            <td class="genre">SOFT ROCK</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pixelSinger">
+              <img src="image/bowie.png" alt="David Bowie" />
+            </td>
+            <td class="rank">4</td>
+            <td class="song">
+              <audio src="son/David Bowie Space Oddity  Lyrics.mp3"></audio>
+              <div class="titre">Space Oddity</div>
+              <div class="singer">DAVID BOWIE</div>
+            </td>
+            <td class="date">1969</td>
+            <td class="genre">FOLK ROCK</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pixelSinger">
+              <img src="image/scorpions.png" alt="Scorpions" />
+            </td>
+            <td class="rank">5</td>
+            <td class="song">
+              <audio src="son/Still Loving You.mp3"></audio>
+              <div class="titre">Still Loving You</div>
+              <div class="singer">SCORPIONS</div>
+            </td>
+            <td class="date">1984</td>
+            <td class="genre">HARD ROCK</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="pixelSinger">
+              <img src="image/led_zeppelin.png" alt="Led Zeppelin" />
+            </td>
+            <td class="rank">6</td>
+            <td class="song">
+              <audio
+                src="son/Led Zeppelin - Stairway To Heaven (Official Audio).mp3"
+              ></audio>
+              <div class="titre">Stairway to Heaven</div>
+              <div class="singer">LED ZEPPELIN</div>
+            </td>
+            <td class="date">1971</td>
+            <td class="genre">HARD ROCK</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="pixelSinger">
+              <img src="image/dire_strait.png" alt="Led Zeppelin" />
+            </td>
+            <td class="rank">7</td>
+            <td class="song">
+              <audio src="son/Dire Straits - Sultans Of Swing.mp3"></audio>
+              <div class="titre">Sultan of Swing</div>
+              <div class="singer">DIRE STRAITS</div>
+            </td>
+            <td class="date">1978</td>
+            <td class="genre">BLUES ROCK</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="pixelSinger">
+              <img src="image/queen.png" alt="Queen" />
+            </td>
+            <td class="rank">8</td>
+            <td class="song">
+              <audio src="son/Queen - Somebody To Love (Lyrics).mp3"></audio>
+              <div class="titre">Somebody To Love</div>
+              <div class="singer">QUEEN</div>
+            </td>
+            <td class="date">1976</td>
+            <td class="genre">GLAM ROCK</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="pixelSinger">
+              <img id="sysDown" src="image/down2.png" alt="Sytem of a Down" />
+            </td>
+            <td class="rank">9</td>
+            <td class="song">
+              <audio
+                src="son/System Of A Down - Chop Suey! (Lyrics).mp3"
+              ></audio>
+              <div class="titre">Chop Suey!</div>
+              <div class="singer">SYSTEM OF A DOWN</div>
+            </td>
+            <td class="date">2001</td>
+            <td class="genre">ALTERNATIVE ROCK/METAL</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="pixelSinger">
+              <img #id="mark" src="image/mark.png" alt="question mark" />
+            </td>
+            <td class="rank">10</td>
+            <td class="song">
+              <audio
+                src="son/Rick Astley - Never Gonna Give You Up (Official Music Video).mp3"
+              ></audio>
+              <div class="titre">Mystery Song</div>
+              <div class="singer">????</div>
+            </td>
+            <td class="date">????</td>
+            <td class="genre">?????</td>
+            <td class="note">
+              <img
+                class="coeur"
+                src="image/coeur.png"
+                alt="coeur"
+                title="Like ce son !"
+              />
+              <div class="note-content">0</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="playing" id="playing">
+      <div class="jukebox">
+        <div class="textJukebox">
+          <img id="jukebox_play" src="image/play_jaune.png" alt="play" />
+          <span id="titre_jukebox">JUKEBOX</span>
+          <p>ROCK-O-MATIC</p>
+        </div>
+
+        <div class="enCours">
+          <div class="vinyle-zone">
+            <img id="vinyle_pause" src="image/pause_vinyle.png" />
+            <img id="vinyle" src="image/vinyle1.gif" />
+          </div>
+
+          <div id="track-zone">
+            <div id="nowPlaying">NOW PLAYING</div>
+            <div id="track">-- SELECT A TRACK --</div>
+            <div id="info_song">-----</div>
+
+            <div id="progress-zone">
+              <div id="barre">
+                <input type="range" id="track_barre" min="0" value="0" />
+              </div>
+              <div id="temps">
+                <span id="elapsed_time">0:00</span> /
+                <span id="track_time">1:00</span>
+              </div>
+            </div>
+
+            <div id="controls-zone">
+              <audio id="track_playing" src=""></audio>
+
+              <svg
+                class="bi bi-play-btn"
+                id="play_btn"
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="60"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"
+                />
+                <path
+                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"
+                />
+              </svg>
+
+              <svg
+                class="bi bi-pause-btn"
+                id="pause_btn"
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="60"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5m3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5"
+                />
+                <path
+                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"
+                />
+              </svg>
+
+              <svg
+                class="bi bi-stop-btn"
+                id="stop_btn"
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="60"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6.5 5A1.5 1.5 0 0 0 5 6.5v3A1.5 1.5 0 0 0 6.5 11h3A1.5 1.5 0 0 0 11 9.5v-3A1.5 1.5 0 0 0 9.5 5z"
+                />
+                <path
+                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"
+                />
+              </svg>
+
+              <div id="volume_control">
+                <label for="volume">VOL</label>
+                <input
+                  type="range"
+                  id="volume"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                />
+                <span id="volume_value">100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="placement_coin">
+          <span id="coin">Insert coin <img src="image/piece.png" /></span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Fait par Cléa , TOP non discutable !</span>
+      <span>(le code est infect)</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
