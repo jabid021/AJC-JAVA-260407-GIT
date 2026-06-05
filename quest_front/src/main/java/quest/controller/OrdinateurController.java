@@ -1,21 +1,11 @@
 package quest.controller;
 
-import java.io.IOException;
-import java.util.List;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import quest.context.Singleton;
-import quest.model.Ordinateur;
-import quest.model.Stagiaire;
 
 
-@WebServlet("/ordinateur")
+//@WebServlet("/ordinateur")
 public class OrdinateurController extends HttpServlet {
-
+/*
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("numero")==null) 
 		{
@@ -126,6 +116,6 @@ public class OrdinateurController extends HttpServlet {
 		
 		response.sendRedirect("ordinateur");
 		
-	}
+	}*/
 
 }

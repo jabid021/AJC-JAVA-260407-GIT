@@ -3,18 +3,34 @@ package quest.controller;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quest.context.Singleton;
 import quest.model.Formateur;
 import quest.model.Genre;
+import quest.service.PersonneService;
 
 
 @WebServlet("/formateur")
 public class FormateurController extends HttpServlet {
+	
+	
+	@Autowired
+	PersonneService personneSrv;
+	
+	public void init(ServletConfig config) throws ServletException
+	{
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) 
 		{
@@ -47,7 +63,7 @@ public class FormateurController extends HttpServlet {
 	
 	public void chercherTous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		List<Formateur> formateurs = Singleton.getInstance().getPersonneSrv().getAllFormateur();
+		List<Formateur> formateurs = personneSrv.getAllFormateur();
 		request.setAttribute("formateur", new Formateur());
 		request.setAttribute("formateurs", formateurs);
 		request.setAttribute("civilites", Genre.values());
@@ -56,10 +72,10 @@ public class FormateurController extends HttpServlet {
 	}
 	public void chercherParId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		List<Formateur> formateurs = Singleton.getInstance().getPersonneSrv().getAllFormateur();
+		List<Formateur> formateurs = personneSrv.getAllFormateur();
 		
 		Integer id =  Integer.parseInt(request.getParameter("id"));
-		Formateur formateur = Singleton.getInstance().getPersonneSrv().getFormateurById(id);
+		Formateur formateur = personneSrv.getFormateurById(id);
 		
 		request.setAttribute("formateur", formateur);
 		request.setAttribute("formateurs", formateurs);
@@ -71,7 +87,7 @@ public class FormateurController extends HttpServlet {
 	public void supprimer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		Integer id =  Integer.parseInt(request.getParameter("id"));
-		Singleton.getInstance().getPersonneSrv().delete(id);
+		personneSrv.delete(id);
 		response.sendRedirect("formateur");
 		
 	}
@@ -85,7 +101,7 @@ public class FormateurController extends HttpServlet {
 		boolean admin = (request.getParameter("admin")==null)?false : true;
 		
 		Formateur formateur = new Formateur(null, login, password, nom, prenom, civ, admin);
-		Singleton.getInstance().getPersonneSrv().insert(formateur);
+		personneSrv.insert(formateur);
 		
 		response.sendRedirect("formateur");
 	}
@@ -100,7 +116,7 @@ public class FormateurController extends HttpServlet {
 		boolean admin = (request.getParameter("admin")==null)?false : true;
 		
 		Formateur formateur = new Formateur(id, login, password, nom, prenom, civ, admin);
-		Singleton.getInstance().getPersonneSrv().update(formateur);
+		personneSrv.update(formateur);
 		
 		response.sendRedirect("formateur");
 	}

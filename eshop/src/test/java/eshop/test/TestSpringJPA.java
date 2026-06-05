@@ -26,8 +26,16 @@ public class TestSpringJPA {
 			System.out.println(p);
 		}
 		
-		Client client = new Client("prenomfdsdf","nom",Genre.nb,LocalDate.now(),"numero","voie","tpt","cp");
-		daoPersonne.save(client);
+		
+		System.out.println(daoProduit.findByPrixLessThan(20));
+		System.out.println(daoProduit.findByPrixBetween(5,1000));
+	
+		System.out.println(daoProduit.findByLibelleContaining("a")); //libelle like %a%
+		System.out.println(daoProduit.findByLibelleLike("_a%")); //libelle like "_a%"
+		
+		
+		//Client client = new Client("prenomfdsdf","nom",Genre.nb,LocalDate.now(),"numero","voie","tpt","cp");
+		//daoPersonne.save(client);
 		
 		for(Client c  : daoPersonne.findAllClient()) 
 		{

@@ -3,18 +3,31 @@ package quest.controller;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quest.context.Singleton;
+import quest.dao.IDAOSalle;
 import quest.model.Salle;
 
 
 @WebServlet("/salle")
 public class SalleController extends HttpServlet {
 
+	@Autowired
+	IDAOSalle daoSalle;
+	
+	public void init(ServletConfig config) throws ServletException
+	{
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
+	
 	//doGet (url) => findAll/findById / delete
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Si on ne recoit pas d'id => findAll sinon => findById ou delete
@@ -61,7 +74,7 @@ public class SalleController extends HttpServlet {
 	
 	public void chercherTous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		List<Salle> salles = Singleton.getInstance().getDaoSalle().findAll();
+		List<Salle> salles = daoSalle.findAll();
 		request.setAttribute("salle", new Salle());
 		request.setAttribute("salles", salles);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/salles.jsp").forward(request, response);
@@ -69,11 +82,11 @@ public class SalleController extends HttpServlet {
 	}
 	public void chercherParId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		List<Salle> salles = Singleton.getInstance().getDaoSalle().findAll();
+		List<Salle> salles = daoSalle.findAll();
 		
 		
 		Integer id =  Integer.parseInt(request.getParameter("id"));
-		Salle salle = Singleton.getInstance().getDaoSalle().findById(id);
+		Salle salle = daoSalle.findById(id).orElse(null);
 
 		request.setAttribute("salle", salle);
 		request.setAttribute("salles", salles);
@@ -84,7 +97,7 @@ public class SalleController extends HttpServlet {
 	public void supprimer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		Integer id =  Integer.parseInt(request.getParameter("id"));
-		Singleton.getInstance().getDaoSalle().deleteById(id);
+		daoSalle.deleteById(id);
 		response.sendRedirect("salle");
 		
 	}
@@ -97,7 +110,7 @@ public class SalleController extends HttpServlet {
 		String ville = request.getParameter("adresse.ville");
 		
 		Salle salle = new Salle(null, nom, numero, voie, ville, cp);
-		Singleton.getInstance().getDaoSalle().save(salle);
+		daoSalle.save(salle);
 		
 		response.sendRedirect("salle");
 	}
@@ -111,7 +124,7 @@ public class SalleController extends HttpServlet {
 		String ville = request.getParameter("adresse.ville");
 		
 		Salle salle = new Salle(id, nom, numero, voie, ville, cp);
-		Singleton.getInstance().getDaoSalle().save(salle);
+		daoSalle.save(salle);
 		
 		response.sendRedirect("salle");
 	}

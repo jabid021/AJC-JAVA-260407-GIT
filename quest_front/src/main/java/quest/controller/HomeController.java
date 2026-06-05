@@ -4,20 +4,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quest.context.Singleton;
 import quest.model.Formateur;
 import quest.model.Personne;
 import quest.model.Stagiaire;
+import quest.service.PersonneService;
 
 
 @WebServlet("/home")
 public class HomeController extends HttpServlet {
 
+	
+	@Autowired
+	PersonneService personneSrv;
+	
+	public void init(ServletConfig config) throws ServletException
+	{
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -58,7 +71,7 @@ public class HomeController extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		
-		Personne connected = Singleton.getInstance().getPersonneSrv().getByLoginAndPassword(login, password);
+		Personne connected = personneSrv.getByLoginAndPassword(login, password);
 		
 		if(connected==null) 
 		{

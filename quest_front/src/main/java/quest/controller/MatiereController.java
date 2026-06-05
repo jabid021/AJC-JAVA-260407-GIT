@@ -1,22 +1,12 @@
 package quest.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import quest.context.Singleton;
-import quest.model.Matiere;
 
 
-@WebServlet("/matiere")
+//@WebServlet("/matiere")
 public class MatiereController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) 
 		{
 			if(request.getParameter("recherche")==null) 
@@ -129,5 +119,5 @@ public class MatiereController extends HttpServlet {
 		response.sendRedirect("matiere");
 		
 	}
-
+*/
 }
