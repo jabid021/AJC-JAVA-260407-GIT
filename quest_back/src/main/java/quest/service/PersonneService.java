@@ -37,17 +37,17 @@ public class PersonneService {
 	}
 	public Personne getById(Integer id)
 	{
-		return daoPersonne.findById(id);
+		return daoPersonne.findById(id).orElse(null);
 	}
 
 	public Stagiaire getStagiaireById(Integer id)
 	{
-		return (Stagiaire) daoPersonne.findById(id);
+		return (Stagiaire) daoPersonne.findById(id).orElse(null);
 	}
 
 	public Formateur getFormateurById(Integer id)
 	{
-		return (Formateur) daoPersonne.findById(id);
+		return (Formateur) daoPersonne.findById(id).orElse(null);
 	}
 
 

@@ -4,15 +4,17 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import quest.model.Matiere;
 
 public class DAOMatiereTest {
+	
+	@Autowired
+	IDAOMatiere daoMatiere;
+	
     @Test
     void shouldLoadMatieres() {
-        // Given
-        DAOMatiere daoMatiere = new DAOMatiere();
-
         // When
         List<Matiere> matieres = daoMatiere.findAll();
 
