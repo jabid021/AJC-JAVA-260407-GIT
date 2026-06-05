@@ -5,12 +5,15 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import quest.config.AppConfig;
 import quest.model.Matiere;
 
+@SpringJUnitConfig(AppConfig.class)
 public class DAOMatiereTest {
 	
-	/*@Autowired
+	@Autowired
 	IDAOMatiere daoMatiere;
 	
     @Test
@@ -24,5 +27,5 @@ public class DAOMatiereTest {
         Assertions.assertNotEquals(0, matieres.get(0).getId());
         Assertions.assertNotNull(matieres.get(0).getLibelle());
         Assertions.assertFalse(matieres.get(0).getLibelle().isEmpty());
-    }*/
+    }
 }

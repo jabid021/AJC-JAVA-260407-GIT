@@ -1,12 +1,35 @@
 package quest.controller;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import quest.model.Matiere;
+import quest.service.MatiereService;
 
 
-//@WebServlet("/matiere")
+@WebServlet("/matiere")
 public class MatiereController extends HttpServlet {
 
-	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Autowired
+	MatiereService matiereSrv;
+	
+	public void init(ServletConfig config) throws ServletException
+	{
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) 
 		{
 			if(request.getParameter("recherche")==null) 
@@ -49,7 +72,7 @@ public class MatiereController extends HttpServlet {
 	{
 		String recherche = request.getParameter("recherche");
 		
-		List<Matiere> matieres = Singleton.getInstance().getDaoMatiere().findByLibelleContaining(recherche);
+		List<Matiere> matieres = matiereSrv.getByLibelleContaining(recherche);
 		
 		if(matieres.isEmpty()) 
 		{
@@ -72,7 +95,7 @@ public class MatiereController extends HttpServlet {
 	
 	public void chercherTous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		List<Matiere> matieres = Singleton.getInstance().getMatiereSrv().getAll();
+		List<Matiere> matieres = matiereSrv.getAll();
 		request.setAttribute("matiere", new Matiere());
 		request.setAttribute("matieres", matieres);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/matieres.jsp").forward(request, response);
@@ -80,11 +103,11 @@ public class MatiereController extends HttpServlet {
 	}
 	public void chercherParId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		List<Matiere> matieres = Singleton.getInstance().getMatiereSrv().getAll();
+		List<Matiere> matieres = matiereSrv.getAll();
 		
 		
 		Integer id =  Integer.parseInt(request.getParameter("id"));
-		Matiere matiere = Singleton.getInstance().getMatiereSrv().getById(id);
+		Matiere matiere = matiereSrv.getById(id);
 
 		request.setAttribute("matiere", matiere);
 		request.setAttribute("matieres", matieres);
@@ -95,7 +118,7 @@ public class MatiereController extends HttpServlet {
 	public void supprimer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		Integer id =  Integer.parseInt(request.getParameter("id"));
-		Singleton.getInstance().getMatiereSrv().delete(id);
+		matiereSrv.delete(id);
 		response.sendRedirect("matiere");
 		
 	}
@@ -104,7 +127,7 @@ public class MatiereController extends HttpServlet {
 		String libelle = request.getParameter("libelle");
 		
 		Matiere matiere = new Matiere(null, libelle);
-		Singleton.getInstance().getMatiereSrv().insert(matiere);
+		matiereSrv.insert(matiere);
 		
 		response.sendRedirect("matiere");
 	}
@@ -114,10 +137,9 @@ public class MatiereController extends HttpServlet {
 		String libelle = request.getParameter("libelle");
 		
 		Matiere matiere = new Matiere(id, libelle);
-		Singleton.getInstance().getMatiereSrv().update(matiere);
+		matiereSrv.update(matiere);
 		
 		response.sendRedirect("matiere");
 		
 	}
-*/
 }

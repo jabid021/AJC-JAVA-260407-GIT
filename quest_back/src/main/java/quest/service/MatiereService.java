@@ -27,6 +27,12 @@ public class MatiereService {
 		else return null;
 	}
 	
+	
+	public List<Matiere> getByLibelleContaining(String recherche)
+	{
+		return daoMatiere.findByLibelleContaining(recherche);
+	}
+	
 	public void insert(Matiere matiere) 
 	{
 		daoMatiere.save(matiere);
