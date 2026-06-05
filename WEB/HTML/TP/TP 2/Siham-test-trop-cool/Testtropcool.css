@@ -1,0 +1,230 @@
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+
+.scene, .a3d { 
+  display: grid;
+  height: 120%;
+}
+
+.scene {
+	overflow: hidden;	
+    /* for 3D look; smaller = more extreme effect */
+	perspective: 35em;
+	mask: /* lateral fade */
+		linear-gradient(90deg, #0000, red 20% 80%, #0000);
+  height: 90%;
+}
+/*
+.scroll-custom {
+  overflow: auto;
+  scrollbar-color: #00ff66 #222;
+  scrollbar-width: thin;
+}*/
+
+.a3d {
+	place-self: center /* middle align */;
+	/* don't flatten 3D transformed children 
+	 * of this parent having its own 3D transform */
+	transform-style: preserve-3d;
+	animation: ry 32s linear infinite;
+}
+/* simplest y axis rotation */
+
+
+@keyframes ry { to { rotate: y 1turn } }
+
+.card {
+	/* base card width, you may change this */
+	--w: 50em;
+	/* compute base angle corresponding to a card */
+	--ba: 1turn/var(--n); /* in the future: sibling-count() */
+	grid-area: 1/ 1 /* stack in same one grid cell */;
+	width: var(--w);
+	aspect-ratio:4/5;
+	object-fit: cover; 
+	border-radius: 1.5em;
+	/* don't want to see back of cards in front of screen plane */
+	backface-visibility: hidden;
+	/* need to use a transform chain here, cannot use separate 
+	 * rotate & translate properties because they'd be applied 
+	 * in wrong order (translate, then rotate) for what we need */
+	transform: 
+		/* rotate around y axis; in the future: sibling-index() */
+		rotatey(calc(var(--i)*var(--ba)))
+		/* only after that translate along z axis with minus */
+		translatez(calc(-1*(.5*var(--w) + 2em)/tan(.5*var(--ba))))
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.a3d { animation-duration: 128s }
+}
+
+/* ====== General page prettifying and layout ====== */
+html, body { display: grid; }
+
+html { height: 100%; }
+
+body { background: #fff3ed; }
+
+/* ====================================== Scroll down ============================= */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+header {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fjalla One', sans-serif;
+    color : white;
+     font-size: 5rem;
+    -webkit-text-stroke: 1px #00ffff;
+    text-shadow:
+        0 0 10px #0051ff,
+        0 0 20px #9d00ffc5,
+        0 0 40px #0022ff;
+}
+
+
+
+#video-fond {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+#video-fond video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main
+  {
+  display:flex;
+	flex-direction: column;
+  font-family: 'Fjalla One', sans-serif;
+	
+  }
+
+main section:nth-of-type(1) {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction: column;
+  /*background: linear-gradient(...)*/
+  background: url(asset/Image/patrick-shaun-eAaPL2j8ygw-unsplash.jpg) center center / cover no-repeat;
+}
+
+
+main section:nth-of-type(2) {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction: column;
+  
+  font-family: 'Fjalla One', sans-serif;
+  color : white;
+    font-size: 5rem;
+    -webkit-text-stroke: 1px #00a2ff;
+    text-shadow:
+        0 0 10px #0051ff,
+        0 0 20px #9d00ffc5,
+        0 0 40px #0022ff;
+
+  
+}
+
+
+#video-fond2 {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+#video-fond2 video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+footer
+{
+	position: relative;
+	min-height: 100vh;
+  font-family: 'Fjalla One', sans-serif;
+    	
+	display:flex;
+    justify-content:center;
+    align-items:center;
+	background: url(asset/Image/nick-iliasov-i0fCUofGjV8-unsplash.jpg) center center
+}
+.demo a {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #391515;
+  font : normal 400 20px/1 'Josefin Sans', sans-serif;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: opacity .3s;
+}
+.demo a:hover {
+  opacity: .5;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+/* ====================================== Glass effect at footer =============================*/
+
+footer .glass {
+border-radius: 8px;
+backdrop-filter: blur(20px);
+background-color: rgba(255,255,255,0.5);
+box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+border: 1px solid rgba(255,255,255,0.3);
+
+width : 300px;
+height: 120px;   
+padding: 20px;     /* espace intérieur */
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+/* ====================================== Titre animé =============================*/
+
+
+
+
+
