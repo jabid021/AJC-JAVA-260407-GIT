@@ -1,38 +1,144 @@
 <style>
 
   body
-  {
-    background-image : url("assets/img/water.png");
-    background-size:100% 100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-  }
-  #grass
-  {
-    display:none;
-    position:relative;
-    width:700px;
-    height:700px;
-    background-image : url("assets/img/Grass.png")
-  }
+   {
+     background-image : url("assets/img/water.png");
+     background-size:100% 100%;
+     display:flex;
+     justify-content:center;
+     align-items:center;
+     font-family: 'Courier New', Courier, monospace;
+   }
+   #grass
+   {
+     display:none;
+     position:relative;
+     width:600px;
+     height:600px;
+     background-image : url("assets/img/Grass.png");
 
-  #pikachu
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-evenly;
+   }
+
+
+  #naruto
   {
     position:absolute;
     top:0;
     left:0;
+    width:50px;
+    height:50px;
+    z-index: 0;
+  }
+
+  #naruto img {
+  width: 100%;
+  height: 100%;
+}
+
+  #sasuke {
+    width:50px;
+    height:50px;
+    position: absolute;
+  }
+
+  #sasuke img {
+  width: 100%;
+  height: 100%;
+}
+  .poof {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .imgPoof {
+    width: 100%;
+    height: 100%;
+    scale: 0;
+  }
+
+  .imgPoof.animating {
+    animation: poofAnim 1.5s linear;
+  }
+
+  @keyframes poofAnim {
+    from {
+      opacity: 0;
+      scale: 0;
+    }
+    
+    10% {
+      opacity: 1;
+      scale: 1;
+    }
+
+    to {
+      opacity: 0;
+      scale: 1;
+    }
+  }
+
+  #narutoVictory, #victoryText, #replayButton {
+    border: 4px solid #f0a000;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    scale: 0;
+    transition: scale 0.1s ease-in;
+    z-index: 2;
+    border-radius: 10px;
+  }
+
+  #narutoVictory {
+    width: 70%;
+    height: 50%;
+  }
+  
+  #narutoVictory.show , #victoryText.show, #replayButton.show {
+    scale: 1;
+  }
+  
+  #victoryText, #replayButton {
+    background: rgba(255,255,100,0.75);
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  
+  #victoryText {
+    padding: 16px 24px;
+    font-size: 2rem;
+  }
+
+  #replayButton {
+    font-family: inherit;
+    padding: 12px 16px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  #replayButton:active {
+    translate: 1px 2px;
   }
 
 </style>
 
 
-<script defer src="pikachu.js" charset="utf-8"></script>
-  <audio id="themePokemon" src="assets/audio/theme.mp3"></audio>
+<script defer src="naruto.js" charset="utf-8"></script>
+<audio id="ost"></audio>
+<audio id="poofSFX" src="assets/audio/jutsu.mp3"></audio>
+<audio id="sasukeeee" src="assets/audio/sasukeeee.mp3"></audio>
 <div id="formStart">
-  <input id="inputName" type="text" placeholder="pikachu"><input id="btnStart" disabled type="button" value="Start !">
+  <input id="inputName" type="text" placeholder="naruto"><input id="btnStart" disabled type="button" value="Start !">
 </div>
 
 <div id="grass">
-  <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png"></div>
+  <img id="narutoVictory" src="assets/img/narutoVictory_.jpg">
+  <div id="victoryText"></div>
+  <button id="replayButton">Rejouer</button>
+  <div id="poof1" class="poof"><img id="imgPoof1" class="imgPoof" src="assets/img/poof.png"></div>
+  <div id="poof2" class="poof"><img id="imgPoof2" class="imgPoof" src="assets/img/poof.png"></div>
+  <div id="naruto"><img id="imgNaruto" src="assets/img/narutoDown.png"></div>
+  <div id="sasuke"><img id="imgSasuke" src="assets/img/sasukeDown.png"></div>
 </div>
