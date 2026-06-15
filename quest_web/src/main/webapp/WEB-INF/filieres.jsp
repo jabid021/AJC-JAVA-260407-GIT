@@ -36,8 +36,8 @@
 				</c:choose>
 				</td>
 				<td>
-					<a href="filiere?id=${filiere.id}" class="btn btn-warning">Modifier</a>
-					<a href="filiere?id=${filiere.id}&delete" class="btn btn-danger">Supprimer</a>
+					<a href="filiere/${filiere.id}" class="btn btn-warning">Modifier</a>
+					<a href="filiere/delete/${filiere.id}" class="btn btn-danger">Supprimer</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -48,11 +48,13 @@
 	<c:if test="${filiere.id==null}">
 		<div class="message-form">Formulaire d'ajout Filiere</div>
 		<c:set var="buttonText" value="Ajouter"></c:set>
+		<c:set var="urlForm" value="filiere"/>
 	</c:if>
 	
 	<c:if test="${filiere.id!=null}">
 		<div class="message-form">Formulaire d'update Filiere</div>
 		<c:set var="buttonText" value="Modifier"></c:set>
+		<c:set var="urlForm" value="filiere/${filiere.id}"/>
 	</c:if>
 	
 	

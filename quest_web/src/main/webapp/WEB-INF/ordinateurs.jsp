@@ -35,8 +35,8 @@
 				</c:choose>
 				</td>
 				<td>
-					<a href="ordinateur?numero=${ordinateur.numero}" class="btn btn-warning">Modifier</a>
-					<a href="ordinateur?numero=${ordinateur.numero}&delete" class="btn btn-danger">Supprimer</a>
+					<a href="ordinateur/${ordinateur.numero}" class="btn btn-warning">Modifier</a>
+					<a href="ordinateur/delete/${ordinateur.numero}" class="btn btn-danger">Supprimer</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -47,16 +47,18 @@
 	<c:if test="${ordinateur.numero==null}">
 		<div class="message-form">Formulaire d'ajout Ordinateur</div>
 		<c:set var="buttonText" value="Ajouter"></c:set>
+		<c:set var="urlForm" value="ordinateur"/>
 	</c:if>
 	
 	<c:if test="${ordinateur.numero!=null}">
 		<div class="message-form">Formulaire d'update Ordinateur</div>
 		<c:set var="buttonText" value="Modifier"></c:set>
+		<c:set var="urlForm" value="ordinateur/${ordinateur.numero}"/>
 	</c:if>
 	
 	
 	
-	<form action="ordinateur" method="POST" class="form-clean">
+	<form action="${urlForm}" method="POST" class="form-clean">
 		
 		<input type="hidden" name="numero" value="${ordinateur.numero}">
 		<input type="hidden" name="version" value="${ordinateur.version}">
