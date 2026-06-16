@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.validation.Valid;
 import quest.dao.IDAOOrdinateur;
 import quest.model.Ordinateur;
 import quest.model.Stagiaire;
@@ -64,8 +66,19 @@ public class OrdinateurController  {
 	}
 	
 	@PostMapping
-	public String ajouter(@ModelAttribute Ordinateur ordinateur)  
+	public String ajouter(@Valid @ModelAttribute Ordinateur ordinateur,BindingResult result,Model model)  
 	{
+		
+		if(result.hasErrors()) 
+		{
+			List<Ordinateur> ordinateurs = daoOrdinateur.findAll();
+			List<Stagiaire> stagiaireDisponibles = personneSrv.getAllStagiaireDisponibles();
+			model.addAttribute("ordinateur", ordinateur);
+			model.addAttribute("ordinateurs", ordinateurs);
+			model.addAttribute("utilisateurs", stagiaireDisponibles);
+			return "ordinateurs.jsp";
+		}
+		
 		daoOrdinateur.save(ordinateur);
 		if(ordinateur.getUtilisateur().getId()==null) 
 		{
@@ -75,8 +88,19 @@ public class OrdinateurController  {
 	}
 	
 	@PostMapping("/{numero}")
-	public String modifier(@PathVariable Integer numero,@ModelAttribute Ordinateur ordinateur)  
+	public String modifier(@PathVariable Integer numero,@Valid @ModelAttribute Ordinateur ordinateur,BindingResult result,Model model)  
 	{
+		
+		if(result.hasErrors()) 
+		{
+			List<Ordinateur> ordinateurs = daoOrdinateur.findAll();
+			List<Stagiaire> stagiaireDisponibles = personneSrv.getAllStagiaireDisponibles();
+			model.addAttribute("ordinateur", ordinateur);
+			model.addAttribute("ordinateurs", ordinateurs);
+			model.addAttribute("utilisateurs", stagiaireDisponibles);
+			return "ordinateurs.jsp";
+		}
+		
 		ordinateur.setNumero(numero);
 		if(ordinateur.getUtilisateur().getId()==null) 
 		{

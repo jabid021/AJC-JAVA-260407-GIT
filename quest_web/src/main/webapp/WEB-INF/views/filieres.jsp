@@ -59,27 +59,19 @@
 	
 	
 	
-	<form action="filiere" method="POST" class="form-clean">
+	<form:form action="filiere" method="POST" modelAttribute="filiere" class="form-clean">
 		
-		<input type="hidden" name="id" value="${filiere.id}">
+		<form:hidden path="id"/>
 		
-		<label for="libelle">Libelle</label><input id="libelle" required="required" type="text" name="libelle" placeholder="Saisir libelle" value="${filiere.libelle}">
-		<label for="debut">Date Debut</label><input id="debut" required="required" type="date" name="debut" value="${filiere.debut}">
-		<label for="fin">Date Fin</label><input id="fin" required="required" type="date" name="fin" value="${filiere.fin}">
-		<label for="salle.id">Salle</label>
-		<select id="salle.id" name="salle.id">
-			<option value="">Choisir une salle</option>
-			<c:forEach var="salle" items="${salles}" >
-				<c:choose>
-					<c:when test="${salle.id==filiere.salle.id}">
-						<option selected value="${salle.id}">${salle.id} - ${salle.nom}</option>
-					</c:when>
-					<c:otherwise>
-						<option value="${salle.id}">${salle.id} - ${salle.nom}</option>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</select>
+		<form:label path="libelle">Libelle</form:label><form:input required="required" type="text" path="libelle" placeholder="Saisir libelle" />
+		<form:label path="debut">Date Debut</form:label><form:input required="required" type="date" path="debut" />
+		<form:label path="fin">Date Fin</form:label><form:input required="required" type="date" path="fin" />
+		<form:label path="salle.id">Salle</form:label>
+		
+		<form:select path="salle.id">
+			<form:option value="">Choisir une salle</form:option>
+			<form:options items="${salles}" itemValue="id" itemLabel="nom"/>
+		</form:select>
 		
 		
 		<div class="form-actions">
@@ -91,7 +83,7 @@
 			</c:if>
 		</div>
 	
-	</form>
+	</form:form>
 	
 	<br><br>
 	<a class="btn btn-info" href="home">Retour</a>

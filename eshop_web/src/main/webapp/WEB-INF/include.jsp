@@ -10,9 +10,3 @@
 
 <a href="home"><img src="assets/image/AJC_Ingenierie.png"></a>
 
-
-<c:if test="${connected!=null}">
-	<a class="btn btn-success btn-deconnecter" href="home?logout">Se deconnecter</a>
-</c:if>
-
-

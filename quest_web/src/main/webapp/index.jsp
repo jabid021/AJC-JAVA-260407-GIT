@@ -20,7 +20,7 @@
 	<input type="submit" value="Se connecter">
 	
 	<c:if test="${param.error==''}">
-		<div style="color:red">Identifiants invalides</div>
+		<div class="error-form">Identifiants invalides</div>
 	</c:if>
 </form>
 

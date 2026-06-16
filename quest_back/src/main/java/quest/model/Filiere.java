@@ -3,6 +3,8 @@ package quest.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,10 @@ public class Filiere {
 	@Column(length = 35,nullable = false)
 	private String libelle;  
 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate debut; 
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fin;
 	
 	@ManyToOne
