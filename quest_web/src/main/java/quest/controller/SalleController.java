@@ -25,7 +25,7 @@ public class SalleController {
 	@GetMapping
 	public String chercherTous(Model model)
 	{
-		List<Salle> salles = daoSalle.findAll();
+		List<Salle> salles = daoSalle.findAllWithHistorique();
 		model.addAttribute("salle", new Salle());
 		model.addAttribute("salles", salles);
 		return ("salles.jsp");	
@@ -35,7 +35,7 @@ public class SalleController {
 	@GetMapping("/{id}")
 	public String chercherParId(@PathVariable Integer id,Model model)
 	{
-		List<Salle> salles = daoSalle.findAll();
+		List<Salle> salles = daoSalle.findAllWithHistorique();
 		Salle salle = daoSalle.findById(id).orElse(null);
 
 		model.addAttribute("salle", salle);

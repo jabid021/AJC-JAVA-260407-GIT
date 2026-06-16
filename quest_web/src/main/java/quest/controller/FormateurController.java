@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
 import quest.model.Formateur;
 import quest.model.Genre;
+import quest.model.Personne;
 import quest.service.PersonneService;
 
 @Controller
@@ -64,5 +67,20 @@ public class FormateurController{
 		formateur.setId(id);	
 		personneSrv.update(formateur);
 		return "redirect:/formateur";
+	}
+	
+	
+	@PostMapping("/updatePartiel")
+	public String modifierPassword(@RequestParam String password, @RequestParam String passwordConfirm,HttpSession session){
+		if(password.equals(passwordConfirm)) 
+		{
+			Integer id = ((Personne) session.getAttribute("connected")).getId();
+			Formateur formateur = personneSrv.getFormateurById(id);
+			formateur.setPassword(password);
+			personneSrv.update(formateur);
+		}
+		
+		
+		return "redirect:/home";
 	}
 }

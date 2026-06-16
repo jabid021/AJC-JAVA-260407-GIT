@@ -58,27 +58,23 @@
 	
 	
 	
-	<form action="${urlForm}" method="POST" class="form-clean">
+	<form:form action="${urlForm}" method="POST" class="form-clean" modelAttribute="ordinateur">
 		
-		<input type="hidden" name="numero" value="${ordinateur.numero}">
-		<input type="hidden" name="version" value="${ordinateur.version}">
+		<form:hidden path="numero"/>
+		<form:hidden path="version"/>
 		
-		<input required="required" type="text" name="marque" placeholder="Saisir marque" value="${ordinateur.marque}">
-		<input required="required" type="number" name="ram" placeholder="Saisir ram" value="${ordinateur.ram}" min="0" max="64">
+		<form:input required="required" type="text" path="marque" placeholder="Saisir marque" />
+		<form:errors path="marque"><span class="error-form">Une error custom</span></form:errors>
+		<form:errors class="error-form" path="marque"/>
 		
-		<select name="utilisateur.id">
-			<option value="">Choisir un utilisateur</option>
-			<c:forEach var="stagiaire" items="${utilisateurs}" >
-				<c:choose>
-					<c:when test="${stagiaire.id==ordinateur.utilisateur.id}">
-						<option selected value="${stagiaire.id}">${stagiaire.id} - ${stagiaire.prenom} ${stagiaire.nom}</option>
-					</c:when>
-					<c:otherwise>
-						<option value="${stagiaire.id}">${stagiaire.id} - ${stagiaire.prenom} ${stagiaire.nom}</option>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</select>
+		
+		<form:input required="required" type="number" path="ram" placeholder="Saisir ram"/>
+		<form:errors cssClass="error-form" path="ram"/>
+		
+		<form:select path="utilisateur.id">
+			<form:option value="">Choisir un utilisateur</form:option>
+			<form:options items="${utilisateurs}" itemValue="id" itemLabel="infos"/>
+		</form:select>
 		
 		
 		<div class="form-actions">
@@ -90,7 +86,7 @@
 			</c:if>
 		</div>
 	
-	</form>
+	</form:form>
 	
 	<br><br>
 	<a class="btn btn-info" href="home">Retour</a>

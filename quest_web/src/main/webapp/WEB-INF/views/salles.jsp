@@ -37,7 +37,11 @@
 				<td>${salle.adresse.numero} ${salle.adresse.voie}, ${salle.adresse.cp} ${salle.adresse.ville}</td>
 				<td>
 					<a href="salle/${salle.id}" class="btn btn-warning">Modifier</a>
-					<a href="salle/delete/${salle.id}" class="btn btn-danger">Supprimer</a>
+					
+					<c:choose>
+						<c:when test="${salle.historique.isEmpty()}"><a href="salle/delete/${salle.id}" class="btn btn-danger">Supprimer</a></c:when>
+						<c:otherwise><input type="button" disabled class="btn btn-danger" value="Supprimer"></c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 		</c:forEach>
@@ -59,14 +63,15 @@
 	
 	
 	
-	<form action="${urlForm}" method="POST" class="form-clean">
+	<form:form action="${urlForm}" method="POST" class="form-clean" modelAttribute="salle">
 		
-	<input type="hidden" name="id" value="${salle.id}">
-	<input required="required" type="text" name="nom" placeholder="Saisir nom" value="${salle.nom}">
-	<input required="required" type="text" name="adresse.numero" placeholder="Saisir numero" value="${salle.adresse.numero}">
-	<input required="required" type="text" name="adresse.voie" placeholder="Saisir voie" value="${salle.adresse.voie}">
-	<input required="required" type="text" name="adresse.cp" placeholder="Saisir cp" value="${salle.adresse.cp}">
-	<input required="required" type="text" name="adresse.ville" placeholder="Saisir ville" value="${salle.adresse.ville}">
+	<form:hidden path="id"/>
+	<form:label path="nom">NOM</form:label>
+	<form:input required="required" type="text" path="nom" placeholder="Saisir nom"/>
+	<form:input required="required" type="text" path="adresse.numero" placeholder="Saisir numero"/>
+	<form:input required="required" type="text" path="adresse.voie" placeholder="Saisir voie"/>
+	<form:input required="required" type="text" path="adresse.cp" placeholder="Saisir cp"/>
+	<form:input required="required" type="text" path="adresse.ville" placeholder="Saisir ville"/>
 	
 	<div class="form-actions">
 		<input type="submit" class="btn btn-success" value="${buttonText}">
@@ -77,7 +82,7 @@
 		</c:if>
 	</div>
 	
-	</form>
+	</form:form>
 	
 	<br><br>
 	<a class="btn btn-info" href="home">Retour</a>

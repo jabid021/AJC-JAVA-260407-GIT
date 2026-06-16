@@ -46,7 +46,6 @@
 				</td>
 			</tr>
 		</c:forEach>
-		
 	</table>
 	
 	
@@ -62,26 +61,22 @@
 		<c:set var="urlForm" value="formateur/${formateur.id}"/>
 	</c:if>
 														
-	<form action="${urlForm}" method="POST" class="form-clean">
+	<form:form action="${urlForm}" method="POST" modelAttribute="formateur" class="form-clean">
 		
-	<input type="hidden" name="id" value="${formateur.id}">
-	<input required="required" type="text" name="login" placeholder="Saisir login" value="${formateur.login}">
-	<input required="required" type="password" name="password" placeholder="Saisir password" value="${formateur.password}">
-	<input required="required" type="text" name="nom" placeholder="Saisir nom" value="${formateur.nom}">
-	<input required="required" type="text" name="prenom" placeholder="Saisir prenom" value="${formateur.prenom}">
+	<form:hidden path="id" />
+	<form:input required="required" type="text" path="login" placeholder="Saisir login" />
+	<form:input required="required" path="password" placeholder="Saisir password" />
+	<form:input required="required" type="text" path="nom" placeholder="Saisir nom" />
+	<form:input required="required" type="text" path="prenom" placeholder="Saisir prenom" />
 	
-	<select required="required" name="civilite">
-		<option value="">Choisir une civilite</option>
-		<c:forEach items="${civilites}" var="civ">
-			<option <c:if test="${civ==formateur.civilite}">selected</c:if>>${civ}</option>
-		</c:forEach>
-	</select>
+	<form:select required="required" path="civilite">
+		<form:option value="">Choisir une civilite</form:option>
+		<form:options items="${civilites}"/>
+	</form:select>
+	
 	<div class="choice-group">
 		<label for="admin">Compte admin ?</label>
-		<c:choose>
-			<c:when test="${formateur.admin}"><input checked="checked" name="admin" type="checkbox"></c:when>
-			<c:otherwise><input name="admin" type="checkbox"></c:otherwise>
-		</c:choose>
+		<form:checkbox path="admin"/>
 	</div>
 	
 	<div class="form-actions">
@@ -93,7 +88,7 @@
 		</c:if>
 	</div>
 	
-	</form>
+	</form:form>
 	
 	<br><br>
 	<a class="btn btn-info" href="home">Retour</a>

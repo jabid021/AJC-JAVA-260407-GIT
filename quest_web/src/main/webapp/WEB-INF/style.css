@@ -147,3 +147,7 @@ form.form-clean .form-actions {
 	right :45px;
 }
 
+.error-form
+{
+	color:red;
+}
