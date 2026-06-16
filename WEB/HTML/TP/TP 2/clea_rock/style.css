@@ -1,3 +1,4 @@
+
 body {
   position: relative;
   background-color: #0d0010;
@@ -96,7 +97,7 @@ animation: clignote 1500ms step-end infinite;
   position: absolute;
   width: 300px;
   top: 50%;
-  left: 80%;
+  left: 75%;
   rotate:-10deg;
   animation: bouger 2s ease-in-out infinite;
 }
@@ -123,8 +124,8 @@ animation: clignote 1500ms step-end infinite;
 #guitar {
   position: absolute;
   width: 200px;
-  top: 1900px;
-  left: 250px;
+  top: 70%;
+  left: 10%;
   animation : bouger 3s ease-in-out infinite;
 }
 
