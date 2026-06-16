@@ -29,28 +29,28 @@ public class HomeController {
 	{
 		if(session.getAttribute("connected")==null) 
 		{
-			return "/index.jsp";
+			return "forward:/index.jsp";
 		}
 		else 
 		{
 			Personne connected = (Personne) session.getAttribute("connected");
 			if(connected instanceof Stagiaire) 
 			{
-				return "/espaceStagiaire.jsp";
+				return "forward:/espaceStagiaire.jsp";
 			}
 			else if(connected instanceof Formateur) 
 			{
 				if(((Formateur) connected).isAdmin()) 
 				{
-					return "/espaceAdmin.jsp";	
+					return "forward:/espaceAdmin.jsp";	
 				}
 				else 
 				{
-					return "/espaceFormateur.jsp";
+					return "forward:/espaceFormateur.jsp";
 				}
 			}
 		}
-		return "/index.jsp";
+		return "forward:/index.jsp";
 	}
 
 	@RequestMapping(value="/home",method = RequestMethod.POST)

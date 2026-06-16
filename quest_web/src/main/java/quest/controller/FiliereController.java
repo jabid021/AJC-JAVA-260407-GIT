@@ -35,7 +35,7 @@ public class FiliereController {
 		model.addAttribute("filiere", new Filiere());
 		model.addAttribute("filieres", filieres);
 		model.addAttribute("salles",salles);
-		return ("/WEB-INF/filieres.jsp");	
+		return ("filieres.jsp");	
 	}
 	
 	
@@ -48,7 +48,7 @@ public class FiliereController {
 		model.addAttribute("filiere", filiere);
 		model.addAttribute("filieres", filieres);
 		model.addAttribute("salles",salles);
-		return "/WEB-INF/filieres.jsp";
+		return "filieres.jsp";
 		
 	}
 	

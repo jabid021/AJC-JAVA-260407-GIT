@@ -28,7 +28,7 @@ public class SalleController {
 		List<Salle> salles = daoSalle.findAll();
 		model.addAttribute("salle", new Salle());
 		model.addAttribute("salles", salles);
-		return ("/WEB-INF/salles.jsp");	
+		return ("salles.jsp");	
 	}
 	
 	
@@ -41,7 +41,7 @@ public class SalleController {
 		model.addAttribute("salle", salle);
 		model.addAttribute("salles", salles);
 		
-		return "/WEB-INF/salles.jsp";
+		return "salles.jsp";
 		
 	}
 	

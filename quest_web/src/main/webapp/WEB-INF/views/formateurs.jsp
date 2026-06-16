@@ -41,8 +41,8 @@
 				<td>${formateur.civilite}</td>
 				<td>Est admin : ${formateur.admin}</td>
 				<td>
-					<a href="formateur?id=${formateur.id}" class="btn btn-warning">Modifier</a>
-					<a href="formateur?id=${formateur.id}&delete" class="btn btn-danger">Supprimer</a>
+					<a href="formateur/${formateur.id}" class="btn btn-warning">Modifier</a>
+					<a href="formateur/delete/${formateur.id}" class="btn btn-danger">Supprimer</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -53,14 +53,16 @@
 	<c:if test="${formateur.id==null}">
 		<div class="message-form">Formulaire d'ajout Formateur</div>
 		<c:set var="buttonText" value="Ajouter"></c:set>
+		<c:set var="urlForm" value="formateur"/>
 	</c:if>
 	
 	<c:if test="${formateur.id!=null}">
 		<div class="message-form">Formulaire d'update Formateur</div>
 		<c:set var="buttonText" value="Modifier"></c:set>
+		<c:set var="urlForm" value="formateur/${formateur.id}"/>
 	</c:if>
 														
-	<form action="formateur" method="POST" class="form-clean">
+	<form action="${urlForm}" method="POST" class="form-clean">
 		
 	<input type="hidden" name="id" value="${formateur.id}">
 	<input required="required" type="text" name="login" placeholder="Saisir login" value="${formateur.login}">

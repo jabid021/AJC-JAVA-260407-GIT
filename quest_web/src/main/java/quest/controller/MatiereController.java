@@ -53,7 +53,7 @@ public class MatiereController{
 		List<Matiere> matieres = matiereSrv.getAll();
 		model.addAttribute("matiere", new Matiere());
 		model.addAttribute("matieres", matieres);
-		return "/WEB-INF/matieres.jsp";	
+		return "matieres.jsp";	
 	}
 	
 	@GetMapping("/{id}")
@@ -63,7 +63,7 @@ public class MatiereController{
 		Matiere matiere = matiereSrv.getById(id);
 		model.addAttribute("matiere", matiere);
 		model.addAttribute("matieres", matieres);
-		return "/WEB-INF/matieres.jsp";
+		return "matieres.jsp";
 	}
 	
 	@GetMapping("/delete/{id}")

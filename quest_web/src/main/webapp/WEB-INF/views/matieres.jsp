@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
+ 
  <%@ include file="/WEB-INF/securityAdmin.jsp" %>   
 <!DOCTYPE html>
 <html>
@@ -52,13 +53,16 @@
 		<c:set var="urlForm" value="matiere/${matiere.id}"/>
 	</c:if>
 	
-	
-	
-	<form action="${urlForm}" method="POST" class="form-clean">
+	<form:form action="${urlForm}" method="POST" class="form-clean" modelAttribute="matiere" >
 		
+		<!--  
 		<input type="hidden" name="id" value="${matiere.id}">
-		
 		<input required="required" type="text" name="libelle" placeholder="Saisir libelle" value="${matiere.libelle}">
+		
+		
+		-->
+		<form:hidden path="id"/>
+		<form:input required="required" type="text" path="libelle" placeholder="Saisir libelle"/>
 		
 		<div class="form-actions">
 			<input type="submit" class="btn btn-success" value="${buttonText}">
@@ -69,8 +73,10 @@
 			</c:if>
 		</div>
 	
-	</form>
+	</form:form>
 	
+	
+
 	<br><br>
 	<a class="btn btn-info" href="home">Retour</a>
 </content>

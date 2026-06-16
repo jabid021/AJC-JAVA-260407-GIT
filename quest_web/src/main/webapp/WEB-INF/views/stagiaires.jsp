@@ -41,8 +41,8 @@
 				<td>${stagiaire.adresse.numero} ${stagiaire.adresse.voie}, ${stagiaire.adresse.cp} ${stagiaire.adresse.ville}</td>
 				<td>${stagiaire.filiere.infosFiliere}</td>
 				<td>
-					<a href="stagiaire?id=${stagiaire.id}" class="btn btn-warning">Modifier</a>
-					<a href="stagiaire?id=${stagiaire.id}&delete" class="btn btn-danger">Supprimer</a>
+					<a href="stagiaire/${stagiaire.id}" class="btn btn-warning">Modifier</a>
+					<a href="stagiaire/delete/${stagiaire.id}" class="btn btn-danger">Supprimer</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -53,24 +53,24 @@
 	<c:if test="${stagiaire.id==null}">
 		<div class="message-form">Formulaire d'ajout Stagiaire</div>
 		<c:set var="buttonText" value="Ajouter"></c:set>
+		<c:set var="urlForm" value="stagiaire"/>
 	</c:if>
 	
 	<c:if test="${stagiaire.id!=null}">
 		<div class="message-form">Formulaire d'update Stagiaire</div>
 		<c:set var="buttonText" value="Modifier"></c:set>
+		<c:set var="urlForm" value="stagiaire/${stagiaire.id}"/>
 	</c:if>
 														
-	<form action="stagiaire" method="POST" class="form-clean">
+	<form:form action="${urlForm}" method="POST" class="form-clean" modelAttribute="stagiaire">
 		
-	<input type="hidden" name="id" value="${stagiaire.id}">
-	<input required="required" type="text" name="login" placeholder="Saisir login" value="${stagiaire.login}">
-	<input required="required" type="password" name="password" placeholder="Saisir password" value="${stagiaire.password}">
-	<input required="required" type="text" name="nom" placeholder="Saisir nom" value="${stagiaire.nom}">
-	<input required="required" type="text" name="prenom" placeholder="Saisir prenom" value="${stagiaire.prenom}">
-	<div class="choice-group">
-		
-		<div class="choice-group">
-			<c:forEach items="${civilites}" var="civ">
+	<form:hidden path="id"/>
+	
+	<form:input required="required" type="text" path="login" placeholder="Saisir login" />
+	<form:password required="required" path="password" placeholder="Saisir password"/>
+	<form:input required="required" type="text" path="nom" placeholder="Saisir nom"/>
+	<form:input required="required" type="text" path="prenom" placeholder="Saisir prenom" />
+	<!--<c:forEach items="${civilites}" var="civ">
 				<div class="choice-item">
 					<c:choose>
 						<c:when test="${stagiaire.civilite==civ}">
@@ -84,16 +84,26 @@
 					</c:choose>
 					<label for="civilite-${civ}">${civ}</label>
 				</div>
-			</c:forEach>
-		</div>
+			</c:forEach>-->
+			
+	<div class="choice-group">
+			<form:radiobuttons required="required" items="${civilites}"  path="civilite"/>
 	</div>
-	<input required="required" type="email" name="email" placeholder="Saisir email" value="${stagiaire.email}">
-	<input required="required" type="text" name="adresse.numero" placeholder="Saisir numero" value="${stagiaire.adresse.numero}">
-	<input required="required" type="text" name="adresse.voie" placeholder="Saisir voie" value="${stagiaire.adresse.voie}">
-	<input required="required" type="text" name="adresse.cp" placeholder="Saisir cp" value="${stagiaire.adresse.cp}">
-	<input required="required" type="text" name="adresse.ville" placeholder="Saisir ville" value="${stagiaire.adresse.ville}">
+	  
+	  
+	<form:input required="required" type="email" path="email" placeholder="Saisir email"/>
+	<form:input required="required" type="text"  path="adresse.numero" placeholder="Saisir numero"/>
+	<form:input required="required" type="text"  path="adresse.voie" placeholder="Saisir voie"/>
+	<form:input required="required" type="text"  path="adresse.cp" placeholder="Saisir cp"/>
+	<form:input required="required" type="text"  path="adresse.ville" placeholder="Saisir ville"/>
 	
-		<select required="required" name="filiere.id">
+	
+	<form:select required="required" path="filiere.id">
+		<form:option value="">Choisir une filiere</form:option>*
+		<form:options items="${filieres}" itemValue="id"  itemLabel="infosFiliere" />
+	</form:select>
+
+		<!--<select required="required" name="filiere.id">
 			<option value="">Choisir une filiere</option>
 			<c:forEach var="filiere" items="${filieres}" >
 				<c:choose>
@@ -106,7 +116,7 @@
 				</c:choose>
 			</c:forEach>
 		</select>
-			
+		-->	
 	
 	
 	<div class="form-actions">
@@ -118,7 +128,7 @@
 		</c:if>
 	</div>
 	
-	</form>
+	</form:form>
 	
 	<br><br>
 	<a class="btn btn-info" href="home">Retour</a>

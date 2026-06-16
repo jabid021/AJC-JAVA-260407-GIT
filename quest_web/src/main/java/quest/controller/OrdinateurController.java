@@ -37,7 +37,7 @@ public class OrdinateurController  {
 		model.addAttribute("ordinateur", new Ordinateur());
 		model.addAttribute("ordinateurs", ordinateurs);
 		model.addAttribute("utilisateurs", stagiaireDisponibles);
-		return "/WEB-INF/ordinateurs.jsp";
+		return "ordinateurs.jsp";
 	}
 	
 	@GetMapping("/{numero}")
@@ -53,7 +53,7 @@ public class OrdinateurController  {
 		model.addAttribute("ordinateur", ordinateur);
 		model.addAttribute("ordinateurs", ordinateurs);
 		model.addAttribute("utilisateurs", stagiaireDisponibles);
-		return "/WEB-INF/ordinateurs.jsp";
+		return "ordinateurs.jsp";
 	}
 	
 	@GetMapping("/delete/{numero}")
