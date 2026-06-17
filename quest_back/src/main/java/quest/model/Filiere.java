@@ -17,7 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import view.Views;
+import quest.view.Views;
 
 @Entity
 @Table(name="filiere")
@@ -46,8 +46,10 @@ public class Filiere {
 	private Salle salle; 
 	
 	@OneToMany(mappedBy = "filiere")
+	@JsonView(Views.FiliereWithStagiaires.class)
 	private List<Stagiaire> stagiaires;
 	@OneToMany(mappedBy = "filiere")
+	@JsonView(Views.FiliereWithModules.class)
 	private List<Module> cours;
 
 	public Filiere() {}

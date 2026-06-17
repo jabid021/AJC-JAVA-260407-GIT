@@ -14,57 +14,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import quest.dao.IDAOSalle;
-import quest.model.Salle;
+import quest.model.Stagiaire;
+import quest.service.PersonneService;
 import quest.view.Views;
 
 @RestController
-@RequestMapping("/api/salle")
-public class SalleRestController {
+@RequestMapping("/api/stagiaire")
+public class StagiaireRestController {
 
 
 	@Autowired
-	IDAOSalle daoSalle;
+	PersonneService stagiaireSrv;
 
 	
 	@GetMapping
-	@JsonView(Views.Salle.class)
-	public List<Salle> chercherTous()  
+	@JsonView(Views.Stagiaire.class)
+	public List<Stagiaire> chercherTous()  
 	{
-		return daoSalle.findAll();	
+		return stagiaireSrv.getAllStagiaire();	
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(Views.Salle.class)
-	public Salle chercherParId(@PathVariable Integer id)  
+	@JsonView(Views.Stagiaire.class)
+	public Stagiaire chercherParId(@PathVariable Integer id)  
 	{
-		return daoSalle.findById(id).orElse(null);
+		return stagiaireSrv.getStagiaireById(id);
 	}
 	
-	
-	@GetMapping("/historique/{id}")
-	@JsonView(Views.SalleWithHistorique.class)
-	public Salle chercherParIdAvecHistorique(@PathVariable Integer id)  
-	{
-		return daoSalle.findByIdWithHistorique(id);
-	}
 	
 	@DeleteMapping("/{id}")
 	public void supprimer(@PathVariable Integer id)  
 	{
-		daoSalle.deleteById(id);
+		stagiaireSrv.delete(id);
 	}
 	
 	@PostMapping
-	public Salle ajouter(@RequestBody Salle salle)  
+	public Stagiaire ajouter(@RequestBody Stagiaire stagiaire)  
 	{
-		return daoSalle.save(salle);
+		return (Stagiaire) stagiaireSrv.insert(stagiaire);
 	}
 	
 	@PutMapping("/{id}")
-	public Salle modifier(@PathVariable Integer id,@RequestBody Salle salle)  
+	public Stagiaire modifier(@PathVariable Integer id,@RequestBody Stagiaire stagiaire)  
 	{
-		salle.setId(id);
-		return daoSalle.save(salle);
+		stagiaire.setId(id);
+		return (Stagiaire) stagiaireSrv.update(stagiaire);
 	}
 }

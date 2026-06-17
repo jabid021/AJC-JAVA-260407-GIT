@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import view.Views;
+import quest.view.Views;
 
 @Embeddable
 public class Adresse {

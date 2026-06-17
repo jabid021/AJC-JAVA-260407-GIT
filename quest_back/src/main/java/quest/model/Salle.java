@@ -12,8 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import view.Views;
-import view.Views.SalleWithHistorique;
+import quest.view.Views;
 @Entity
 @Table(name="salle")
 public class Salle {

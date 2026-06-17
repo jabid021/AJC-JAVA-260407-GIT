@@ -49,6 +49,11 @@ public class PersonneService {
 	{
 		return (Formateur) daoPersonne.findById(id).orElse(null);
 	}
+	
+	public Formateur getFormateurByIdWithModules(Integer id)
+	{
+		return daoPersonne.findByIdWithModules(id);
+	}
 
 
 	public Personne getByLoginAndPassword(String login,String password)
@@ -57,14 +62,14 @@ public class PersonneService {
 		return daoPersonne.findByLoginAndPassword(login, password);
 	}
 
-	public void insert(Personne personne)
+	public Personne insert(Personne personne)
 	{
-		daoPersonne.save(personne);
+		return daoPersonne.save(personne);
 	}
 
-	public void update(Personne personne)
+	public Personne update(Personne personne)
 	{
-		daoPersonne.save(personne);
+		return daoPersonne.save(personne);
 	}
 
 	public void delete(Integer id)
