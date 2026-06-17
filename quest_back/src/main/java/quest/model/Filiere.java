@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,24 +17,32 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import view.Views;
 
 @Entity
 @Table(name="filiere")
 public class Filiere {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
 	@Column(length = 35,nullable = false)
+	@JsonView(Views.Common.class)
 	private String libelle;  
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonView(Views.Common.class)
 	private LocalDate debut; 
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonView(Views.Common.class)
 	private LocalDate fin;
 	
 	@ManyToOne
 	@JoinColumn(name="salle")
+	@JsonView(Views.Filiere.class)
 	private Salle salle; 
 	
 	@OneToMany(mappedBy = "filiere")

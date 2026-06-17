@@ -1,18 +1,24 @@
 package quest.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import view.Views;
 
 @Embeddable
 public class Adresse {
 	
 	@Column(length = 10)
+	@JsonView(Views.Common.class)
 	private String numero;
 	@Column(length = 35)
+	@JsonView(Views.Common.class)
 	private String voie;
-	@Column(length = 35)
+	@JsonView(Views.Common.class)@Column(length = 35)
 	private String ville;
 	@Column(length = 15)
+	@JsonView(Views.Common.class)
 	private String cp;
 	
 	public Adresse() {}
