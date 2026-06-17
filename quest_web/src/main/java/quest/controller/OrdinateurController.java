@@ -78,12 +78,11 @@ public class OrdinateurController  {
 			model.addAttribute("utilisateurs", stagiaireDisponibles);
 			return "ordinateurs.jsp";
 		}
-		
-		daoOrdinateur.save(ordinateur);
 		if(ordinateur.getUtilisateur().getId()==null) 
 		{
 			ordinateur.setUtilisateur(null);
 		}
+		daoOrdinateur.save(ordinateur);
 		return "redirect:/ordinateur";
 	}
 	
