@@ -2,6 +2,8 @@ package quest.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -10,19 +12,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import quest.view.Views;
 @Entity
 @Table(name="salle")
 public class Salle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
 	@Column(length = 20,nullable = false)
+	@JsonView(Views.Common.class)
 	private String nom;
 	
 	@Embedded
+	@JsonView(Views.Common.class)
 	private Adresse adresse;
 
 	@OneToMany(mappedBy = "salle")
+	@JsonView(Views.SalleWithHistorique.class)
 	private List<Filiere> historique;
 	
 	public Salle() {}

@@ -14,58 +14,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import quest.model.Matiere;
-import quest.service.MatiereService;
+import quest.model.Stagiaire;
+import quest.service.PersonneService;
 import quest.view.Views;
 
 @RestController
-@RequestMapping("/api/matiere")
-public class MatiereRestController {
+@RequestMapping("/api/stagiaire")
+public class StagiaireRestController {
 
 
 	@Autowired
-	MatiereService matiereSrv;
+	PersonneService stagiaireSrv;
 
 	
-	@GetMapping("/recherche")
-	@JsonView(Views.Matiere.class)
-	public List<Matiere> rechercheParLib(String recherche)  
-	{
-		return matiereSrv.getByLibelleContaining(recherche);
-	}
-	
 	@GetMapping
-	@JsonView(Views.Matiere.class)
-	public List<Matiere> chercherTous()  
+	@JsonView(Views.Stagiaire.class)
+	public List<Stagiaire> chercherTous()  
 	{
-		return matiereSrv.getAll();	
+		return stagiaireSrv.getAllStagiaire();	
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(Views.Matiere.class)
-	public Matiere chercherParId(@PathVariable Integer id)  
+	@JsonView(Views.Stagiaire.class)
+	public Stagiaire chercherParId(@PathVariable Integer id)  
 	{
-		return matiereSrv.getById(id);
+		return stagiaireSrv.getStagiaireById(id);
 	}
+	
 	
 	@DeleteMapping("/{id}")
 	public void supprimer(@PathVariable Integer id)  
 	{
-		matiereSrv.delete(id);
+		stagiaireSrv.delete(id);
 	}
 	
 	@PostMapping
-	public Matiere ajouter(@RequestBody Matiere matiere)  
+	public Stagiaire ajouter(@RequestBody Stagiaire stagiaire)  
 	{
-		matiereSrv.insert(matiere);
-		return matiere;
+		return (Stagiaire) stagiaireSrv.insert(stagiaire);
 	}
 	
 	@PutMapping("/{id}")
-	public Matiere modifier(@PathVariable Integer id,@RequestBody Matiere matiere)  
+	public Stagiaire modifier(@PathVariable Integer id,@RequestBody Stagiaire stagiaire)  
 	{
-		matiere.setId(id);
-		matiereSrv.update(matiere);
-		return matiere;
+		stagiaire.setId(id);
+		return (Stagiaire) stagiaireSrv.update(stagiaire);
 	}
 }

@@ -2,14 +2,19 @@ package quest.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import quest.view.Views;
 
 @Entity
 public class Formateur extends Personne  {
+	@JsonView(Views.Common.class)
 	private boolean admin;
 	
 	@OneToMany(mappedBy = "formateur")
+	@JsonView(Views.FormateurWithModules.class)
 	private List<Module> affectations;
 	
 	public Formateur() {}

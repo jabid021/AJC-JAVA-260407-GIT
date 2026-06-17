@@ -14,58 +14,57 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import quest.model.Matiere;
-import quest.service.MatiereService;
+import quest.dao.IDAOSalle;
+import quest.model.Salle;
 import quest.view.Views;
 
 @RestController
-@RequestMapping("/api/matiere")
-public class MatiereRestController {
+@RequestMapping("/api/salle")
+public class SalleRestController {
 
 
 	@Autowired
-	MatiereService matiereSrv;
+	IDAOSalle daoSalle;
 
 	
-	@GetMapping("/recherche")
-	@JsonView(Views.Matiere.class)
-	public List<Matiere> rechercheParLib(String recherche)  
-	{
-		return matiereSrv.getByLibelleContaining(recherche);
-	}
-	
 	@GetMapping
-	@JsonView(Views.Matiere.class)
-	public List<Matiere> chercherTous()  
+	@JsonView(Views.Salle.class)
+	public List<Salle> chercherTous()  
 	{
-		return matiereSrv.getAll();	
+		return daoSalle.findAll();	
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(Views.Matiere.class)
-	public Matiere chercherParId(@PathVariable Integer id)  
+	@JsonView(Views.Salle.class)
+	public Salle chercherParId(@PathVariable Integer id)  
 	{
-		return matiereSrv.getById(id);
+		return daoSalle.findById(id).orElse(null);
+	}
+	
+	
+	@GetMapping("/historique/{id}")
+	@JsonView(Views.SalleWithHistorique.class)
+	public Salle chercherParIdAvecHistorique(@PathVariable Integer id)  
+	{
+		return daoSalle.findByIdWithHistorique(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public void supprimer(@PathVariable Integer id)  
 	{
-		matiereSrv.delete(id);
+		daoSalle.deleteById(id);
 	}
 	
 	@PostMapping
-	public Matiere ajouter(@RequestBody Matiere matiere)  
+	public Salle ajouter(@RequestBody Salle salle)  
 	{
-		matiereSrv.insert(matiere);
-		return matiere;
+		return daoSalle.save(salle);
 	}
 	
 	@PutMapping("/{id}")
-	public Matiere modifier(@PathVariable Integer id,@RequestBody Matiere matiere)  
+	public Salle modifier(@PathVariable Integer id,@RequestBody Salle salle)  
 	{
-		matiere.setId(id);
-		matiereSrv.update(matiere);
-		return matiere;
+		salle.setId(id);
+		return daoSalle.save(salle);
 	}
 }
