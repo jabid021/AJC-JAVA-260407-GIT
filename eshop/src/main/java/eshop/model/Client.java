@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
@@ -16,6 +18,7 @@ import jakarta.persistence.OneToMany;
 public class Client extends Personne {
 
 	@Column(name="birthdate")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateNaissance;
 	
 	@Embedded

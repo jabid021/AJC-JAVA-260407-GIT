@@ -2,6 +2,8 @@ package eshop.model;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Range;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="product")
@@ -20,8 +23,10 @@ public class Produit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name="label",length = 30, nullable = false)
+	@NotBlank
 	private String libelle;
 	@Column(name="price", columnDefinition = "DECIMAL(6,2) default 0")
+	@Range(min=100,max=1000, message = "Le prix de vente des produits doit etre dans [100,10000]")
 	private double prix;
 	
 	@ManyToOne

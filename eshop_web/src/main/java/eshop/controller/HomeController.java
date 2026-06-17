@@ -17,7 +17,7 @@ public class HomeController {
 	public String home() 
 	{
 		System.out.println("ICI");
-		return "/WEB-INF/home.jsp";
+		return "forward:/WEB-INF/home.jsp";
 	}
 	
 	@RequestMapping(value="/home",method = RequestMethod.POST)

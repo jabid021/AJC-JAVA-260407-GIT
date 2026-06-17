@@ -42,6 +42,11 @@ public class Fournisseur extends Personne {
 		this.stock = stock;
 	}
 
+	public String getInfosSelect() 
+	{
+		return id+" - "+prenom+" "+nom;
+	}
+	
 	@Override
 	public String toString() {
 		return "Fournisseur [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", civilite=" + civilite + ", societe="
