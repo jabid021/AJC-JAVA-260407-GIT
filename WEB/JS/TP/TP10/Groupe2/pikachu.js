@@ -12,6 +12,8 @@ let buissons = [];
 //imgPikachu.setAttribute("src", "assets/img/" + animal + direction + ".png");
 let genre = select_sex.value;
 
+let rectGrass = grass.getBoundingClientRect();
+
 function verif_name(event) {
   console.log(inputName.value);
   console.log(event);
@@ -30,7 +32,7 @@ audioTheme = document.getElementById("theme");
 
 function start_game() {
   console.log("Start game");
-
+  compteurCrotte.innerHTML = `0/5`;
   audioTheme.volume = 0.3;
   audioTheme.play();
 
@@ -92,7 +94,7 @@ function start_game() {
       y: y,
     });
 
-grass.innerHTML += `
+    grass.innerHTML += `
 <div class="buisson" style="top:${y}px; left:${x}px; width:30px; height:30px;">
   <img src="assets/img/buisson.png" alt="" width="30px" height="30px">
 </div>`;;
@@ -112,10 +114,34 @@ function deplacement(event) {
   var rectGrass = grass.getBoundingClientRect();
 
 
+
+  bords = {
+    left: rectPerso.left - rectGrass.left,
+    right: rectPerso.right - rectGrass.left,
+    top: rectPerso.top - rectGrass.top,
+    bottom: rectPerso.bottom - rectGrass.top
+  }
+  console.log("Bord LEFT du perso par rapport a grass : " + (bords.left));
+  console.log("Bord bas du perso par rapport a grass : " + (bords.bottom));
+  console.log("Bord RIGHT du perso par rapport a grass : " + (bords.right));
+  console.log("Bord HAUT du perso par rapport a grass : " + (bords.top));
+
+  console.log("-------------")
+
+  console.log("Bord LEFT du grass par rapport a grass : " + grass.offsetHeight);
+  console.log("Bord bas du grass par rapport a grass : " + grass.offsetHeight);
+  console.log("Bord RIGHT du grass par rapport a grass : " + grass.offsetHeight);
+  console.log("Bord HAUT du grass par rapport a grass : " + grass.offsetHeight);
+
+
+  console.log("distance = " + (bords.left - mouvement));
+
   if (event.key == "ArrowDown" || event.key == "s") {
-    if (posY + mouvement < grass.offsetHeight - pikachu.offsetHeight) {
-      if (mouvement > (rectPerso.bottom - rectGrass.top)) {
-        posY += mouvement - (grass.offsetHeight - rectPerso.bottom + rectGrass.top);
+    if (bords.bottom < grass.offsetHeight) {
+      if (mouvement > grass.offsetHeight - bords.bottom) {
+        posY += grass.offsetHeight - bords.bottom;
+        console.log("mouvement > distance");
+        console.log("posY = " + posY);
       } else {
         posY += mouvement;
       }
@@ -123,25 +149,37 @@ function deplacement(event) {
       direction = "Down";
     }
   } else if (event.key == "ArrowUp" || event.key == "z") {
-    if (posY >= mouvement) {
-      posY -= mouvement;
+    if (bords.top >= 0) {
+      if (mouvement > bords.top) {
+        posY -= bords.top;
+      } else {
+        posY -= mouvement;
+      }
+
       direction = "Up";
     }
   } else if (event.key == "ArrowRight" || event.key == "d") {
-    if (posX + mouvement < grass.offsetWidth - pikachu.offsetWidth) {
+    if (bords.right < grass.offsetWidth) {
 
-      if (mouvement > (rectPerso.right - rectGrass.left)) {
-        posX += mouvement - (grass.offsetWidth - rectPerso.right + rectGrass.left);
+      if (mouvement > grass.offsetHeight - bords.right) {
+        posX += grass.offsetHeight - bords.right;
+        console.log("mouvement > distance");
+        console.log("posX = " + posX);
       } else {
         posX += mouvement;
       }
       direction = "Right";
     }
   } else if (event.key == "ArrowLeft" || event.key == "q") {
-    if (posX >= mouvement) {
-      posX -= mouvement;
+    if (bords.left >= 0) {
+      if (mouvement > bords.left) {
+        posX -= bords.left;
+      } else {
+        posX -= mouvement;
+      }
       direction = "Left";
     }
+
   }
 
   pikachu.style.top = posY + "px";
@@ -160,8 +198,6 @@ function deplacement(event) {
     "assets/img/" + genre + animal + direction + ".png",
   );
   ramasser_crotte();
-
-  console.log("Coin droit du perso par rapport a grass : " + (rectPerso.right - rectGrass.left));
 }
 
 //COLLISION//
@@ -172,22 +208,31 @@ function collision_buisson() {
 
   const rectPerso = perso.getBoundingClientRect();
 
+
+
+  var bords_persos = {
+    left: rectPerso.left - rectGrass.left,
+    right: rectPerso.right - rectGrass.left,
+    top: rectPerso.top - rectGrass.top,
+    bottom: rectPerso.bottom - rectGrass.top
+  }
+
   for (let i = 0; i < buissons.length; i++) {
     const rectBuisson = buissons[i].getBoundingClientRect();
-    const margin = 20;
+    const margin = 5;
 
-    const hitbox = {
-      left: rectBuisson.left + margin,
-      right: rectBuisson.right - margin,
-      top: rectBuisson.top + margin,
-      bottom: rectBuisson.bottom - margin
+    var bords_buisson = {
+      left: rectBuisson.left - rectGrass.left,
+      right: rectBuisson.right - rectGrass.left,
+      top: rectBuisson.top - rectGrass.top,
+      bottom: rectBuisson.bottom - rectGrass.top
     };
 
     if (
-      rectPerso.left < hitbox.right &&
-      rectPerso.right > hitbox.left &&
-      rectPerso.top < hitbox.bottom &&
-      rectPerso.bottom > hitbox.top
+      bords_persos.left < bords_buisson.right &&
+      bords_persos.right > bords_buisson.left &&
+      bords_persos.top < bords_buisson.bottom &&
+      bords_persos.bottom > bords_buisson.top
     ) {
       return true;
     }
