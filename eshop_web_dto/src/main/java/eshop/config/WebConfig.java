@@ -1,4 +1,4 @@
-package quest.config;
+package eshop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,16 +12,15 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"quest.controller","quest.restcontroller"})
+@ComponentScan({"eshop.controller","eshop.restcontroller"})
 @Import(AppConfig.class)
 public class WebConfig implements WebMvcConfigurer {
 
 
-	//Ne marche que SI la config implemente bien WebMvcConfigurer
 	public void addResourceHandlers(ResourceHandlerRegistry registry )
 	{
 		registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
-		registry.addResourceHandler("/style.css").addResourceLocations("/WEB-INF/style.css");
+		registry.addResourceHandler("/style.css").addResourceLocations("/style.css");
 	}
 
 
@@ -29,7 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
 	public UrlBasedViewResolver viewResolver() {
 		UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
 		viewResolver.setPrefix("/WEB-INF/views/");
-		//viewResolver.setSuffix(".jsp");
+		viewResolver.setSuffix(".jsp");
 		viewResolver.setViewClass(JstlView.class);
 		return viewResolver;
 	}

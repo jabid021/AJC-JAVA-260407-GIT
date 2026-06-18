@@ -2,9 +2,6 @@ package eshop.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import eshop.view.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -14,11 +11,9 @@ import jakarta.persistence.OneToMany;
 @DiscriminatorValue("supplier")
 public class Fournisseur extends Personne {
 	@Column(name="company",length = 20)
-	@JsonView(Views.Common.class)
 	private String societe;
 	
 	@OneToMany(mappedBy = "fournisseur")
-	@JsonView(Views.FournisseurWithStock.class)
 	private List<Produit> stock;
 	
 	

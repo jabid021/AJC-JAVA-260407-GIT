@@ -42,7 +42,7 @@ public class SalleRestController {
 	}
 	
 	
-	@GetMapping("/historique/{id}")
+	@GetMapping("/{id}/historique")
 	@JsonView(Views.SalleWithHistorique.class)
 	public Salle chercherParIdAvecHistorique(@PathVariable Integer id)  
 	{
