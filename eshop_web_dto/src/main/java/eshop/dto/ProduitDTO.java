@@ -1,5 +1,8 @@
 package eshop.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 
 import eshop.model.Produit;
@@ -11,6 +14,7 @@ public class ProduitDTO {
 	private double prix;
 	private Integer idFournisseur;
 	private String nomFournisseur;
+	private List<VenteDTO> ventesCustom=new ArrayList();
 	
 
 	public static ProduitDTO convert(Produit produit) 
@@ -21,6 +25,15 @@ public class ProduitDTO {
 		p.nomFournisseur=produit.getFournisseur().getNom();
 		return p;
 	}
+	
+	
+	public static ProduitDTO convertWithVentes(Produit produit) 
+	{
+		ProduitDTO p = convert(produit);
+		p.ventesCustom=produit.getVentes().stream().map(achat->VenteDTO.convert(achat)).toList();
+		return p;
+	}
+	
 
 	public Integer getId() {
 		return id;
@@ -78,6 +91,16 @@ public class ProduitDTO {
 
 	public void setNomFournisseur(String nomFournisseur) {
 		this.nomFournisseur = nomFournisseur;
+	}
+
+
+	public List<VenteDTO> getVentesCustom() {
+		return ventesCustom;
+	}
+
+
+	public void setVentesCustom(List<VenteDTO> ventesCustom) {
+		this.ventesCustom = ventesCustom;
 	}
 	
 	
