@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CANAAAAAARDS</title>
+<link rel="icon" href="assets/img/actually.png">
+<style>
+  
+
+.main-title {
+  text-align: center;
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+
+  background: rgba(0, 0, 0, 0.45);
+  display: inline-block;
+
+  padding: 15px 30px;
+  border-radius: 16px;
+
+  margin: 30px auto 10px auto;
+  display: block;
+  width: fit-content;
+
+  text-shadow:
+    2px 2px 6px rgba(0,0,0,0.9),
+    0 0 12px rgba(255,120,0,0.8);
+
+  border: 2px solid rgba(255,255,255,0.25);
+}
+
+.sub-title {
+  text-align: center;
+  color: white;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+
+  background: rgba(0,0,0,0.35);
+  display: block;
+  width: fit-content;
+
+  margin: 0 auto 25px auto;
+  padding: 10px 20px;
+
+  border-radius: 12px;
+}  
+body {
+  background-image: url("assets/img/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+.table-container {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.35);
+  padding: 30px;
+  border-radius: 12px;
+  width: 80%;
+  margin: 40px auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+
+th {
+  background: linear-gradient(135deg, #ff4d4d, #ff9966);
+  color: white;
+  padding: 12px;
+}
+
+td {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  background-color: rgba(255,255,255,0.4);
+}
+
+tbody tr:hover {
+  background-color: rgba(255,255,255,0.6);
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+
+.drag-handle {
+  cursor: grab;
+  font-size: 22px;
+  width: 30px;
+  text-align: center;
+  user-select: none;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+
+table img {
+  width: 120px;
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<h1 class="main-title">🔥 Top Canards de Placid Plastick Duck Simulator 🔥</h1>
+<h2 class="sub-title">À modifier à votre guise </h2 >
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+  <th></th>
+  <th>TOP</th>
+  <th>Image</th>
+  <th>Nom</th>
+  <th>Son</th>
+  <th>Description</th>
+</tr>
+</thead>
+
+<tbody id="drag-table">
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 1</td>
+    <td><img src="assets/img/shades.png"></td>
+    <td>Duck Life</td>
+    <td>
+        <audio controls>
+            <source src="assets/audio/ducklife.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>Le canard stylé par excellence.</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 2</td>
+    <td><img src="assets/img/miraculous.png"></td>
+    <td>Marinette</td>
+    <td>
+        <audio controls>
+            <source src="assets/audio/marinette.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>Développeuse de talent, procure une aide précieuse, aussi appelée : Miraculous les Debug.</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 3</td>
+    <td><img src="assets/img/clown.png"></td>
+    <td>Krusty</td>
+    <td>
+      <audio controls>
+          <source src="assets/audio/reverb.mp3" type="audio/mpeg">
+      </audio>
+    </td>
+    <td>Sous son apparence clownesque se cache une âme sensible.</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 4</td>
+    <td><img src="assets/img/minotaure.png"></td>
+    <td>Le Minotaure</td>
+    <td>
+        <audio controls>
+            <source src="assets/audio/minotaure.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>Animal très dangereux, méfiez vous .</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 5</td>
+    <td><img src="assets/img/gold.png"></td>
+    <td>Gol D. Uck</td>
+    <td>
+        <audio controls>
+            <source src="assets/audio/gold.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>Son trésor ? Il vous le laisse si vous voulez. Trouvez-le ! Il l' a laissé quelque part dans ce monde !</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 6</td>
+    <td><img src="assets/img/magmar.png"></td>
+    <td>Magmar</td>
+    <td>
+        <audio controls>
+            <source src="assets/audio/magmar.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>A beaucoup de mal à se faire des amis, les rares qui ont éssayé se sont retrouvés brûlés.</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 7</td>
+    <td><img src="assets/img/locked.png"></td>
+    <td>Canard mystérieux</td>
+    <td>Son caché</td>
+    <td>Le mystère entourant ce canard reste inexpliqué. Il est recommandé d'acheter les DLC du jeu pour découvrir son histoire.</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 8</td>
+    <td><img src="assets/img/requin.png"></td>
+    <td>Le requin</td>
+    <td>
+        <audio controls>
+            <source src="assets/audio/requin.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>C'est un canard requin quoi, j'ai vraiment pas d'inspi. Il est fan du film Sharknado.</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 9</td>
+    <td><img src="assets/img/gamer.png"></td>
+    <td>Joueur de LOL</td>
+    <td>
+        <audio controls>
+            <source src="assets/audio/sard.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>Malgré son apparence d'animal aquatique, il déteste l'eau, surtout celle de la douche.</td>
+</tr>
+
+<tr>
+    <td class="drag-handle">⋮⋮</td>
+    <td>Top 10</td>
+    <td><img src="assets/img/sushi.png"></td>
+    <td>Le surcoté</td>    
+    <td>
+        <audio controls>
+            <source src="assets/audio/sushi.mp3" type="audio/mpeg">
+        </audio>
+    </td>
+    <td>N'a rien a faire dans ce top, sert juste à décorer et dire que les sushis c'est surcôté</td>
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<script charset="utf-8">
+const tbody = document.getElementById("drag-table");
+let draggedRow = null;
+
+tbody.querySelectorAll("img, td:not(.drag-handle)").forEach(el => {
+  el.setAttribute("draggable", "false");
+});
+
+tbody.addEventListener("mousedown", (e) => {
+  if (e.target.classList.contains("drag-handle")) {
+    const row = e.target.closest("tr");
+    row.setAttribute("draggable", "true");
+  }
+});
+
+tbody.addEventListener("dragstart", (e) => {
+  draggedRow = e.target.closest("tr");
+  draggedRow.style.opacity = "0.4";
+});
+
+tbody.addEventListener("dragend", (e) => {
+  draggedRow.style.opacity = "1";
+  draggedRow.setAttribute("draggable", "false");
+  updateTopValues();
+});
+
+tbody.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  const target = e.target.closest("tr");
+  if (target && target !== draggedRow) {
+    const rect = target.getBoundingClientRect();
+    const midpoint = rect.y + rect.height / 2;
+
+    if (e.clientY < midpoint) {
+      tbody.insertBefore(draggedRow, target);
+    } else {
+      tbody.insertBefore(draggedRow, target.nextSibling);
+    }
+  }
+});
+
+function updateTopValues() {
+  const rows = [...tbody.querySelectorAll("tr")];
+  rows.forEach((row, i) => {
+    row.querySelectorAll("td")[1].textContent = "Top " + (i + 1);
+  });
+}
+
+const audios = document.querySelectorAll("audio");
+
+audios.forEach(audio => {
+
+  audio.addEventListener("play", () => {
+
+    audios.forEach(otherAudio => {
+
+      if (otherAudio !== audio) {
+
+        otherAudio.pause();
+
+        otherAudio.currentTime = 0;
+
+      }
+
+    });
+
+  });
+
+});
+</script>
+
+</body>
+</html>
