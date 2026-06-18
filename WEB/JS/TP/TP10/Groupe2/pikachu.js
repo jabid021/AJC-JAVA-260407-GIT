@@ -52,6 +52,8 @@ function start_game() {
   );
   alert("Ramassez toutes les crottes avant de rentrer !");
   formStart.style.display = "none";
+  imgDog.style.display = "none";
+  imgDuck.style.display = "none";
   qwack.style.top = "5%";
   grass.style.display = "block";
   div_crottes.style.display = "block";
@@ -80,15 +82,20 @@ function start_game() {
   for (let i = 0; i < 7; i++) {
     const x = Math.random() * (grass.offsetWidth - 100);
     const y = Math.random() * (grass.offsetHeight - 100);
+    while ((x, y) === crottes[i]) {
+      x = Math.random() * (grass.offsetWidth - 100);
+      y = Math.random() * (grass.offsetHeight - 100);
+    }
 
     buissons.push({
       x: x,
       y: y,
     });
 
-    grass.innerHTML += `<div class="buisson" style="top:${y}px; left:${x}px;">
+grass.innerHTML += `
+<div class="buisson" style="top:${y}px; left:${x}px; width:30px; height:30px;">
   <img src="assets/img/buisson.png" alt="" width="30px" height="30px">
-</div>`;
+</div>`;;
   }
   document.body.onkeydown = deplacement;
 }
@@ -98,12 +105,21 @@ btnStart.onclick = start_game;
 
 ////////////////////////// DEPLACEMENT //////////////////////////
 function deplacement(event) {
-  /*const ancienneX = posX;
-const ancienneY = posY;*/
+  const ancienneX = posX;
+  const ancienneY = posY;
+
+  var rectPerso = pikachu.getBoundingClientRect();
+  var rectGrass = grass.getBoundingClientRect();
+
 
   if (event.key == "ArrowDown" || event.key == "s") {
-    if (posY < grass.offsetHeight - pikachu.offsetHeight) {
-      posY += mouvement;
+    if (posY + mouvement < grass.offsetHeight - pikachu.offsetHeight) {
+      if (mouvement > (rectPerso.bottom - rectGrass.top)) {
+        posY += mouvement - (grass.offsetHeight - rectPerso.bottom + rectGrass.top);
+      } else {
+        posY += mouvement;
+      }
+
       direction = "Down";
     }
   } else if (event.key == "ArrowUp" || event.key == "z") {
@@ -112,8 +128,13 @@ const ancienneY = posY;*/
       direction = "Up";
     }
   } else if (event.key == "ArrowRight" || event.key == "d") {
-    if (posX < grass.offsetWidth - pikachu.offsetWidth) {
-      posX += mouvement;
+    if (posX + mouvement < grass.offsetWidth - pikachu.offsetWidth) {
+
+      if (mouvement > (rectPerso.right - rectGrass.left)) {
+        posX += mouvement - (grass.offsetWidth - rectPerso.right + rectGrass.left);
+      } else {
+        posX += mouvement;
+      }
       direction = "Right";
     }
   } else if (event.key == "ArrowLeft" || event.key == "q") {
@@ -126,24 +147,26 @@ const ancienneY = posY;*/
   pikachu.style.top = posY + "px";
   pikachu.style.left = posX + "px";
 
-  /*if (collision_buisson()) {
-  posX = ancienneX;
-  posY = ancienneY;
+  if (collision_buisson()) {
+    posX = ancienneX;
+    posY = ancienneY;
 
-  pikachu.style.top = posY + "px";
-  pikachu.style.left = posX + "px";
-}*/
+    pikachu.style.top = posY + "px";
+    pikachu.style.left = posX + "px";
+  }
 
   imgPikachu.setAttribute(
     "src",
     "assets/img/" + genre + animal + direction + ".png",
   );
   ramasser_crotte();
+
+  console.log("Coin droit du perso par rapport a grass : " + (rectPerso.right - rectGrass.left));
 }
 
 //COLLISION//
 
-/*function collision_buisson() {
+function collision_buisson() {
   const perso = document.getElementById("pikachu");
   const buissons = document.querySelectorAll(".buisson");
 
@@ -151,19 +174,27 @@ const ancienneY = posY;*/
 
   for (let i = 0; i < buissons.length; i++) {
     const rectBuisson = buissons[i].getBoundingClientRect();
+    const margin = 20;
+
+    const hitbox = {
+      left: rectBuisson.left + margin,
+      right: rectBuisson.right - margin,
+      top: rectBuisson.top + margin,
+      bottom: rectBuisson.bottom - margin
+    };
 
     if (
-      rectPerso.left < rectBuisson.right &&
-      rectPerso.right > rectBuisson.left &&
-      rectPerso.top < rectBuisson.bottom &&
-      rectPerso.bottom > rectBuisson.top
+      rectPerso.left < hitbox.right &&
+      rectPerso.right > hitbox.left &&
+      rectPerso.top < hitbox.bottom &&
+      rectPerso.bottom > hitbox.top
     ) {
       return true;
     }
   }
 
   return false;
-}*/
+}
 
 audioCrotte = new Audio("assets/audio/fart.mp3");
 audioVictoire = new Audio("assets/audio/victory.mp3");
