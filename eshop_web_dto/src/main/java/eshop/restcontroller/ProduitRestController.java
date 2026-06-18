@@ -46,9 +46,9 @@ public class ProduitRestController {
 	
 	
 	@GetMapping("/{id}/ventes")
-	public Produit chercherParIdAvecVentes(@PathVariable Integer id)  
+	public ProduitDTO chercherParIdAvecVentes(@PathVariable Integer id)  
 	{
-		return daoProduit.findByIdWithVentes(id);
+		return ProduitDTO.convertWithVentes(daoProduit.findByIdWithVentes(id));
 	}
 	
 	@DeleteMapping("/{id}")
@@ -58,15 +58,15 @@ public class ProduitRestController {
 	}
 	
 	@PostMapping
-	public Produit ajouter(@RequestBody Produit produit)  
+	public ProduitDTO ajouter(@RequestBody Produit produit)  
 	{
-		return daoProduit.save(produit);
+		return ProduitDTO.convert(daoProduit.save(produit));
 	}
 	
 	@PutMapping("/{id}")
-	public Produit modifier(@PathVariable Integer id,@RequestBody Produit produit)  
+	public ProduitDTO modifier(@PathVariable Integer id,@RequestBody Produit produit)  
 	{
 		produit.setId(id);
-		return daoProduit.save(produit);
+		return ProduitDTO.convert(daoProduit.save(produit));
 	}
 }
