@@ -241,6 +241,8 @@ function ramasser_crotte() {
   }
 }
 
+audioPop = new Audio("assets/audio/pop.mp3");
+
 function rentrer_shelter() {
   console.log(pikachu, centrePokemon);
   const rectPerso = pikachu.getBoundingClientRect();
@@ -253,18 +255,25 @@ function rentrer_shelter() {
     rectPerso.top < rectCentrePokemon.bottom - marge &&
     rectPerso.bottom > rectCentrePokemon.top + marge
   ) {
+
+    audioPop.currentTime = 0;
+    audioPop.play();
+
     pikachu.style.display = "none";
     audioTheme.pause();
     console.log("rentré ! ");
-    //pikachu.remove();
+
     setTimeout(() => {
       alert("Vous etes rentré au Shelter !");
     }, 500);
+
     document.body.onkeydown = null;
 
-    formStart.style.display = "block";
+    formStart.style.display = "";
+    imgDog.style.display = "";
+    imgDuck.style.display = "";
+
     grass.style.display = "none";
-    /*compteurCrotte.innerHTML = `0/5`; */
     div_crottes.style.display = "none";
   }
 }

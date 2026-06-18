@@ -46,7 +46,8 @@ public class ClientRestController {
 	@JsonView(Views.Client.class)
 	public Client chercherParId(@PathVariable Integer id)  
 	{
-		return (Client) daoPersonne.findById(id).orElse(null);
+		Client client = (Client) daoPersonne.findById(id).orElse(null);
+		return client;
 	}
 	
 	

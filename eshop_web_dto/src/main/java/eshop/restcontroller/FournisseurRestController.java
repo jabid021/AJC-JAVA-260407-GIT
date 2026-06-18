@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import eshop.dao.IDAOPersonne;
+import eshop.dto.FournisseurDTO;
 import eshop.model.Fournisseur;
 
 @RestController
@@ -25,22 +26,22 @@ public class FournisseurRestController {
 
 	
 	@GetMapping
-	public List<Fournisseur> chercherTous()  
+	public List<FournisseurDTO> chercherTous()  
 	{
-		return daoPersonne.findAllFournisseur();	
+		return daoPersonne.findAllFournisseur().stream().map(fournisseur->FournisseurDTO.convert(fournisseur)).toList();	
 	}
 	
 	@GetMapping("/{id}")
-	public Fournisseur chercherParId(@PathVariable Integer id)  
+	public FournisseurDTO chercherParId(@PathVariable Integer id)  
 	{
-		return (Fournisseur) daoPersonne.findById(id).orElse(null);
+		return FournisseurDTO.convert((Fournisseur) daoPersonne.findById(id).orElse(null));
 	}
 	
 	
 	@GetMapping("/{id}/stock")
-	public Fournisseur chercherParIdAvecStock(@PathVariable Integer id)  
+	public FournisseurDTO chercherParIdAvecStock(@PathVariable Integer id)  
 	{
-		return daoPersonne.findByIdWithStock(id);
+		return FournisseurDTO.convertWithProduits(daoPersonne.findByIdWithStock(id));
 	}
 	
 	@DeleteMapping("/{id}")
@@ -50,15 +51,15 @@ public class FournisseurRestController {
 	}
 	
 	@PostMapping
-	public Fournisseur ajouter(@RequestBody Fournisseur fournisseur)  
+	public FournisseurDTO ajouter(@RequestBody Fournisseur fournisseur)  
 	{
-		return daoPersonne.save(fournisseur);
+		return FournisseurDTO.convert(daoPersonne.save(fournisseur));
 	}
 	
 	@PutMapping("/{id}")
-	public Fournisseur modifier(@PathVariable Integer id,@RequestBody Fournisseur fournisseur)  
+	public FournisseurDTO modifier(@PathVariable Integer id,@RequestBody Fournisseur fournisseur)  
 	{
 		fournisseur.setId(id);
-		return daoPersonne.save(fournisseur);
+		return FournisseurDTO.convert(daoPersonne.save(fournisseur));
 	}
 }
