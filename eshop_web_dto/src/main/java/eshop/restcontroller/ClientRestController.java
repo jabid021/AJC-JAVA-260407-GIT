@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eshop.dao.IDAOAchat;
 import eshop.dao.IDAOPersonne;
+import eshop.dto.ClientDTO;
 import eshop.dto.PanierDTO;
 import eshop.model.Achat;
 import eshop.model.Client;
@@ -32,22 +33,22 @@ public class ClientRestController {
 	IDAOAchat daoAchat;
 	
 	@GetMapping
-	public List<Client> chercherTous()  
+	public List<ClientDTO> chercherTous()  
 	{
-		return daoPersonne.findAllClient();	
+		return  daoPersonne.findAllClient().stream().map(client->ClientDTO.convert(client)).toList();	
 	}
 	
 	@GetMapping("/{id}")
-	public Client chercherParId(@PathVariable Integer id)  
+	public ClientDTO chercherParId(@PathVariable Integer id)  
 	{
-		return (Client) daoPersonne.findById(id).orElse(null);
+		return ClientDTO.convert((Client) daoPersonne.findById(id).orElse(null));
 	}
 	
 	
 	@GetMapping("/{id}/achats")
-	public Client chercherParIdAvecAchats(@PathVariable Integer id)  
+	public ClientDTO chercherParIdAvecAchats(@PathVariable Integer id)  
 	{
-		return daoPersonne.findByIdWithAchats(id);
+		return ClientDTO.convertWithAchats(daoPersonne.findByIdWithAchats(id));
 	}
 	
 	@DeleteMapping("/{id}")
@@ -57,16 +58,16 @@ public class ClientRestController {
 	}
 	
 	@PostMapping
-	public Client ajouter(@RequestBody Client client)  
+	public ClientDTO ajouter(@RequestBody Client client)  
 	{
-		return daoPersonne.save(client);
+		return ClientDTO.convert(daoPersonne.save(client));
 	}
 	
 	@PutMapping("/{id}")
-	public Client modifier(@PathVariable Integer id,@RequestBody Client client)  
+	public ClientDTO modifier(@PathVariable Integer id,@RequestBody Client client)  
 	{
 		client.setId(id);
-		return daoPersonne.save(client);
+		return ClientDTO.convert(daoPersonne.save(client));
 	}
 	
 	
