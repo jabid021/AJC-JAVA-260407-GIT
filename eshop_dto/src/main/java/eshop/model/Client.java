@@ -6,10 +6,6 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import eshop.view.Views;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
@@ -23,12 +19,9 @@ public class Client extends Personne {
 
 	@Column(name="birthdate")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@JsonView(Views.Common.class)
-	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateNaissance;
 	
 	@Embedded
-	@JsonView(Views.Common.class)
 	private Adresse adresse;
 	
 	@OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE)
@@ -38,7 +31,6 @@ public class Client extends Personne {
 			joinColumns = @JoinColumn(name="acheteur"),
 			inverseJoinColumns =  @JoinColumn(name="produit")
 	)*/
-	@JsonView(Views.ClientWithAchats.class)
 	private List<Achat> achats = new ArrayList();
 	
 	public Client() {}

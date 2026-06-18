@@ -1,11 +1,6 @@
 package eshop.model;
 
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import eshop.view.Views;
+import java.time.LocalDate;import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,23 +16,17 @@ public class Achat {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(Views.Common.class)
 	private Integer id;
 	@Column(name="date_achat",nullable = false)
-	@JsonView(Views.Common.class)
-	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateAchat;
-	@JsonView(Views.Common.class)
 	private int quantite;
 	
 	@ManyToOne
 	@JoinColumn(name="acheteur")
-	@JsonView(Views.ProduitWithVentes.class)
 	private Client client;
 	
 	@ManyToOne
 	@JoinColumn(name="produit")
-	@JsonView(Views.ClientWithAchats.class)
 	private Produit produit;
 	
 	public Achat() {}

@@ -1,8 +1,5 @@
 package eshop.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import eshop.view.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -24,18 +21,14 @@ public abstract class Personne {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(Views.Common.class)
 	protected Integer id;
 	@Column(name="firstname",length = 20, nullable = false)
-	@JsonView(Views.Common.class)
 	protected String prenom;
 	@Column(name="lastname",length = 20, nullable = false)
-	@JsonView(Views.Common.class)
 	protected String nom;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="gender", nullable = false)
-	@JsonView(Views.Common.class)
 	protected Genre civilite;
 	
 	public Personne() {}
