@@ -7,10 +7,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import fr.formation.repo.UtilisateurRepository;
 
 @Configuration
 public class SecurityConfig {
@@ -25,7 +28,7 @@ public class SecurityConfig {
             auth.requestMatchers("/produit/**").hasRole("ADMIN");
             auth.requestMatchers("/utilisateur/**").hasRole("USER");
 
-            // auth.requestMatchers("/demo").permitAll();
+            auth.requestMatchers("/demo").permitAll();
 
             // Les utilisateurs doivent être authentifiés pour accéder à /quelquechose
             auth.requestMatchers("/**").authenticated();
@@ -44,7 +47,7 @@ public class SecurityConfig {
 
     // ---- AUTHENTIFICATION ----
 
-    @Bean
+    // @Bean
     UserDetailsService inMemoryUserDetailsService() {
         // Le UserDetailsService permet de charger l'utilisateur, son mot de passe, ses autorisations, etc.
         InMemoryUserDetailsManager inMemoryManager = new InMemoryUserDetailsManager();
@@ -66,6 +69,42 @@ public class SecurityConfig {
         inMemoryManager.createUser(admin);
 
         return inMemoryManager;
+    }
+
+    // @Bean
+    UserDetailsService jpaDetailsService(UtilisateurRepository repository) {
+        return username -> {
+            return repository
+                .findByUsername(username)
+                .map(utilisateur -> User.builder()
+                    .username(username)
+                    .password(utilisateur.getPassword())
+                    .roles(utilisateur.isAdmin() ? "ADMIN" : "USER")
+                    .build()
+                )
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found"))
+            ;
+        };
+    }
+
+
+    // @Bean
+    UserDetailsService jpaDetailsService2(UtilisateurRepository repository) {
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                return repository
+                    .findByUsername(username)
+                    .map(utilisateur -> User.builder()
+                        .username(username)
+                        .password(utilisateur.getPassword())
+                        .roles(utilisateur.isAdmin() ? "ADMIN" : "USER")
+                        .build()
+                    )
+                    .orElseThrow(() -> new UsernameNotFoundException("Username not found"))
+                ;
+            }
+        };
     }
 
     @Bean
