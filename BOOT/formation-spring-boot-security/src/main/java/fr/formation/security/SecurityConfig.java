@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
@@ -20,7 +22,9 @@ public class SecurityConfig {
         UserDetails admin = User.builder()
             .username("admin")
             // NoOp => NoOperator => mot de passe en clair
-            .password("{noop}123456")
+            // .password("{noop}123456")
+            // .password("$2a$10$GtV86i/hD/2PHFXP4jp.I.rqbbTMAf.n/6DzsKAv/f1/LeqctsAk2")
+            .password("$2a$10$KoYSgHh3vNKhYWE9AQRM6e2GwKa92xu3nsM4/vcnLjQlmti5IGE1y")
             .roles("ADMIN")
             .build()
         ;
@@ -29,5 +33,14 @@ public class SecurityConfig {
         inMemoryManager.createUser(admin);
 
         return inMemoryManager;
+    }
+
+    @Bean
+    PasswordEncoder PasswordEncoder() {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        System.out.println(passwordEncoder.encode("123456"));
+
+        return passwordEncoder;
     }
 }
