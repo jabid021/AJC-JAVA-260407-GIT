@@ -29,9 +29,9 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> {
             // On commence toujours par le plus spécifique, pour terminer par le plus général
             // auth.requestMatchers("/api/produit/**").hasRole("ADMIN");
-            auth.requestMatchers("/utilisateur/**").hasRole("USER");
+            // auth.requestMatchers("/utilisateur/**").hasRole("USER");
 
-            auth.requestMatchers("/demo").permitAll();
+            auth.requestMatchers("/api/auth").permitAll();
 
             // Les utilisateurs doivent être authentifiés pour accéder à /quelquechose
             auth.requestMatchers("/**").authenticated();
@@ -46,6 +46,9 @@ public class SecurityConfig {
         // Insérer le filtre AVANT un filtre UsernamePasswordAuthenticationFilter
         // http.addFilterBefore(demoFilter, UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(authHeaderFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // Désactivation de la protection CSRF uniquement pour les ressources /api/**
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"));
 
         return http.build();
     }
