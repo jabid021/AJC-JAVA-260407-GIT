@@ -3,6 +3,7 @@ package fr.formation.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import fr.formation.repo.UtilisateurRepository;
 
 @Configuration
+@EnableMethodSecurity(prePostEnabled = true) // Activer les annotations @PreAuthorize & @PostAuthorize
 public class SecurityConfig {
 
     // ---- AUTHORIZATION -----
@@ -25,7 +27,7 @@ public class SecurityConfig {
         // Configuration des autorisations
         http.authorizeHttpRequests(auth -> {
             // On commence toujours par le plus spécifique, pour terminer par le plus général
-            auth.requestMatchers("/produit/**").hasRole("ADMIN");
+            // auth.requestMatchers("/api/produit/**").hasRole("ADMIN");
             auth.requestMatchers("/utilisateur/**").hasRole("USER");
 
             auth.requestMatchers("/demo").permitAll();
