@@ -21,8 +21,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-// @Component
-public class AuthHeaderFilter extends OncePerRequestFilter {
+@Component
+public class JwtHeaderFilter extends OncePerRequestFilter {
     @Autowired
     private UtilisateurRepository repository;
 
@@ -31,12 +31,8 @@ public class AuthHeaderFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader != null) {
-            System.out.println("Header = " + authHeader);
-            // String username = authHeader.replace("Bearer ", "");
-            String username = authHeader.substring(7);
-
-            System.out.println("Username = " + username);
-
+            String token = authHeader.substring(7);
+            String username = JwtUtils.validate(token);
             Optional<Utilisateur> optUtilisateur = this.repository.findByUsername(username);
 
             if (optUtilisateur.isPresent()) {

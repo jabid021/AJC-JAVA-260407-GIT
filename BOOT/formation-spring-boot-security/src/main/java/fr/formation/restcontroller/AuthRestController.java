@@ -26,10 +26,12 @@ public class AuthRestController {
 
         Authentication auth = new UsernamePasswordAuthenticationToken(request.username(), request.password());
 
+        // On demande à Spring Security de vérifier l'authentification (username & password OK ?)
         this.authenticationManager.authenticate(auth);
 
+        // Si on arrive ici, c'est que l'authentification est OK
         System.out.println("OK C BON !!");
 
-        return JwtUtils.generate();
+        return JwtUtils.generate(request.username());
     }
 }

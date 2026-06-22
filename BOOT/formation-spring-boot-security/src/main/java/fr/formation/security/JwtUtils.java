@@ -12,12 +12,12 @@ public class JwtUtils {
 
     private JwtUtils() { }
 
-    public static String generate() {
+    public static String generate(String username) {
         Date now = new Date();
         SecretKey secretKey = Keys.hmacShaKeyFor(JWT_KEYS.getBytes());
 
         return Jwts.builder()
-            .subject("Nom d'utilisateur") // Nom de l'utilisateur
+            .subject(username) // Nom de l'utilisateur
             .issuedAt(now) // Date de création du jeton
             .expiration(new Date(now.getTime() + 3_600_000)) // Date d'expiration + 1 heure => valide 1 heure
             .signWith(secretKey) // Signer le jeton JWT
