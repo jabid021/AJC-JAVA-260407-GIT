@@ -24,6 +24,10 @@ public class DemoFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("JE SUIS PASSE DANS LE FILTRE");
 
+        String header = request.getHeader("Authorization");
+
+        System.out.println("Affichage header = " + header);
+
         // Création de la liste des autorisations
         List<GrantedAuthority> authorities = new ArrayList<>();
 
