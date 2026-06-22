@@ -24,7 +24,7 @@ public class SecurityConfig {
     // ---- AUTHORIZATION -----
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http, DemoFilter demoFilter) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http, AuthHeaderFilter authHeaderFilter) throws Exception {
         // Configuration des autorisations
         http.authorizeHttpRequests(auth -> {
             // On commence toujours par le plus spécifique, pour terminer par le plus général
@@ -44,7 +44,8 @@ public class SecurityConfig {
         http.httpBasic(Customizer.withDefaults());
 
         // Insérer le filtre AVANT un filtre UsernamePasswordAuthenticationFilter
-        http.addFilterBefore(demoFilter, UsernamePasswordAuthenticationFilter.class);
+        // http.addFilterBefore(demoFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authHeaderFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

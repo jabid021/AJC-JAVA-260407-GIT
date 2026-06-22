@@ -17,7 +17,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@Component
+// @Component
 // OncePerRequestFilter -> garantir que ce filtre ne sera exécuter qu'une seule fois
 public class DemoFilter extends OncePerRequestFilter {
     @Override
