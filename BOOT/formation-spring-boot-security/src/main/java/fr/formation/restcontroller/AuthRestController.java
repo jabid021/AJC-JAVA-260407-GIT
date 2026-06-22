@@ -1,5 +1,7 @@
 package fr.formation.restcontroller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,9 @@ import fr.formation.security.JwtUtils;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthRestController {
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @PostMapping
     public String auth(@RequestBody AuthRequest request) {
         System.out.println("Username = " + request.username());
