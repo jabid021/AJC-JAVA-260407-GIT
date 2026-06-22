@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/produit")
 public class ProduitRestController {
     @GetMapping
+    // hasRole('ADMIN') et hasAuthority('ROLE_ADMIN') => exactement la même chose
     @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    // @PreAuthorize("hasAuthority('PRODUCT_READ')")
     public String findAll() {
         return "Find All Produits";
     }

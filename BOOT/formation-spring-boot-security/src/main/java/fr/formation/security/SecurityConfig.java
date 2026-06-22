@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import fr.formation.repo.UtilisateurRepository;
 
@@ -23,7 +24,7 @@ public class SecurityConfig {
     // ---- AUTHORIZATION -----
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http, DemoFilter demoFilter) throws Exception {
         // Configuration des autorisations
         http.authorizeHttpRequests(auth -> {
             // On commence toujours par le plus spécifique, pour terminer par le plus général
@@ -41,6 +42,9 @@ public class SecurityConfig {
 
         // Réactiver la connexion par HTTP Basic
         http.httpBasic(Customizer.withDefaults());
+
+        // Insérer le filtre AVANT un filtre UsernamePasswordAuthenticationFilter
+        http.addFilterBefore(demoFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

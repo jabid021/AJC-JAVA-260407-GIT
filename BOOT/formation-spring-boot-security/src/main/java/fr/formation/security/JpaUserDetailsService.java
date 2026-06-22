@@ -33,7 +33,9 @@ public class JpaUserDetailsService implements UserDetailsService {
             .map(utilisateur -> User.builder()
                 .username(username)
                 .password(utilisateur.getPassword())
-                .roles(utilisateur.isAdmin() ? "ADMIN" : "USER")
+                // .roles(utilisateur.isAdmin() ? "ADMIN" : "USER")
+                // roles("ADMIN") et authorities("ROLE_ADMIN") => exactement la même chose
+                .authorities("PRODUCT_READ", "ROLE_ADMIN")
                 .build()
             )
             .orElseThrow(() -> new UsernameNotFoundException("Username not found"))
