@@ -31,6 +31,7 @@ public class HelloRestControllerTest {
         // On vérifie si le status HTTP est 200 OK
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
+        // On vérifie que le contenu JSON existe bien
         result.andExpect(MockMvcResultMatchers.jsonPath("$").exists());
     }
 }
