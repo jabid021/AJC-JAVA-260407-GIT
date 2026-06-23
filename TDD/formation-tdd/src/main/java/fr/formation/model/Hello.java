@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Hello {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String message;
 
