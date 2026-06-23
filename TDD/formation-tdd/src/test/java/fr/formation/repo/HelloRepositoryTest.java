@@ -45,6 +45,7 @@ public class HelloRepositoryTest {
     }
 
     @Test
+    // @Sql permet d'exécuter une instruction SQL (ou un script SQL) avant (ou après) le test unitaire
     // @Sql(statements = "INSERT INTO hello (message) VALUES ('Hello world!')")
     @Sql(scripts = "classpath:/create-hello.sql")
     void shouldFindByIdPresent() {
