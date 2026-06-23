@@ -1,9 +1,12 @@
 package fr.formation.repo;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import fr.formation.model.Hello;
 
@@ -39,5 +42,20 @@ public class HelloRepositoryTest {
 
         // then
         Assertions.assertEquals(0, result);
+    }
+
+    @Test
+    // @Sql(statements = "INSERT INTO hello (message) VALUES ('Hello world!')")
+    @Sql(scripts = "classpath:/create-hello.sql")
+    void shouldFindByIdPresent() {
+        // given
+        int id = 1;
+
+        // when
+        Optional<Hello> optHello = this.repository.findById(id);
+
+        // then
+        Assertions.assertTrue(optHello.isPresent());
+        Assertions.assertEquals("Hello world!", optHello.get().getMessage());
     }
 }
