@@ -3,6 +3,7 @@ package quest.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,6 +28,8 @@ public class SecurityConfig {
 
         // Insérer le filtre AVANT un filtre UsernamePasswordAuthenticationFilter
         http.addFilterBefore(jwtHeaderFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.httpBasic(Customizer.withDefaults());
 
         // Désactivation de la protection CSRF uniquement pour les ressources /api/**
         http.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"));
