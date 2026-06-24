@@ -11,7 +11,7 @@ pipeline {
         stage('Git checkout') {
             steps {
                 script {
-                    git credentialsId: 'git-login',
+                    git credentialsId: 'git-login-clea',
                         url: 'git@github.com:jabid021/AJC-JAVA-260407-GIT.git',
                         branch: 'clea'
                 }
