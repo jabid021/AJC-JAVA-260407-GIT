@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Démonstration') {
+
+            steps {
+
+                sh 'echo "Hello !"' // Le commentaire en question
+                sh 'echo "OK!"'
+
+            }
+        }
+    }
+}
