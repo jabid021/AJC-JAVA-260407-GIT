@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.9.16'
+            args '-v $HOME/.m2:/root/.m2 -u root'
+        }
+    }
+
+    stages {
+
+        stage('Git checkout') {
+            steps {
+                git credentialsId: 'git-login-marie',
+                    url: 'git@github.com:jabid021/AJC-JAVA-260407-GIT.git',
+                    branch: 'marie'
+            }
+        }
+
+        stage('Maven version') {
+            steps {
+                sh 'mvn -version'
+            }
+        }
+
+        stage('Build quest-boot') {
+            steps {
+                dir('BOOT/quest-boot') {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+    }
+}
