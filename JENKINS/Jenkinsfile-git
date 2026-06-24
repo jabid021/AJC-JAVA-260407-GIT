@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git checkout') {
+            steps {
+                script {
+                    git credentialsId: 'git-login',
+                        url: 'git@github.com:jabid021/AJC-JAVA-260407-GIT.git',
+                        branch: 'main'
+                }
+            }
+        }
+    }
+}
