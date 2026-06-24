@@ -33,7 +33,7 @@ pipeline {
             steps {
                 dir('BOOT/quest-boot') {
                     sh 'mvn -version'
-                    sh 'mvn clean package -DskipTests'
+                    sh 'mvn clean package'
                 }
             }
         }
