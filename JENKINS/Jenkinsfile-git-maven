@@ -13,7 +13,7 @@ pipeline {
                 script {
                     git credentialsId: 'git-login',
                         url: 'git@github.com:jabid021/AJC-JAVA-260407-GIT.git',
-                        branch: 'main'
+                        branch: 'clea'
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Maven Outils démonstration') {
             // Les outils pour le Stage (donc pour les étapes qui sont dans ce Stage)
             tools {
-                maven 'maven-3.8.7'
+                maven 'maven-3.9.16'
             }
 
             steps {
