@@ -1,0 +1,63 @@
+name: quest
+
+services:
+  mysql:
+    image: mysql:8.0.45
+    container_name: quest-mysql
+
+    networks:
+      - quest
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - ./projet_quest.sql:/docker-entrypoint-initdb.d/setup.sql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: projet_quest
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  java:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ajc/quest-boot:latest
+
+    ports:
+      - "8080:8080"
+
+    networks:
+      - quest
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  phpmyadmin:
+    image: phpmyadmin
+
+    ports:
+      - "80:80"
+
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+
+    networks:
+      - quest
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+networks:
+  quest:
+    name: quest
