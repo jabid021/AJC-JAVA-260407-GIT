@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Maven Package') {
+            agent {
+                docker {
+                    image 'maven:3.9-amazoncorretto-21'
+                    // args '-v $HOME/.m2:/root/.m2:z -u root' // Pour garder le cache Maven
+                    reuseNode true // Permet de partager le même workspace que l'agent Jenkins
+                }
+            }
+
+            steps {
+                dir('BOOT/quest-boot') {
+                    withSonarQubeEnv('SonarQube'){
+
+                       sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot-Siham -Dsonar.projectName='Quest Boot Siham'"
+                    }
+                    
+                }
+            }
+        }
+
+        stage('Docker build') {
+            steps {
+                dir('BOOT/quest-boot') {
+                    sh 'docker build -t ajc/quest-boot .'
+                }
+            }
+        }
+
+        stage('Docker compose') {
+            steps {
+                dir('BOOT/quest-boot') {
+                    sh 'docker compose up -d'
+                }
+            }
+        }
+    }
+}
