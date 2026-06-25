@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeFreeRestController {
     @GetMapping("/free")
     public String free() {
-        return "FREEEE !!";
+        return "FREEEE (2) !!";
     }
 }
