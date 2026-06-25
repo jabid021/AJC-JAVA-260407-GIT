@@ -1,0 +1,41 @@
+name: quest
+
+services:
+  mysql:
+    image: mysql:8.0.45
+    container_name: quest-mysql
+
+    networks:
+      - quest
+
+    environment:
+      MYSQL_DATABASE: projet_quest
+      MYSQL_ROOT_PASSWORD: root
+
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 3s
+      retries: 10
+      interval: 5s
+
+  java:
+    image: ajc/quest-boot
+
+    networks:
+      - quest
+
+    ports:
+      - 8080:8080
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/projet_quest
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+networks:
+  quest:
+    name: quest
