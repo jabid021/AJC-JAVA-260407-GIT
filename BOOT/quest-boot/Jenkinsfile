@@ -12,7 +12,7 @@ pipeline {
             }
             steps {
                 dir('BOOT/quest-boot') {
-                     withSonarQubeEnv() {
+                     withSonarQubeEnv('SonarQube') {
       					sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot-Yann -Dsonar.projectName='Quest Boot Yann'"
     				}
             }
