@@ -2,18 +2,33 @@ pipeline {
     agent any
 
     stages {
+        stage('Git checkout') {
+            steps {
+                script {
+                    git credentialsId: 'git-login',
+                        url: 'git@github.com:jabid021/AJC-JAVA-260407-GIT.git',
+                        branch: 'main'
+                }
+            }
+        }}
+    stages {
         stage('Maven Package') {
             agent {
                 docker {
                     image 'maven:3.9-amazoncorretto-21'
-                    // args '-v $HOME/.m2:/root/.m2:z -u root' // Pour garder le cache Maven
-                    reuseNode true // Permet de partager le même workspace que l'agent Jenkins
+                    args '''
+                    -v $HOME/.m2:/root/.m2:z -u root
+                    -u root
+                    --network devops
+                    ''' // onse place sur le réseau devops pour pouvoir contacter sonar
+                    reuseNode true 
                 }
             }
 
             steps {
                 dir('BOOT/quest-boot') {
-                    sh 'mvn clean package'
+                    withSonarQubeEnv('SonarQube'){
+                    sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot -Dsonar.projectName='Quest Boot'"}
                 }
             }
         }
