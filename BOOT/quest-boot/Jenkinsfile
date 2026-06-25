@@ -2,21 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Maven Package') {
+         stage('Build Quest Boot') {
             agent {
                 docker {
                     image 'maven:3.9-amazoncorretto-21'
-                    // args '-v $HOME/.m2:/root/.m2:z -u root' // Pour garder le cache Maven
-                    reuseNode true // Permet de partager le même workspace que l'agent Jenkins
+                    args '-v $HOME/.m2:/root/.m2:z -u root'
+                    reuseNode true
                 }
             }
-
             steps {
                 dir('BOOT/quest-boot') {
-                    sh 'mvn clean package'
+                     withSonarQubeEnv('SonarCube') {
+                        sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot -Dsonar.projectName='Quest Boot'"
+                        waitForQualityGate abortPipeline:true
+                         
                 }
             }
         }
+    }
 
         stage('Docker build') {
             steps {
@@ -26,12 +29,6 @@ pipeline {
             }
         }
 
-        stage('Docker compose') {
-            steps {
-                dir('BOOT/quest-boot') {
-                    sh 'docker compose up -d'
-                }
-            }
-        }
+
     }
 }
