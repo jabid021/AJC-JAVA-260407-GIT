@@ -6,14 +6,22 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.9-amazoncorretto-21'
-                    args '-v /Users/mathieu/.m2:/root/.m2' // Pour garder le cache Maven
+                    args '''-v /Users/mathieu/.m2:/root/.m2:z
+                            -u root
+                            --network devops
+                        ''' 
+                        
+                        // Pour garder le cache Maven
                     reuseNode true // Permet de partager le même workspace que l'agent Jenkins
                 }
             }
 
             steps {
                 dir('BOOT/quest-boot') {
-                    sh 'mvn clean package'
+                    withSonarQubeEnv('sonar') {
+                        sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot-Rathieux -Dsonar.projectName='Quest Boot Rathieux'"
+                    }
+                    
                 }
             }
         }
