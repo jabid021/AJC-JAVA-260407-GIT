@@ -12,7 +12,7 @@ pipeline {
             }
             steps {
                 dir('BOOT/quest-boot') {
-                     withSonarQubeEnv('SonarCube') {
+                     withSonarQubeEnv('SonarQube') {
                         sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot -Dsonar.projectName='Quest Boot'"
                         waitForQualityGate abortPipeline:true
                          
