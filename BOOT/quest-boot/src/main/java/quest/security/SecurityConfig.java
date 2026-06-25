@@ -19,8 +19,9 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http, JwtHeaderFilter jwtHeaderFilter) throws Exception {
         // Configuration des autorisations
         http.authorizeHttpRequests(auth -> {
-            // On commence toujours par le plus spécifique, pour terminer par le plus général
-            auth.requestMatchers("/api/auth").permitAll();
+            // On commence toujours par le plus spécifique, pour terminer par le plus
+            // général
+            auth.requestMatchers("/api/auth", "/api/home/free").permitAll();
 
             // Les utilisateurs doivent être authentifiés pour accéder à /quelquechose
             auth.requestMatchers("/**").authenticated();
@@ -44,7 +45,8 @@ public class SecurityConfig {
         return passwordEncoder;
     }
 
-    // Permet d'ajouter un AuthenticationManager de Spring Security dans le contexte de Spring, pour pouvoir le récupérer ailleurs et l'utiliser
+    // Permet d'ajouter un AuthenticationManager de Spring Security dans le contexte
+    // de Spring, pour pouvoir le récupérer ailleurs et l'utiliser
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
