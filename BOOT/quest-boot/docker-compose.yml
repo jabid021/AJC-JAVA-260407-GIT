@@ -2,17 +2,15 @@ name: quest
 
 services:
   mysql:
-    image: mysql:8.0.45
-    container_name: quest-mysql
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
 
-    networks:
-      - quest
+    image: ajc/quest-mysql:latest
+    container_name: quest-mysql
 
     ports:
       - "3306:3306"
-
-    volumes:
-      - ./projet_quest.sql:/docker-entrypoint-initdb.d/setup.sql
 
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -24,10 +22,14 @@ services:
       timeout: 3s
       retries: 10
 
+    networks:
+      - quest
+
   java:
     build:
       context: .
       dockerfile: Dockerfile
+
     image: ajc/quest-boot:latest
 
     ports:
@@ -38,12 +40,12 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
-    networks:
-      - quest
-
     depends_on:
       mysql:
         condition: service_healthy
+
+    networks:
+      - quest
 
   phpmyadmin:
     image: phpmyadmin
@@ -56,12 +58,12 @@ services:
       PMA_USER: root
       PMA_PASSWORD: root
 
-    networks:
-      - quest
-
     depends_on:
       mysql:
         condition: service_healthy
+
+    networks:
+      - quest
 
 networks:
   quest:

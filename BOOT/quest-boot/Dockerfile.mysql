@@ -1,0 +1,3 @@
+FROM mysql:8.0.45
+
+COPY projet_quest.sql /docker-entrypoint-initdb.d/setup.sql
