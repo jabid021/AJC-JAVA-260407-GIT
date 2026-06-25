@@ -10,25 +10,25 @@ pipeline {
                         branch: 'main'
                 }
             }
-        }}
-    stages {
+        }
+
         stage('Maven Package') {
             agent {
                 docker {
                     image 'maven:3.9-amazoncorretto-21'
                     args '''
-                    -v $HOME/.m2:/root/.m2:z -u root
+                    -v $HOME/.m2:/root/.m2:z
                     -u root
                     --network devops
-                    ''' // onse place sur le réseau devops pour pouvoir contacter sonar
-                    reuseNode true 
+                    '''
+                    reuseNode true
                 }
             }
-
             steps {
                 dir('BOOT/quest-boot') {
-                    withSonarQubeEnv('SonarQube'){
-                    sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot -Dsonar.projectName='Quest Boot'"}
+                    withSonarQubeEnv('SonarQube') {
+                        sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Quest-Boot -Dsonar.projectName='Quest Boot'"
+                    }
                 }
             }
         }
