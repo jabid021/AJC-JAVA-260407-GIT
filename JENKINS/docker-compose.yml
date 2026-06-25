@@ -1,0 +1,65 @@
+# docker run -d --name quest-mysql --network quest -v D:/ajc/projet_quest.sql:/docker-entrypoint-initdb.d/init.sql -e MYSQL_ROOT_PASSWORD=root mysql:8.0.45
+
+# docker run --rm -it --network quest -e JDBC_URL=jdbc:mysql://quest-mysql:3306/projet_quest ajc/quest:back
+
+name: quest
+
+services:
+  mysql:
+    image: mysql:8.0.45
+    container_name: quest-mysql
+
+    networks:
+      - quest
+
+    volumes:
+      - ./projet_quest.sql:/docker-entrypoint-initdb.d/setup.sql
+
+    environment:
+      # - MYSQL_ROOT_PASSWORD=root
+      MYSQL_ROOT_PASSWORD: root
+
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 3s
+      retries: 10
+      interval: 5s
+
+  java:
+    image: ajc/quest:back
+
+    # build:
+    #   context: ../../../quest_back
+
+    networks:
+      - quest
+
+    environment:
+      JDBC_URL: jdbc:mysql://mysql:3306/projet_quest
+
+    # depends_on:
+    #   - mysql
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  phpmyadmin:
+    image: phpmyadmin
+
+    networks:
+      - quest
+
+    ports:
+      - 80:80
+
+    environment:
+      # PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+networks:
+  quest:
+    name: quest
