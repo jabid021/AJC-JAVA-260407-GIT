@@ -22,7 +22,7 @@ services:
       interval: 5s
 
   java:
-    image: ajc/quest-boot
+    image: ascadis/quest-boot
 
     # build:
     #   context: ../../../quest_back
