@@ -27,8 +27,18 @@ export class App {
   }
 
   public ajouterTodo() {
-    this.todos.push(this.formTodo);
+    // this.todos.push({ ...this.formTodo });
+    // this.formTodo.id = 0;
+    // this.formTodo.title = "";
+    // this.formTodo.completed = false;
 
+    this.todos.push(this.formTodo);
     this.formTodo = { id: 0, title: "", completed: false };
+  }
+
+  public supprimerTodo(todo: Todo) {
+    const index = this.todos.indexOf(todo);
+
+    this.todos.splice(index, 1);
   }
 }
