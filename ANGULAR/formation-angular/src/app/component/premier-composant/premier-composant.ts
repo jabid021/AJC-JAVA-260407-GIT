@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 
 @Component({
   selector: 'app-premier-composant',
@@ -9,4 +9,9 @@ import { Component, Input } from '@angular/core';
 export class PremierComposant {
   @Input('prenom')
   public prenom: string = "Zoro";
+
+  @HostListener('click')
+  public onClick() {
+    alert('ok');
+  }
 }
