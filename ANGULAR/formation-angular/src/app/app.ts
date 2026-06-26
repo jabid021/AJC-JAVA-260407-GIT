@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ FormsModule ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -12,9 +13,5 @@ export class App {
 
   public changeTitle() {
     this.title = "Le nouveau titre";
-  }
-
-  public updateTitle(event: any) {
-    this.title = event.target.value;
   }
 }

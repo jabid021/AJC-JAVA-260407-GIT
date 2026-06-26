@@ -1,7 +1,7 @@
 <p>{{ title }}</p>
 
 <div>
-  <input type="text" [value]="title" (input)="updateTitle($event)" />
+  <input type="text" [(ngModel)]="title" />
 </div>
 
 <div>
