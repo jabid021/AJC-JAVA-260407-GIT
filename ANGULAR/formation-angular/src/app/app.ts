@@ -2,11 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Todo } from './model/todo';
+import { PremierComposant } from './component/premier-composant/premier-composant';
 
 
 @Component({
   selector: 'app-root',
-  imports: [ FormsModule, CommonModule ],
+  imports: [
+    FormsModule,
+    CommonModule,
+    PremierComposant
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
