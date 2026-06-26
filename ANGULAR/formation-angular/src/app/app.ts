@@ -13,4 +13,8 @@ export class App {
   public changeTitle() {
     this.title = "Le nouveau titre";
   }
+
+  public updateTitle(event: any) {
+    this.title = event.target.value;
+  }
 }
