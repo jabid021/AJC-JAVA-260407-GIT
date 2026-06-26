@@ -22,3 +22,14 @@
 
 <p [ngStyle]="{ 'color': couleur }">Mon paragraphe en couleur {{ couleur }}</p>
 <p [style.color]="couleur">Mon paragraphe en couleur {{ couleur }}</p>
+
+<hr />
+
+<p>Le todo = {{ todo.title }}</p>
+<input type="text" [(ngModel)]="todo.title">
+
+<p *ngIf="demoBoolean">BOOLEAN TRUE</p>
+
+<ul>
+  <li *ngFor="let str of demoFor">{{ str }}</li>
+</ul>
