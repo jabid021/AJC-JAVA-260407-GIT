@@ -8,5 +8,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('formation-angular');
+  protected title: string = 'Formation Angular AJC';
+
+  public changeTitle() {
+    this.title = "Le nouveau titre";
+  }
 }
