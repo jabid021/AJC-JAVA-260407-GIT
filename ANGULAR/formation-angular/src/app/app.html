@@ -87,7 +87,7 @@
 
 <hr />
 
-<app-premier-composant [prenom]="title">
+<app-premier-composant [prenom]="title" *ngIf="formTodo.completed">
   <div>CE QUE JE VEUX COMME ELEMENTS</div>
   <div>AUTRE CHOSE</div>
 </app-premier-composant>
