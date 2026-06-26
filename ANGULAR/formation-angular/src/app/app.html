@@ -25,11 +25,57 @@
 
 <hr />
 
-<p>Le todo = {{ todo.title }}</p>
-<input type="text" [(ngModel)]="todo.title">
-
 <p *ngIf="demoBoolean">BOOLEAN TRUE</p>
 
 <ul>
   <li *ngFor="let str of demoFor">{{ str }}</li>
 </ul>
+
+<hr />
+
+<div>
+  <input type="number" [(ngModel)]="formTodo.id" />
+  <input type="text" [(ngModel)]="formTodo.title" />
+  <input type="checkbox" [(ngModel)]="formTodo.completed" />
+
+  <input type="radio" name="complet" [value]="false" [(ngModel)]="formTodo.completed" />
+  <input type="radio" name="complet" [value]="true" [(ngModel)]="formTodo.completed" />
+
+  <button (click)="ajouterTodo()">Ajouter</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Titre</th>
+      <th>Complet ?</th>
+      <th>Complet (2) ?</th>
+      <th>Complet (3) ?</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let todo of todos">
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.title }}</td>
+
+      <td *ngIf="todo.completed">OUI</td>
+      <td *ngIf="!todo.completed">NON</td>
+
+      <td>
+        {{ todo.completed ? 'OUI' : 'NON' }}
+      </td>
+
+      <td>
+        @if (todo.completed) {
+          OUI
+        }
+
+        @else {
+          NON
+        }
+      </td>
+    </tr>
+  </tbody>
+</table>
