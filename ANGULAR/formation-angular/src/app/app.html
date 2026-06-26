@@ -7,3 +7,18 @@
 <div>
   <button (click)="changeTitle()">Le bouton</button>
 </div>
+
+<hr />
+
+<select [(ngModel)]="couleur">
+  <option value="black">Noire</option>
+  <option value="blue">Bleu</option>
+  <option value="red">Rouge</option>
+  <option value="pink">Rose</option>
+  <option value="#d06fa5">Rose flashy</option>
+</select>
+
+<input type="color" [(ngModel)]="couleur" />
+
+<p [ngStyle]="{ 'color': couleur }">Mon paragraphe en couleur {{ couleur }}</p>
+<p [style.color]="couleur">Mon paragraphe en couleur {{ couleur }}</p>
