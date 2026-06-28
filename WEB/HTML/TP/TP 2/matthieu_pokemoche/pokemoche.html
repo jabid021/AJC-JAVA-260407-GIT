@@ -6,7 +6,7 @@
     <title>Pokémoche</title>
     <style>
       body {
-        background: #111;
+        background: rgb(71 85 105);
         color: white;
         font-family: Arial, sans-serif;
       }
@@ -27,11 +27,20 @@
         top: 20px;
       }
 
-      .tier {
+      .tierColumn {
+        width: 150px;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      .monsColumn tr {
         display: flex;
         align-items: center;
         border-bottom: 2px solid #333;
         padding: 10px;
+
       }
 
       .label {
@@ -48,6 +57,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
+                border-bottom: 1px solid darkslategray;
       }
 
       .mons img {
@@ -89,6 +99,14 @@
       }
       .poke {
         background: #9966ff;
+      }
+
+      .godMon {
+        width: 800px;
+        height: 800px;
+        background: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png")
+          center;
+        background-size: 180%;
       }
 
       .modal {
@@ -153,264 +171,270 @@
       <div class="modal-content" id="modal-content"></div>
     </div>
 
-    <div class="tier">
-      <div class="label god">GOD</div>
-      <div class="mons">
-        <img
-          id="god"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png"
-        />
-      </div>
-    </div>
+    <table>
+      <tr>
+        <th class="tierColumn"></th>
+        <th class="monsColumn"></th>
+      </tr>
+      <tr>
+        <th class="label god">GOD</th>
+        <td class="mons">
+          <img
+            id="god"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label what">WHAT IZEUH DIS??</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/688.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/367.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/760.png"
-        />
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png"
-        />
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/476.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label what">WHAT IZEUH DIS??</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/688.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/367.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/760.png"
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png"
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/476.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label cursed">CURSED</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/594.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/368.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/463.png"
-        /><img
-          src="https://img.pokemondb.net/sprites/sun-moon/normal/dugtrio-alolan.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/621.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label cursed">CURSED</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/594.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/368.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/463.png"
+          /><img
+            src="https://img.pokemondb.net/sprites/sun-moon/normal/dugtrio-alolan.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/621.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label lacecho">LACECHO...</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/740.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/737.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/527.png"
-        /><img
-          src="https://img.pokemondb.net/sprites/sun-moon/normal/persian-alolan.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/689.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/751.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/652.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/449.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/574.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/327.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label lacecho">LACECHO...</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/740.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/737.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/527.png"
+          /><img
+            src="https://img.pokemondb.net/sprites/sun-moon/normal/persian-alolan.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/689.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/751.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/652.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/449.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/574.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/327.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label sinj">SINJ</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/424.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/515.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/511.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/513.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/641.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/642.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/645.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label sinj">SINJ</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/424.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/515.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/511.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/513.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/641.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/642.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/645.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label cringe">CRINGE...</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
-        />
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/538.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/313.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/314.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/630.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/550.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/402.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/638.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/394.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/615.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/668.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/400.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/588.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/349.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/560.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/436.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/413.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label cringe">CRINGE...</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/538.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/313.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/314.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/630.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/550.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/402.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/638.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/394.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/615.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/668.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/400.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/588.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/349.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/560.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/436.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/413.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label bulots">BULOTS (CHIOTTES DE LA MER)</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/576.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/683.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/507.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/734.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/735.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/372.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/206.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/320.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label bulots">BULOTS (CHIOTTES DE LA MER)</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/576.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/683.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/507.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/734.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/735.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/372.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/206.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/320.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label pabo">PABO</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/780.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/504.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/195.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/575.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/759.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/665.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/213.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label pabo">PABO</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/780.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/504.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/195.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/575.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/759.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/665.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/213.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png"
+          />
+        </td>
+      </tr>
 
-    <div class="tier">
-      <div class="label poke">POKEMOUAI</div>
-      <div class="mons">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/723.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/333.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/485.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/423.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/682.png"
-        /><img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/703.png"
-        />
-      </div>
-    </div>
+      <tr>
+        <th class="label poke">POKEMOUAI</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/723.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/333.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/485.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/423.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/682.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/703.png"
+          />
+        </td>
+      </tr>
+    </table>
 
     <audio id="sound" src="assets/audio/funk_infernal.mp3"></audio>
 
@@ -429,24 +453,29 @@
         document.getElementById("modal").style.display = "flex";
 
         if (god) {
-          innerHtml = `<img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png" class="bigger"
-        />`;
-
+          document.getElementById("modal-content").innerHTML =
+            `<div class="godMon" id="godMon"/>`;
+          confetti = true;
+          randomScale();
           const sound = document.getElementById("sound");
           sound.currentTime = 0;
           sound.play();
-          confetti = true;
+
           for (let i = 0; i < 40; i++) {
             createConfetti();
           }
         } else {
-          console.log(Math.floor(Math.random()) * 5 + 1);
-          innerHtml = `<img
+          document.getElementById("modal-content").innerHTML = `<img
           src="assets/gifs/random${Math.floor(Math.random() * 5) + 1}.gif""
         />`;
         }
-        document.getElementById("modal-content").innerHTML = innerHtml;
+      }
+
+      function randomScale() {
+        document.getElementById("godMon").style.scale = Math.random();
+        if (confetti) {
+          setTimeout(randomScale, 461.53846154);
+        }
       }
 
       function closePopup() {
