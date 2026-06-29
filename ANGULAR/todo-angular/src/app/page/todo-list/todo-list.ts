@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TodoStatePipe } from '../../pipe/todo-state-pipe';
 import { Title } from '@angular/platform-browser';
+import { TodoService } from '../../service/todo-service';
 
 @Component({
   selector: 'app-todo-list',
@@ -19,11 +20,12 @@ import { Title } from '@angular/platform-browser';
 export class TodoList implements OnInit {
   protected formTodo: Todo = { id: 0, title: "", completed: false };
   // protected todos: Array<Todo> = []
-  protected todos: Todo[] = [ ];
+  protected todos!: Todo[];
 
   // Injection avec "inject", dans la classe
   private route: ActivatedRoute = inject(ActivatedRoute);
   private title: Title = inject(Title);
+  protected todoService: TodoService = inject(TodoService);
 
   // Injection par constructeur
   // constructor(private route: ActivatedRoute) { }
@@ -38,6 +40,7 @@ export class TodoList implements OnInit {
     });
 
     this.title.setTitle("Liste des Todos");
+    this.todos = this.todoService.findAll();
   }
 
   public ajouterTodo() {
@@ -46,13 +49,12 @@ export class TodoList implements OnInit {
     // this.formTodo.title = "";
     // this.formTodo.completed = false;
 
-    this.todos.push(this.formTodo);
+    // this.todos.push(this.formTodo);
+    this.todoService.add(this.formTodo);
     this.formTodo = { id: 0, title: "", completed: false };
   }
 
   public supprimerTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo);
-
-    this.todos.splice(index, 1);
+    this.todoService.remove(todo);
   }
 }
