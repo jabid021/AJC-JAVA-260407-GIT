@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Todo } from '../../model/todo';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,10 +10,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
 })
-export class TodoList {
+export class TodoList implements OnInit {
   protected formTodo: Todo = { id: 0, title: "", completed: false };
   // protected todos: Array<Todo> = []
   protected todos: Todo[] = [ ];
+
+  // Injection avec "inject", dans la classe
+  private route: ActivatedRoute = inject(ActivatedRoute);
+
+  // Injection par constructeur
+  // constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    // Injection avec "inject", dans une fonction
+    // const laRoute = inject(ActivatedRoute);
+
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      console.log(params['demo']);
+    });
+  }
 
   public ajouterTodo() {
     // this.todos.push({ ...this.formTodo });
