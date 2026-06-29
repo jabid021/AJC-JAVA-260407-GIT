@@ -19,6 +19,7 @@
       <th>Complet ?</th>
       <th>Complet (2) ?</th>
       <th>Complet (3) ?</th>
+      <th>Complet (4) ?</th>
       <th></th>
     </tr>
   </thead>
@@ -43,6 +44,10 @@
         @else {
           NON
         }
+      </td>
+
+      <td>
+        {{ todo.completed | todoState }}
       </td>
 
       <td>

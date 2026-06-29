@@ -3,10 +3,15 @@ import { Todo } from '../../model/todo';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { TodoStatePipe } from '../../pipe/todo-state-pipe';
 
 @Component({
   selector: 'app-todo-list',
-  imports: [ FormsModule, CommonModule ],
+  imports: [
+    FormsModule,
+    CommonModule,
+    TodoStatePipe
+  ],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
 })
