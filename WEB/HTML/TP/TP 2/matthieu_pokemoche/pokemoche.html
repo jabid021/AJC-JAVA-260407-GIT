@@ -1,0 +1,511 @@
+<!doctype html>
+<link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet" />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pokémoche</title>
+    <style>
+      body {
+        background: rgb(71 85 105);
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        font-family: "Pokemon Solid", sans-serif;
+        font-size: 90px;
+        color: #ffcb05;
+        text-shadow:
+          -5px -5px 0 #2a75bb,
+          5px -5px 0 #2a75bb,
+          -5px 5px 0 #2a75bb,
+          5px 5px 0 #2a75bb,
+          0px 8px 0 #1a4f8b;
+        margin-bottom: 10px;
+        text-align: center;
+        position: sticky;
+        top: 20px;
+      }
+
+      .tierColumn {
+        width: 150px;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      .monsColumn tr {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #333;
+        padding: 10px;
+      }
+
+      .label {
+        width: 180px;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+        border-radius: 8px;
+        margin-right: 10px;
+        height: 100%;
+      }
+
+      .mons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        border-bottom: 1px solid darkslategray;
+      }
+
+      .mons img {
+        width: 100px;
+        height: 100px;
+        image-rendering: pixelated;
+      }
+      .mons img:hover {
+        scale: 1.2;
+      }
+
+      .bigger {
+        scale: 10;
+      }
+
+      .god {
+        background: #ff4d4d;
+      }
+      .what {
+        background: #ff9966;
+      }
+      .cursed {
+        background: #ffcc66;
+      }
+      .lacecho {
+        background: #ffee66;
+      }
+      .sinj {
+        background: #66ff99;
+      }
+      .cringe {
+        background: #66ff66;
+      }
+      .bulots {
+        background: #66ccff;
+      }
+      .pabo {
+        background: #6699ff;
+      }
+      .poke {
+        background: #9966ff;
+      }
+
+      .godMon {
+        width: 200px;
+        height: 200px;
+        background: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png")
+          center;
+        background-size: 180%;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: linear-gradient(135deg, #fff, #ffe680);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 0 30px gold;
+        position: relative;
+        animation: pop 0.3s ease;
+      }
+
+      @keyframes pop {
+        from {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        cursor: pointer;
+        font-size: 22px;
+      }
+      .confetti {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: red;
+        top: -10px;
+        animation: fall 2s linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>POKEMOCHE</h1>
+
+    <div class="modal" id="modal">
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+
+    <table>
+      <tr>
+        <th class="tierColumn"></th>
+        <th class="monsColumn"></th>
+      </tr>
+      <tr>
+        <th class="label god">GOD</th>
+        <td class="mons">
+          <img
+            id="god"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/779.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label what">WHAT IZEUH DIS??</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/688.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/367.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/760.png"
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png"
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/476.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label cursed">CURSED</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/594.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/368.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/463.png"
+          /><img
+            src="https://img.pokemondb.net/sprites/sun-moon/normal/dugtrio-alolan.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/621.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label lacecho">LACECHO...</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/740.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/737.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/536.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/527.png"
+          /><img
+            src="https://img.pokemondb.net/sprites/sun-moon/normal/persian-alolan.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/689.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/751.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/652.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/449.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/574.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/327.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label sinj">SINJ</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/424.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/515.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/511.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/513.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/641.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/642.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/645.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label cringe">CRINGE...</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/539.png"
+          />
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/538.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/313.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/314.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/630.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/550.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/388.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/402.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/638.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/394.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/615.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/668.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/397.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/400.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/588.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/349.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/560.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/436.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/413.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label bulots">BULOTS (CHIOTTES DE LA MER)</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/576.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/683.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/507.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/734.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/735.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/372.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/206.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/320.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label pabo">PABO</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/780.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/504.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/195.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/575.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/759.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/665.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/213.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th class="label poke">POKEMOUAI</th>
+        <td class="mons">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/723.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/333.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/485.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/423.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/682.png"
+          /><img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/703.png"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <audio id="sound" src="assets/audio/funk_infernal.mp3"></audio>
+
+    <script>
+      let confetti = false;
+
+      function onImageClick(img) {
+        openPopup(img.id == "god");
+      }
+
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("click", () => onImageClick(img));
+      });
+
+      function openPopup(god) {
+        document.getElementById("modal").style.display = "flex";
+
+        if (god) {
+          document.getElementById("modal-content").innerHTML =
+            `<div class="godMon" id="godMon"/>`;
+          confetti = true;
+          randomScale();
+          const sound = document.getElementById("sound");
+          sound.currentTime = 0;
+          sound.play();
+
+          for (let i = 0; i < 40; i++) {
+            createConfetti();
+          }
+        } else {
+          document.getElementById("modal-content").innerHTML = `<img
+          src="assets/gifs/random${Math.floor(Math.random() * 5) + 1}.gif""
+        />`;
+        }
+      }
+
+      function randomScale() {
+        document.getElementById("godMon").style.scale = Math.random() * 4;
+        if (confetti) {
+          setTimeout(randomScale, 461.53846154);
+        }
+      }
+
+      function closePopup() {
+        document.getElementById("modal").style.display = "none";
+        const sound = document.getElementById("sound");
+        sound.pause();
+        confetti = false;
+      }
+
+      function createConfetti() {
+        if (!confetti) {
+          return;
+        }
+
+        const c = document.createElement("div");
+        c.classList.add("confetti");
+        document.body.appendChild(c);
+
+        c.style.left = Math.random() * window.innerWidth + "px";
+        c.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        c.style.animationDuration = 1 + Math.random() * 2 + "s";
+
+        setTimeout(() => c.remove(), 3000);
+        setTimeout(() => createConfetti(), Math.random() * 1000);
+      }
+
+      document.getElementById("modal").addEventListener("click", function (e) {
+        if (e.target === this) {
+          closePopup();
+        }
+      });
+    </script>
+  </body>
+</html>
