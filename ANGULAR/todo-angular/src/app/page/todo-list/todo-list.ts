@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TodoStatePipe } from '../../pipe/todo-state-pipe';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-todo-list',
@@ -22,6 +23,7 @@ export class TodoList implements OnInit {
 
   // Injection avec "inject", dans la classe
   private route: ActivatedRoute = inject(ActivatedRoute);
+  private title: Title = inject(Title);
 
   // Injection par constructeur
   // constructor(private route: ActivatedRoute) { }
@@ -34,6 +36,8 @@ export class TodoList implements OnInit {
       console.log(params);
       console.log(params['demo']);
     });
+
+    this.title.setTitle("Liste des Todos");
   }
 
   public ajouterTodo() {
