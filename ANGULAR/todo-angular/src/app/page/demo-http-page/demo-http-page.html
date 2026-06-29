@@ -1,0 +1,8 @@
+<!-- <ul>
+  <li *ngFor="let todo of todos">{{ todo.title }}</li>
+</ul> -->
+
+<ul>
+  <li *ngFor="let todo of todos$ | async">{{ todo.title }}</li>
+</ul>
+
