@@ -28,8 +28,7 @@ public class SecurityConfig {
             auth.requestMatchers("/api/auth", "/api/home/free").permitAll();
 
             // Les utilisateurs doivent être authentifiés pour accéder à /quelquechose
-            // auth.requestMatchers("/**").authenticated();
-            auth.requestMatchers("/**").permitAll();
+            auth.requestMatchers("/**").authenticated();
         });
 
         // Insérer le filtre AVANT un filtre UsernamePasswordAuthenticationFilter
