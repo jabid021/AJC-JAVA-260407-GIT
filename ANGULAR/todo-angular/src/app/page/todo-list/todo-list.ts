@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TodoStatePipe } from '../../pipe/todo-state-pipe';
 import { Title } from '@angular/platform-browser';
 import { TodoService } from '../../service/todo-service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -19,8 +20,7 @@ import { TodoService } from '../../service/todo-service';
 })
 export class TodoList implements OnInit {
   protected formTodo: Todo = { id: 0, title: "", completed: false };
-  // protected todos: Array<Todo> = []
-  protected todos!: Todo[];
+  protected todos$!: Observable<Todo[]>;
 
   // Injection avec "inject", dans la classe
   private route: ActivatedRoute = inject(ActivatedRoute);
@@ -40,7 +40,7 @@ export class TodoList implements OnInit {
     });
 
     this.title.setTitle("Liste des Todos");
-    this.todos = this.todoService.findAll();
+    this.todos$ = this.todoService.findAll();
   }
 
   public ajouterTodo() {
@@ -50,11 +50,11 @@ export class TodoList implements OnInit {
     // this.formTodo.completed = false;
 
     // this.todos.push(this.formTodo);
-    this.todoService.add(this.formTodo);
+    this.todoService.add(this.formTodo).subscribe();
     this.formTodo = { id: 0, title: "", completed: false };
   }
 
   public supprimerTodo(todo: Todo) {
-    this.todoService.remove(todo);
+    this.todoService.remove(todo).subscribe();
   }
 }
