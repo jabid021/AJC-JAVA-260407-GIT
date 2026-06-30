@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AuthService {
-  private _token: string = "";
+  private _token: string = sessionStorage.getItem('token') ?? "";
 
   public get token(): string {
     return this._token;
@@ -20,6 +20,9 @@ export class AuthService {
     return new Observable<void>(observer => {
       return this.http.post<AuthResponse>('/auth', request).subscribe(resp => {
         this._token = resp.token;
+
+        // Enregistrement du jeton dans la session Storage
+        sessionStorage.setItem('token', resp.token);
 
         observer.next();
       });
