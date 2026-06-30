@@ -8,20 +8,21 @@ import { Matiere } from '../model/matiere';
 })
 export class MatiereService {
   private http: HttpClient = inject(HttpClient);
+  private apiUrl: string = '/matiere';
 
   public findAll(): Observable<Matiere[]> {
-    return this.http.get<Matiere[]>('http://localhost:8080/api/matiere');
+    return this.http.get<Matiere[]>(this.apiUrl);
   }
 
   public add(matiere: Matiere): Observable<Matiere> {
-    return this.http.post<Matiere>('http://localhost:8080/api/matiere', matiere);
+    return this.http.post<Matiere>(this.apiUrl, matiere);
   }
 
   public update(matiere: Matiere): Observable<Matiere> {
-    return this.http.put<Matiere>(`http://localhost:8080/api/matiere/${ matiere.id }`, matiere);
+    return this.http.put<Matiere>(`${ this.apiUrl }/${ matiere.id }`, matiere);
   }
 
   public remove(matiere: Matiere): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8080/api/matiere/${ matiere.id }`);
+    return this.http.delete<void>(`${ this.apiUrl }/${ matiere.id }`);
   }
 }
