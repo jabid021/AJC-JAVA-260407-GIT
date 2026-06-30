@@ -1,0 +1,34 @@
+<h1>Liste des matières</h1>
+
+<div>
+  <div>
+    <input type="text" [(ngModel)]="formMatiere.libelle" />
+  </div>
+
+  <div>
+    <button (click)="addOrUpdate()">{{ formMatiere.id ? 'Modifier' : 'Ajouter' }}</button>
+  </div>
+</div>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Libellé</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let matiere of matieres$ | async">
+      <td>{{ matiere.id }}</td>
+      <td>{{ matiere.libelle }}</td>
+      <td>
+        <button (click)="edit(matiere)">MODIFIER</button>
+        <button (click)="remove(matiere)">SUPPRIMER</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
