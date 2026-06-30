@@ -32,4 +32,9 @@ export class AuthService {
       });
     });
   }
+
+  public disconnect() {
+    this._token = "";
+    sessionStorage.removeItem('token');
+  }
 }

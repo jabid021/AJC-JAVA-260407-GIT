@@ -5,7 +5,11 @@ import { LoginPage } from './page/login-page/login-page';
 import { authGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
-  { path: 'home', component: HomePage },
+  {
+    path: 'home',
+    component: HomePage,
+    canActivate: [ authGuard ]
+  },
 
   {
     path: 'matiere',
