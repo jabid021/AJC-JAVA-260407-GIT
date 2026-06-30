@@ -2,10 +2,17 @@ import { Routes } from '@angular/router';
 import { MatierePage } from './page/matiere-page/matiere-page';
 import { HomePage } from './page/home-page/home-page';
 import { LoginPage } from './page/login-page/login-page';
+import { authGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
   { path: 'home', component: HomePage },
-  { path: 'matiere', component: MatierePage },
+
+  {
+    path: 'matiere',
+    component: MatierePage,
+    canActivate: [ authGuard ]
+  },
+
   { path: 'login', component: LoginPage },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

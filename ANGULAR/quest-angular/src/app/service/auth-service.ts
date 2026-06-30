@@ -16,6 +16,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  public isLogged(): boolean {
+    return this._token != "";
+  }
+
   public auth(request: AuthRequest): Observable<void> {
     return new Observable<void>(observer => {
       return this.http.post<AuthResponse>('/auth', request).subscribe(resp => {
