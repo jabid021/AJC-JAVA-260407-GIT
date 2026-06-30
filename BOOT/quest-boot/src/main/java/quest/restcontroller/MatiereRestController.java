@@ -3,6 +3,7 @@ package quest.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,49 +21,50 @@ import quest.view.Views;
 
 @RestController
 @RequestMapping("/api/matiere")
+// @CrossOrigin("http://localhost:4200")
 public class MatiereRestController {
 
 
 	@Autowired
 	MatiereService matiereSrv;
 
-	
+
 	@GetMapping("/recherche")
 	@JsonView(Views.Matiere.class)
-	public List<Matiere> rechercheParLib(String recherche)  
+	public List<Matiere> rechercheParLib(String recherche)
 	{
 		return matiereSrv.getByLibelleContaining(recherche);
 	}
-	
+
 	@GetMapping
 	@JsonView(Views.Matiere.class)
-	public List<Matiere> chercherTous()  
+	public List<Matiere> chercherTous()
 	{
-		return matiereSrv.getAll();	
+		return matiereSrv.getAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	@JsonView(Views.Matiere.class)
-	public Matiere chercherParId(@PathVariable Integer id)  
+	public Matiere chercherParId(@PathVariable Integer id)
 	{
 		return matiereSrv.getById(id);
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public void supprimer(@PathVariable Integer id)  
+	public void supprimer(@PathVariable Integer id)
 	{
 		matiereSrv.delete(id);
 	}
-	
+
 	@PostMapping
-	public Matiere ajouter(@RequestBody Matiere matiere)  
+	public Matiere ajouter(@RequestBody Matiere matiere)
 	{
 		matiereSrv.insert(matiere);
 		return matiere;
 	}
-	
+
 	@PutMapping("/{id}")
-	public Matiere modifier(@PathVariable Integer id,@RequestBody Matiere matiere)  
+	public Matiere modifier(@PathVariable Integer id,@RequestBody Matiere matiere)
 	{
 		matiere.setId(id);
 		matiereSrv.update(matiere);
