@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth-service';
@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
   protected formAuth!: FormGroup;
   protected formCtrlUsername!: FormControl;
   protected formCtrlPassword!: FormControl;
+  protected loginError = signal(false);
 
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -27,8 +28,9 @@ export class LoginPage implements OnInit {
   }
 
   public auth() {
-    this.authService.auth(this.formAuth.getRawValue()).subscribe(() => {
-      this.router.navigate([ 'matiere' ]);
+    this.authService.auth(this.formAuth.getRawValue()).subscribe({
+      next: () => this.router.navigate([ 'matiere' ]),
+      error: () => this.loginError.set(true)
     });
   }
 }

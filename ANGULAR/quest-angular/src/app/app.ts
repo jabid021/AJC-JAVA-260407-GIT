@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { AuthService } from './service/auth-service';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navigation } from './component/navigation/navigation';
 
@@ -9,5 +10,5 @@ import { Navigation } from './component/navigation/navigation';
   styleUrl: './app.css'
 })
 export class App {
-
+  protected authService: AuthService = inject(AuthService);
 }

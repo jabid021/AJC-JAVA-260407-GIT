@@ -22,13 +22,19 @@ export class AuthService {
 
   public auth(request: AuthRequest): Observable<void> {
     return new Observable<void>(observer => {
-      return this.http.post<AuthResponse>('/auth', request).subscribe(resp => {
-        this._token = resp.token;
+      this.http.post<AuthResponse>('/auth', request).subscribe({
+        next: resp => {
+          this._token = resp.token;
 
-        // Enregistrement du jeton dans la session Storage
-        sessionStorage.setItem('token', resp.token);
+          // Enregistrement du jeton dans la session Storage
+          sessionStorage.setItem('token', resp.token);
 
-        observer.next();
+          observer.next();
+        },
+
+        error: () => {
+          observer.error();
+        }
       });
     });
   }
