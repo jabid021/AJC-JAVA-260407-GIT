@@ -1,14 +1,22 @@
 <h1>Liste des matières</h1>
 
-<div>
+<form (submit)="addOrUpdate()" [formGroup]="formMatiere">
   <div>
-    <input type="text" [(ngModel)]="formMatiere.libelle" />
+    <input type="text" formControlName="libelle" />
+  </div>
+
+  <div *ngIf="formMatiere.get('libelle')?.dirty && formMatiere.get('libelle')?.hasError('required')">
+    Le message d'erreur comme quoi le libellé est obligatoire !!
+  </div>
+
+  <div *ngIf="formCtrlLibelle.dirty && formCtrlLibelle.hasError('required')">
+    Le message d'erreur comme quoi le libellé est obligatoire !!
   </div>
 
   <div>
-    <button (click)="addOrUpdate()">{{ formMatiere.id ? 'Modifier' : 'Ajouter' }}</button>
+    <input [disabled]="formMatiere.invalid" type="submit" [value]="editingMatiereId ? 'Modifier' : 'Ajouter'" />
   </div>
-</div>
+</form>
 
 <hr />
 
