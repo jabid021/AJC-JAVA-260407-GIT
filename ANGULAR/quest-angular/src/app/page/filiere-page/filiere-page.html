@@ -1,0 +1,23 @@
+<h1>Liste des filières</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+      <th>Salle</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let filiere of filieres$ | async">
+      <td>{{ filiere.id }}</td>
+      <td>{{ filiere.libelle }}</td>
+      <td>{{ filiere.debut }}</td>
+      <td>{{ filiere.fin }}</td>
+      <td>{{ filiere.salle?.nom }}</td>
+    </tr>
+  </tbody>
+</table>

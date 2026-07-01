@@ -3,6 +3,7 @@ import { MatierePage } from './page/matiere-page/matiere-page';
 import { HomePage } from './page/home-page/home-page';
 import { LoginPage } from './page/login-page/login-page';
 import { authGuard } from './guard/auth-guard';
+import { FilierePage } from './page/filiere-page/filiere-page';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,12 @@ export const routes: Routes = [
   {
     path: 'matiere',
     component: MatierePage,
+    canActivate: [ authGuard ]
+  },
+
+  {
+    path: 'filiere',
+    component: FilierePage,
     canActivate: [ authGuard ]
   },
 
