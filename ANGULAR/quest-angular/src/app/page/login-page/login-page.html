@@ -1,15 +1,27 @@
 <h1>Page de connexion</h1>
 
-<div>
+<form (submit)="auth()" [formGroup]="formAuth">
   <div>
-    <input type="text" [(ngModel)]="formAuth.login" />
+    <input type="text" formControlName="login" />
   </div>
 
-  <div>
-    <input type="text" [(ngModel)]="formAuth.password" />
-  </div>
+  @if (formCtrlUsername.dirty && formCtrlUsername.invalid) {
+    <div>Le nom d'utilisation est obligatoire</div>
+  }
 
   <div>
-    <button (click)="auth()">Connexion</button>
+    <input type="password" formControlName="password" />
   </div>
-</div>
+
+  @if (formCtrlPassword.dirty && formCtrlPassword.hasError('required')) {
+    <div>Le mot de passe est obligatoire</div>
+  }
+
+  @if (formCtrlPassword.dirty && formCtrlPassword.hasError('minlength')) {
+    <div>Le mot de passe doit faire 6 caractères minimum</div>
+  }
+
+  <div>
+    <input [disabled]="formAuth.invalid" type="submit" value="Se connecter" />
+  </div>
+</form>
