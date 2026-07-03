@@ -1,6 +1,7 @@
 package fr.formation;
 
 import fr.formation.musique.Guitariste;
+import fr.formation.response.ExempleResponse;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -27,5 +28,11 @@ public class GreetingResource {
     @Path("/demo")
     public String demo() {
         return "Démonstration";
+    }
+
+    @GET
+    @Path("/exemple")
+    public ExempleResponse exemple() {
+        return new ExempleResponse("Le contenu du message");
     }
 }
