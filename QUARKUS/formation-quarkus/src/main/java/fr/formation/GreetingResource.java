@@ -1,7 +1,9 @@
 package fr.formation;
 
 import fr.formation.musique.Guitariste;
+import fr.formation.request.ExempleBeanParamRequest;
 import fr.formation.response.ExempleResponse;
+import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -42,5 +44,14 @@ public class GreetingResource {
     @Path("/exemple/{message}")
     public ExempleResponse exemplePathParam(@PathParam("message") String message) {
         return new ExempleResponse("Le contenu du message = " + message);
+    }
+
+    @GET
+    @Path("/exemple/bean-param")
+    public String exempleBeanParam(@BeanParam ExempleBeanParamRequest request) {
+        System.out.println(request.getLibelle());
+        System.out.println(request.getPrix());
+
+        return "ok";
     }
 }
