@@ -5,6 +5,7 @@ import fr.formation.response.ExempleResponse;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("/hello")
@@ -32,7 +33,7 @@ public class GreetingResource {
 
     @GET
     @Path("/exemple")
-    public ExempleResponse exemple() {
-        return new ExempleResponse("Le contenu du message");
+    public ExempleResponse exemple(@QueryParam("message") String message) {
+        return new ExempleResponse("Le contenu du message = " + message);
     }
 }
