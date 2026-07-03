@@ -4,6 +4,7 @@ import fr.formation.musique.Guitariste;
 import fr.formation.response.ExempleResponse;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
@@ -34,6 +35,12 @@ public class GreetingResource {
     @GET
     @Path("/exemple")
     public ExempleResponse exemple(@QueryParam("message") String message) {
+        return new ExempleResponse("Le contenu du message = " + message);
+    }
+
+    @GET
+    @Path("/exemple/{message}")
+    public ExempleResponse exemplePathParam(@PathParam("message") String message) {
         return new ExempleResponse("Le contenu du message = " + message);
     }
 }
