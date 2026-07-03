@@ -1,5 +1,7 @@
 package fr.formation;
 
+import java.util.Map;
+
 import fr.formation.musique.Guitariste;
 import fr.formation.request.ExempleBeanParamRequest;
 import fr.formation.request.ExempleRequest;
@@ -12,6 +14,8 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 @Path("/hello")
 public class GreetingResource {
@@ -59,10 +63,13 @@ public class GreetingResource {
 
     @POST
     @Path("/exemple")
-    public String exemplePost(ExempleRequest request) {
+    public Response exemplePost(ExempleRequest request) {
         System.out.println(request.getLibelle());
         System.out.println(request.getPrix());
 
-        return "ok";
+        return Response.status(Status.CREATED)
+            .entity(Map.of("id", "valeur de l'id"))
+            .build()
+        ;
     }
 }
