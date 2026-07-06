@@ -6,6 +6,7 @@ import fr.formation.model.Produit;
 import fr.formation.repo.ProduitRepository;
 import fr.formation.request.CreateOrUpdateProduitRequest;
 import fr.formation.response.ProduitResponse;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -34,6 +35,7 @@ public class ProduitResource {
 
     @POST
     @Transactional
+    @RolesAllowed("admin")
     public int create(CreateOrUpdateProduitRequest request) {
         Produit produit = new Produit();
 
@@ -48,6 +50,7 @@ public class ProduitResource {
     @PUT
     @Path("/{id}")
     @Transactional
+    @RolesAllowed({ "admin" })
     public int update(@PathParam("id") Integer id, CreateOrUpdateProduitRequest request) {
         Produit produit = this.repository.findByIdOptional(id).orElseThrow(NotFoundException::new);
 
@@ -62,6 +65,7 @@ public class ProduitResource {
     @DELETE
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("admin")
     public void deleteById(@PathParam("id") Integer id) {
         this.repository.deleteById(id);
     }
